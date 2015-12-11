@@ -1,0 +1,67 @@
+\section{outline}
+
+\begin{enumerate}
+	\item Introduction
+	\subitem The difference between software specification and physiological requirement
+	\subitem The necessity of closed-loop verification
+	\subitem Model-based design enables closed-loop verification at earlier design stage.
+	\subitem Closed-loop model checking
+	\subitem Difference between system modeling and environment modeling
+	\subsubitem One concrete system vs. countless concrete systems
+	\subsubitem Abstraction for simplicity vs. generality
+	%\subitem In this paper, we illustrate four challenges and solve them for medical devices, specifically cardiac devices. 
+	\subitem CEGAR does not work on environment modeling
+	\subsubitem Physiological requirements focus on environment conditions, thus predicate abstraction does not work (example)
+	\subsubitem Random abstraction functions introduce behaviors that are not physiological possible
+	\subsubitem Validity of counter-examples cannot be checked
+	\subitem Abstraction tree based environment model abstraction and refinement
+	\subsubitem Physiological abstraction rules introduce physiological behaviors into the abstract model
+	\subsubitem Documenting merging of physiological transitions to maintain the physiological-relevance of the abstract model
+	\subsubitem Abstraction tree keeps track of abstraction-refinement relations
+	\subsubitem Simple algorithm to select appropriate initial model for requirements
+	\subsubitem Algorithm to obtain the most concrete counter-examples corresponding to multiple physiological conditions.
+	\subsubitem Physician determine the validity of the counter-examples
+	\subitem Some elements of the proposed method can be generalized and have a wider applicability: namely the abstraction tree and MC on the tree (abstractness measure, search procedure)
+	\subitem Give overview of method in a block diagram and briefly explain it in text.
+	
+	\item Formal models of the environment
+	\begin{enumerate}
+		\item Heart basics, enough to understand the proposed models
+		\item Emphasis: different heart conditions necessitate different models.
+		\item Creation of initial formal heart models: graph structure + node and path automata
+		%\item Two examples of heart conditions and their formal models.
+		\item Emphasis: our initial set of models is not necessarily complete. That is, there are more heart conditions that could be modeled, but aren't. It is always a work in progress.	
+		\subitem Therefore we want to add behavior to try and cover things not covered by the models. Adding models i not the answer since it will always be an incomplete set. Not to mention it's a manual process.
+		\item Formalization of physiological requirements
+	\end{enumerate}
+	
+	\item Abstraction rules: how to add behavior to the initial set of models
+	\begin{enumerate}
+		\item Why predicate-based abstraction can be inadequate?
+		%\label{ar:inadequate}
+		\subitem If we get a cex which is spurious by the classical definition, it is not necessarily spurious physiologically. Remember we are enriching the behavior precisely to cover new conditions.
+		\subitem So it's up to the physician to decide if the cex is spurious or not. But predicate-based abstraction might give hard-to-understand cex.
+%		\subsubitem Two ambiguities: interaction and context ambiguities. Interaction ambiguity because the requirement is purely on the env.
+		\subitem Example
+		\subitem Therefore, need the added behavior to be physiologically meaningful so it's understandable.
+		\item Physiologically meaningful abstraction rules
+		\subitem Give formal definition of a rule as a graph-to-graph function $R: G \rightarrow G'$ 
+		\subitem Why do you call it abstraction? 
+		\subitem Given 2 concrete examples (more in tech report)
+		\item Example of rule application.
+		\item Abstraction tree		
+	\end{enumerate}
+	
+	\item Model-checking with the abstraction tree
+	\begin{enumerate}
+		\item Measure of abstractness; define 'appropriate for the requirement'
+		\item Search procedure
+		\item What happens if a counter-example is found: give the physician the most concrete model on which the cex still shows up.
+		\item Case study: i.e., elaborate example
+	\end{enumerate}
+	
+	\item Conclusions and future research
+	
+\end{enumerate}
+
+

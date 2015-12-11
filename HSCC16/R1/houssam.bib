@@ -1,0 +1,852 @@
+% Encoding: Cp1252
+
+@inproceedings{Islam:2014:CRC:2562059.2562138,
+ author = {Islam, Md. Ariful and Murthy, Abhishek and Girard, Antoine and Smolka, Scott A. and Grosu, Radu},
+ title = {Compositionality Results for Cardiac Cell Dynamics},
+ booktitle = {Proceedings of the 17th International Conference on Hybrid Systems: Computation and Control},
+ series = {HSCC '14},
+ year = {2014},
+ isbn = {978-1-4503-2732-9},
+ location = {Berlin, Germany},
+ pages = {243--252},
+ numpages = {10},
+ url = {http://doi.acm.org/10.1145/2562059.2562138},
+ doi = {10.1145/2562059.2562138},
+ acmid = {2562138},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ keywords = {approximate bisimulation, compositionality, feedback},
+description = {Applies the compositionality result of Girard_CompositionBisim07 to cardiac cell models. Theoretically, this shows that if A1 and A2 are apx bisimilar, and B1 and B2 are apx bisimilar, then the feedback interconnection A1,B1 is apx bisimilar to A2,B2 under a small-gain condition. The proof probably simply observes that if A1 is apx.bisim. to B1, then the trivial parallel interconnection A1||B1 has a self-bisimulation. },
+} 
+
+@UNPUBLISHED{Girard_CompositionBisim07,
+  author = {Antoine Girard},
+  title = {A composition theorem for bisumulation functions},
+booktitle = {pre-print},
+publisher = {arXiv:1304.5153},
+keywords = {bisimulation,composition,small-gain theorem},
+description = {given 2 continuous-time open non-hybrid systems, each with an exponentially decaying self-bisimulation, gives a small-gain condition under which the feedback interconnection of the two systems admits an exponentially decaying bisimulation V. This V is a weighted sum of the two individual bisimus. The weights used in defining V, and which appear in the SG condition, have to do with the rates of decay of the individual bisimulations. },
+}
+
+@incollection{KossentiniC_HybridVoting05,
+year={2006},
+isbn={978-3-540-33170-4},
+booktitle={Hybrid Systems: Computation and Control},
+volume={3927},
+series={Lecture Notes in Computer Science},
+editor={Hespanha, JoãoP. and Tiwari, Ashish},
+doi={10.1007/11730637_28},
+title={Approximation, Sampling and Voting in Hybrid Computing Systems},
+url={http://dx.doi.org/10.1007/11730637_28},
+publisher={Springer Berlin Heidelberg},
+author={Kossentini, Chiheb and Caspi, Paul},
+pages={363-376},
+language={English},
+abstract = {This paper addresses the question of extending the usual approximation and sampling theory of continuous signals and systems to those encompassing discontinuities, such as found in modern distributed control systems. We provide a topological framework dealing with continuous, discrete and mixed systems in a uniform manner. We show how this theoretical framework can be used for voting on hybrid signals in critical real-time systems.},
+description = {(This description is based on the tech report from Verimag) The delay-threshold voter covered here is interesting (section 6.3): it is an algorithm that raises an alarm when two signals differ by more than eps for more than some duration tau, and otherwise outputs the value of one of them. It can be seen as an online monitor for this notion of closeness between signals. The associated conditions of correctness (Prop. 6.3) is relevant, as it tells the class of signals which will never cause the voter to raise an alarm (namely uniformly continuous signals in the topology defined in this paper). Note this notion of closeness (and this topology) are different from (tau,eps)-closeness and its topology, and the voting problem in redundant systems is different from the problem that interests us in conformance. They present this topology as better suited for the voting problem than the Skorokhod topology of their earlier work KossentiniC_HybridVotingSkorokhod04	},
+}
+
+@incollection{KossentiniC_HybridVotingSkorokhod04,
+title={Mixed Delay and Threshold Voters in Critical Real-Time Systems},
+year={2004},
+isbn={978-3-540-23167-7},
+booktitle={Formal Techniques, Modelling and Analysis of Timed and Fault-Tolerant Systems},
+volume={3253},
+series={Lecture Notes in Computer Science},
+editor={Lakhnech, Yassine and Yovine, Sergio},
+doi={10.1007/978-3-540-30206-3_4},
+url={http://dx.doi.org/10.1007/978-3-540-30206-3_4},
+publisher={Springer Berlin Heidelberg},
+author={Kossentini, Chiheb and Caspi, Paul},
+pages={21-35},
+language={English},
+abstract = {This paper addresses the question of extending the usual
+approximation and sampling theory of continuous signals and systems
+to those encompassing discontinuities, such as found in modern complex
+control systems (mode switches for instance). We provide a topological
+framework derived from the Skorokhod distance to deal with those cases
+in a uniform manner. We show how this theoretical framework can be
+used for voting on hybrid signals in critical real-time systems.},
+description = {This work formalizes mixed voters (a combination of threshold and delay voters) and answers the question: for which class of signals do these voters raise an alarm? The answer is: for Uniformly Skorokhod Continuous signals (with, as usual, bijective retimings used to define the Skorokhod topology). This topology is finer than the tube topology of Gupta, Henzinger et al GuptaHJ_HART97. In later work KossentiniC_HybridVoting05 they propose a different topology for the same task citing shortcomings with the Skorokhod topology, but this paper doesn't allude to any such difficulties.},
+}
+
+@ARTICLE{Girard_Multiresolution06, 
+author={Girard, A.}, 
+journal={Automatic Control, IEEE Transactions on}, 
+title={Towards a multiresolution approach to linear control}, 
+year={2006}, 
+month={Aug}, 
+volume={51}, 
+number={8}, 
+pages={1261-1270}, 
+abstract={We develop a multiresolution approximation framework for linear control. We construct a multiresolution analysis of the set of input functions of a linear system. The approximation of an input u at a scale j is defined as the input uj of minimal energy such that the trajectories of the system associated with u and uj coincide on a grid of step length 2-j. We propose a set of wavelet functions which generate this multiresolution analysis. These functions, called control theoretic wavelets, satisfy useful properties for the representation of control inputs of a linear system. As an example of application of our multiresolution approximation framework, we propose a method for efficient encoding of control inputs with regard to several criteria}, 
+keywords={approximation theory;continuous time systems;control system synthesis;linear systems;optimal control;wavelet transforms;continuous time optimal control;linear control;multiresolution approximation;wavelet functions;Automatic control;Control systems;Encoding;Energy resolution;Linear approximation;Linear systems;Multiresolution analysis;Optimal control;Spline;Wavelet analysis;Encoding;linear systems;multiresolution approximation;optimal control;wavelet transforms}, 
+doi={10.1109/TAC.2006.878717}, 
+ISSN={0018-9286},
+}
+
+
+@BOOK {Gonzales_ImgProc02,
+        AUTHOR={Rafael C. Gonzales, Richard E. Woods},
+        TITLE={Digital Image Processing},
+        PUBLISHER={Pearson Education},
+        YEAR={2002},
+}
+
+@incollection{ChaiS_DCACInverter_ACC14,
+title={A Robust Hybrid Control Algorithm for a Single-Phase DC/AC Inverter with Variable Input Voltage},
+year={2014},
+booktitle={HSCC 2014},
+series={Lecture Notes in Computer Science},
+publisher={Springer Berlin Heidelberg},
+author={Chai, Jun	 and Sanfelice, Ricardo G.},
+abstract={In this paper, we analyze the properties of the vector fields associated with all possible configurations of a single-phase DC/AC inverter with the objective of designing a hybrid controller for the generation of an approximation of a sinusoidal reference signal. Using forward invariance tools for general hybrid systems, a hybrid controller is designed for the switched differential equations capturing the dynamics of the DC/AC inverter. Then, global asymptotic stability of a set of points nearby the reference trajectory, called the tracking band, is established. This property is found to be robust to small perturbations, and variation of the input voltage. Simulations illustrating the major results are included.},
+}
+
+@incollection{HenzingerO_ModelMeasuring_CONCUR10,
+year={2013},
+isbn={978-3-642-40183-1},
+booktitle={CONCUR 2013 – Concurrency Theory},
+volume={8052},
+series={Lecture Notes in Computer Science},
+editor={D’Argenio, PedroR. and Melgratti, Hernán},
+doi={10.1007/978-3-642-40184-8_20},
+title={From Model Checking to Model Measuring},
+url={http://dx.doi.org/10.1007/978-3-642-40184-8_20},
+publisher={Springer Berlin Heidelberg},
+author={Henzinger, ThomasA. and Otop, Jan},
+pages={273-287},
+abstract={We define the model-measuring problem: given a model M and specification ϕ, what is the maximal distance ρ such that all models M′ within distance ρ from M satisfy (or violate) ϕ. The model measuring problem presupposes a distance function on models. We concentrate on automatic distance functions, which are defined by weighted automata. The model-measuring problem subsumes several generalizations of the classical model-checking problem, in particular, quantitative model-checking problems that measure the degree of satisfaction of a specification, and robustness problems that measure how much a model can be perturbed without violating the specification. We show that for automatic distance functions, and ω-regular linear-time and branching-time specifications, the model-measuring problem can be solved. We use automata-theoretic model-checking methods for model measuring, replacing the emptiness question for standard word and tree automata by the optimal-weight question for the weighted versions of these automata. We consider weighted automata that accumulate weights by maximizing, summing, discounting, and limit averaging. We give several examples of using the model-measuring problem to compute various notions of robustness and quantitative satisfaction for temporal specifications.},
+description = {Introduces the model measuring problem: given a similarity measure function d_M(M'), which measures the distance d(M,M') between model M' and model M, and an automaton A_dist that computes it, we ask the minimum weight question: what is the infimum over weights of all w-trees (w-words) accepted by the weighted w-automaton A_{!phi}xA_dist? [Def.1] If the answer is rho, then any model with dM(M') < rho satisfies phi.
+The paper deals with measures dM based on weighting schemes f \in {SUM, MAX, DISCOUNT, LIMAVG} such that d_M(M') = sup\{A_dist^f(w): w is a trace of M'\}. Such distances are called automatic [Def.9] because there exists a weighted automaton A_dist that computes them as in the preceding equation. 
+The restriction of the weighting scheme f to this set is because the optimal weight question with such schemes can be computed in polynomial time in |A| (A is the weighted automaton above) [Sec 3] (there's a caveat after Thm.11).
+Note that the weighted automaton assigns integer weights to transitions (but the weighting scheme f assigns real values to traces, based on the integer transition weights in the trace).
+They then propose a hypervisor (which is like a weighted automaton), specific to a given automaton M, to compute the similarity measure dM [Def. 18]. Particular instantiations of the hypervisor depend on the details of M and they give some example constructions [Examples 20,21,22,24].
+They don't mention the robustness work of Fainekos and co., even though he also defined robustness as the distance between languages...
+},
+}
+
+
+@UNPUBLISHED{staliro,
+  author = {Georgios Fainekos},
+  title = {Taliro Tools},
+	institution = {Arizona State University},
+	note = {[Online at: https://sites.google.com/a/asu.edu/s-taliro/]},  
+  timestamp = {2014.5.10},
+}
+
+@UNPUBLISHED{riceMOR,
+  author = {Richard J. Hanson and Danny C. Sorensen},
+  title = {Model Reduction of Dynamical Systems for Real Time Control},
+  note = {[Online at: http://www.caam.rice.edu/~modelreduction/mission.html]},
+  timestamp = {2014.5.10},
+}
+
+@TECHREPORT{Dolan_NEOSTechRpt,
+  author = {E. Dolan},
+  title = {The NEOS Server 4.0 Administrative Guide},	
+  institution = {Mathematics and Computer Science Division, Argonne National Laboratory},
+  year = {2001},	
+	month = {May},
+  number = {{ANL/MCS-TM-250}},
+}
+
+@UNPUBLISHED{neos,
+  author = {},
+  title = {NEOS server},
+  note = {[Online at: http://www.neos-server.org]},
+  timestamp = {2014.5.11}
+}
+
+@UNPUBLISHED{knitro,
+  author = {Ziena},
+  title = {{KNITRO}},
+  note = {[Online at: http://www.ziena.com]},
+  timestamp = {2014.5.10}
+}
+
+@UNPUBLISHED{bugscope,
+  author = {Atrenta},
+  title = {BugScope$\;^{TM}$},
+  note = {[Online at: http://www.atrenta.com/solutions/bugscope.htm5]},
+  timestamp = {2014.5.10}
+}
+
+
+
+@InProceedings{Ratschan_ReachabilitySlices09,
+  author = 	 {Tom{\'a}{\v s} Dzetkuli{\v c} and Stefan Ratschan},
+  title = 	 {How to Capture Hybrid Systems Evolution Into Slices of Parallel Hyperplanes},
+  booktitle = {ADHS'09: 3rd IFAC Conference on Analysis and Design of Hybrid Systems},
+  year = 	 2009,
+  pages =        {274--279},
+	description = {given a box abstraction of a hybrid system, creates hyperplanes that separate the reachable from unreachable space in time $O(n^3)$},
+}
+
+@article{Ratschan_Quasidecidable10,
+year={2013},
+issn={0925-9856},
+journal={Formal Methods in System Design},
+doi={10.1007/s10703-013-0196-2},
+title={Safety verification of non-linear hybrid systems is quasi-decidable},
+url={http://dx.doi.org/10.1007/s10703-013-0196-2},
+publisher={Springer US},
+keywords={Hybrid systems; Safety verification; Decidability; Robustness},
+author={Ratschan, Stefan},
+pages={1-20},
+language={English},
+description = {Shows that verification (checking a property is true) of continuous-time nonlinear hybrid systems are quasi-semidecidable [Def.6]: i.e. there exists a (possibly non-terminating algo) A for answering these questions, s.t. A terminates on robust systems. A robust HS x is one such that if property P is true of x then it is also true of slightly perturbed [Def.9] x. 
+If the flows of x are moreover polynomial then falsification (checking P it is not true) is also quasi-semidecidable [Section 4].
+This work deals only with _safety_ properties. A few more restrictions on the systems exist (Def.1).
+It then gives verification and falsification algos that terminate on robust systems. These algos seem to be mainly of theoretical interest (abstract the system and test the abstraction. Over-approximate for verification, under-approximate for falsification). Still, they should be read and understood to avoid wasting time on future useless research.},
+}
+
+@INPROCEEDINGS{ZhaiMIK_MultipleLyap07, 
+author={Zhai, Guisheng and Matsune, I. and Imae, J. and Kobayashi, T.}, 
+booktitle={Control Applications, 2007. CCA 2007. IEEE International Conference on}, 
+title={A Note on Multiple Lyapunov Functions and Stability Condition for Switched and Hybrid Systems}, 
+year={2007}, 
+pages={226-231}, 
+keywords={Lyapunov methods;stability;time-varying systems;hybrid system;multiple Lyapunov function;nonholonomic system;stability condition;switched system;Asymptotic stability;Books;Control systems;Differential equations;Environmental factors;Lyapunov method;Mechanical engineering;Stability analysis;Switched systems;Switches;Lyapunov stability;Switched and hybrid systems;average value of multiple Lyapunov functions;multiple Lyapunov functions;nonholonomic systems;switching strategy}, 
+doi={10.1109/CCA.2007.4389235},
+decription = {for switched systems: instead of the usual "lyapunov decreases along the flow and the jumps" condition for stability, shows it is sufficient that the average value of lyapunov fnt decrease along flows and jumps [Thm. II.A.1]. The average is taken over the duration of activation of each subsystem (with repetitions). Gives some nice examples for stable and unstable systems.},
+}
+
+@INPROCEEDINGS{Bako_ModeEstimation13, 
+author={Bako, L. and Van Luong Le and Lauer, F. and Bloch, G.}, 
+booktitle={American Control Conference (ACC), 2013}, 
+title={Identification of MIMO switched state-space models}, 
+year={2013}, 
+pages={71-76}, 
+keywords={MIMO systems;computational complexity;continuous time systems;discrete time systems;identification;matrix algebra;optimisation;state-space methods;time-varying systems;MIMO switched state-space model;NP-hard problem;discrete-time switched linear state-space models;input-state-output measurements;matrices estimation;nontrivial identification problem;realization problem;sparsity-inducing optimization approach;switched linear model identification;MIMO;Mathematical model;Modeling;Optimization;State-space methods;Switches;Vectors}, 
+ISSN={0743-1619},
+description = {Given a state-space model of a switched system with perfectly measured state and output, and each suffering from unknown but bounded errors, the objective is to detect the nb of models, the model matrices, and the switching sequence between them. This is done by some nice linear algebra, and a condition for perfect detectability.
+},
+}
+ 
+@INPROCEEDINGS{Balluchi02integratedcontrol-implementation, 
+author={Balluchi, A. and Beradi, L. and Di Benedetto, M.D. and Ferrari, A. and Girasole, G. and Sangiovanni-Vincentelli, A.L.}, 
+booktitle={Decision and Control, 2002, Proceedings of the 41st IEEE Conference on}, 
+title={Integrated control-implementation design}, 
+year={2002}, 
+month={Dec}, 
+volume={2}, 
+pages={1337-1342 vol.2}, 
+abstract={The design of embedded controllers is about developing control algorithms and their implementation satisfying tight constraints on performance and cost. To reduce design time and implementation cost, we propose a methodology based on the principles of platform-based design. The design process is decomposed into a sequence of steps that involve different levels of abstraction (platforms) related by a refinement relation. The design method is exemplified by applying it to the design of an automotive engine controller.}, 
+keywords={automobiles;control system synthesis;embedded systems;force control;internal combustion engines;performance index;tracking;automotive engine controller;control algorithms;cost constraints;embedded controllers;integrated control-implementation design;performance constraints;platform-based design;refinement relation;Algorithm design and analysis;Chemical sensors;Control systems;Costs;Design methodology;Embedded system;Process design;Real time systems;Space exploration;Timing}, 
+doi={10.1109/CDC.2002.1184701}, 
+description = {So you design a controller, by choosing an architecture r from a set of architecture choices R, and by choosing parameters pr for the architecture from a corresponding set of parameter values Xc. 
+You implement, and the shit hits the fan.
+Instead, this paper advocates that you model the implementation process via its effects on the closed-loop system which incorporates the chosen architecture and parameters. The implementation, called a platform, is chosen from a set S of available platforms, and its parameter vector ps is chosen from a set Xp of values. 
+So the procedure is to choose a tuple (r,pr, s, ps) \in R x Xc x S x Xp that
+- satisfies design constraints expressed as inequalities on some functions [(3),(4)]
+- minimizes some objective function [(7)] which measures the size of the design space if further refinement is performed. In this way, if we refine (s,ps) further (i.e., implement at a lower level of detail), our task is easy because our choices are limited.
+The Implementation model depends on the application and they mention Time-Triggered architecture as a good starting point [section 4.2].
+This process falls within "platform-based design" [section 2], where a platform is defined as an abstraction layer that hides "lower-level details but let enough information transpire about lower levels of abstraction to allow design space exploration with a fairly accurate prediction of the properties of the final implementation".
+The objective function: you reduce the space of exploration but what if this reduction means you can't satisfy the constraints anymore?
+},
+ISSN={0191-2216},
+}
+
+
+
+@article{WoehrleKT_conformance12,
+ author = {Woehrle, Matthias and Lampka, Kai and Thiele, Lothar},
+ title = {Conformance testing for cyber-physical systems},
+ journal = {ACM Trans. Embed. Comput. Syst.},
+ issue_date = {December 2012},
+ volume = {11},
+ number = {4},
+ month = jan,
+ year = {2013},
+ issn = {1539-9087},
+ pages = {84:1--84:23},
+ articleno = {84},
+ numpages = {23},
+ url = {http://doi.acm.org/10.1145/2362336.2362351},
+ doi = {10.1145/2362336.2362351},
+ acmid = {2362351},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ keywords = {Conformance test, cyber-physical systems, timed testing},
+descriptionn = {Given a Model, and an Implementation that produces timed traces, how to check that the traces satisfy the specification embodied in the Model?
+They represent the Model as a Timed Automaton. It can be nondeterministic. In addition to the clocks, the TA has a set of variables that are constant in a given location, and are reset with each location jump. In this work we consider the case of only one variable, say p for power consumption.
+And they represent each trace as a TA. All that follows concerns therefore one trace, and has to be repeated for each trace. Every new (time stamp, p-value) pair of the trace is a location in the TA of the trace. They present a way [section 3.3.2] to reduce the size of this monster TA.
+They then compose TAmodel with TAtrace. The transition rules of the composed model are given in [section 3.2]. The idea is that every new power value of the (compressed) trace should be checked against the invariants of the TAmodel's current location. If it satisfies them, the TAmodel stays in that location. Otherwise, see whether it is possible for it to transition to a new location whose invariants are satisfied by the new p-value. 
+	Here they have a weird rule for the transitions - see rule (d) p.10 and my comment. Here "system" = Model. Specifically "an actual system mode change occurs only if the current system mode does not accept the fugture power consumption" (fine) "and the new system mode does not accept the current power consumption" - why this last bit? Who cares if the old power is not accepted by the new mode's invariant set?
+So if the final location of the trace is reachable by the composite TA, great, this tells us that this trace could've been generated by the Model. Otherwise, this trace can not be generated by the Model and we have non-conformance. 
+So: only invariants are checked. They decide that what happens while in a location is irrelevant for them.
+The reachability check is done using either uppaal model checker, or Tron.
+Their example on p.8 figures 2-4 is bullshit.
+	They introduce these phony "update locations" to get around the composite TA deadlocking - but isn't this cheating? [p.8]
+},
+} 
+
+@incollection{Osch_IOCO06,
+title={Hybrid Input-Output Conformance and Test Generation},
+year={2006},
+isbn={978-3-540-49699-1},
+booktitle={Formal Approaches to Software Testing and Runtime Verification},
+volume={4262},
+series={Lecture Notes in Computer Science},
+editor={Havelund, Klaus and NÃºÃ±ez, Manuel and RoÅŸu, Grigore and Wolff, Burkhart},
+publisher={Springer Berlin Heidelberg},
+author={Osch, Michiel},
+pages={70-84},
+description = {Builds on Input-Output Conformance (ioco) for discrete systems of Tremans [section 3] to define a Hybrid ioco (hicoco) relation for hybrid systems modeled as hybrid transition systems (HTS). 
+An HTS is a tuple (S, s0, ->, --->) [Def. 11] where S is a potentially uncountable state-space (e.g. R^n), s0 is the initial state, -> is a discrete transition relation between states of S decorated by an action from the set A, and ---> is a continuous transition relation over SxS decorated by trajectories sigma from Sigma. The actions set A is partitioned into input Actions AI (corresponding to discrete input flags), output actions AO (corresponding to discrete outputs of the system)/, and the unobserved internal action tau. Every trajectory sigma can be partitioned into the input trajectory (corresponding to the continuous input curve), an output trajectory (corresponding to the continuous output of the system).
+The hioco relation simply says that [Def 18] for the Implementation I (represented as an HTS) to be conformant to the Specification (or Model) S, it must be the case that following any trace alpha, the set of output actions possible from I is a subset of the set of output actions possible from S; and, given the same continuous input accepted by both I and S, the set of output trajectories producible by I is a subset of the set of output trajectories producible by S.
+Examples of hioco are given in Section 5.
+He then defines a test as basically a traversal of the specification HTS which leads to PASS, and all other paths lead to FAIL. (depending on the specification, from a state a trajectory or an action might be possible). The exhaustive set of tests is then all possible traversals of the Specification HTS [Def. 20]. He also proves soundness (if I not hicoco S, then there exists a generated test that returns FAIL). [Section 7]
+
+The obvious issue here is that to build an exhaustive set of tests, you have to generate all possible traversals which is impossible: these are uncountable. And the testing procedure seems to reduce to: start by simulating the specification (which is what running a test really is), and make sure that the Implementation behavior matches it exactly. It also doesn't tell how to select a particular test. So a long way remains to make this practical, and I'm not sure the new formalism has bought us anything.
+},
+}
+
+
+@INPROCEEDINGS{PlakuKV07cav,
+  author = {Erion Plaku and Lydia E. Kavraki and Moshe Y. Vardi},
+  title = {Hybrid Systems: From Verification to Falsification},
+  booktitle = {Proceedings of the 19th International Conference on Computer Aided
+	Verification},
+  year = {2007},
+  editor = {Werner Damm and Holger Hermanns},
+  volume = {4590},
+  series = {LNCS},
+  pages = {463-476},
+  publisher = {Springer},
+  bibsource = {DBLP, http://dblp.uni-trier.de},
+  ee = {http://dx.doi.org/10.1007/978-3-540-73368-3_12},
+  keywords = {rrt},
+  timestamp = {2007.10.04},
+	description = {Presents the algorithms and rationale behind HyDICE, a heuristic safety falsification tool for HS which combines motion planning algorithms with discrete search over graphs to find witness trajectories (traj that falsify the safety specification).
+Finite set of modes, fixed end-time, constant input in each mode, urgent transitions, safety specification.
+The algorithm is given in Algorithm 2:
+Decompose the search state space into "decomposition regions" [section 3.2.1]. We create a graph G_D= (V_D, E_D) using the decomposition: each (ith decomposition region in mode q) gets a vertex v_i(q), and we add v_safe and v_unsafe to V_D as well. Edges are determined in a natural manner [3.2.2].
+Starting from a vertex v_safe, build a sequence of regions (i.e. a path in the graph G_D) that reach the region of the unsafe set. This G_D path is the "lead" [3.2.3]. Out of all possible v_safe-v_unsafe paths, one is chosen as lead based on a weighting mechanism of the edges, which gives higher priority to edges heuristically more likely to get us closer to the v_unsafe. [3.2.3]. These weights are related to the coverage so far of Di(q) and time spent there so far.
+HyDICE then selects regions from the lead in which to propagate the trajectories using the continuous dynamics, e.g. using RRT. This selection is done by heuristic weighting [3.3.1] of the regions. Once a region is selected, a state in it is selected [3.3.2], and the trajectory is propagated forward from there using the continuous dynamics. 
+They then update the coverage and other numbers used to refine the lead.
+Examples follow on a navigation benchmark with up to 1024^2 modes and 3 dimensions [4.1 table 1],
+And the aircraft collision avoidance with up to 20 aircraft, corresponding to 60 dimensions, and 2 modes per aicraft[ 4.2, table 2]
+},
+}
+
+
+@INPROCEEDINGS{Gonzales10hscc,
+  author = {Humberto Gonzales and Ram Vasudevan and Maryam Kamgarpour and S.
+	Shankar Sastry and Ruzena Bajczy and Claire Tomlin},
+  title = {A Descent Algorithm for the Optimal Control of Constrained Nonlinear
+	Switched Dynamical Systems},
+  booktitle = {Hybrid Systems: Computation and Control},
+  year = {2010},
+  bibsource = {DBLP, http://dblp.uni-trier.de},
+  crossref = {hscc2010},
+  timestamp = {2010.11.16},
+	description = {
+This follows the work of Wardi and Egerstedt ("Gradient descent approach"), and generalizes it by: treating systems with continuous inputs, and adding a constraint on the state that it should always be in some set[Eq.(13)]. The systems are switched (no resets) with finite nb of modes and non-zeno. The final time T is fixed.
+The cost J = terminal cost phi(x(T)) + integral cost \int{L(x(t),u(t))dt}, with terminal cost phi(x) Lipschitz, cont. diff. and with a Lipschitz derivative [Assumption 2]. The integrand L is Lip and diff. in x and u [Assumption 1]
+Like Wardi, they use an optimality function that is essentially the minimum, over all mode insertions, of the derivative of the cost and the derivative of the constraint equations [Eq. 19]. They also use a bi-level algo where the upper level (Stage 2) chooses a modal sequence by inserting a mode, and the lower level (stage 1) chooses the switching times given that new sequence.
+The search variable xi = (modal sequence, switching time sequence, control). The goal is now to prove that the bi-level algo has the sufficient descent property w.r.t. the optimality function [Thm. 2]. They do assume that Stage 1 has the sufficient descent property [Assumption 4] and later give a class of systems for which this is true.
+To do so,
+	they prove continuity of the cost J(xi) [Prop.1, 2, 3]
+	They give expressions for the trajectory sensitivity w.r.t. insertion width [Prop. 6] 
+	They give an expression to the cost function derivative w.r.t. insertion width for a given insertion [Prop. 7]
+	And an expression for the constraint fnt derivative  w.r.t. insertion width for a given insertion [Prop. 8]
+	
+It is noteworthy that the only place where the differentiability of phi(x) (terminal cost) was used was in Eq. 27 for the expression of the boundary condition on the costate. How this comes about is clear in the proof of that prop in the Technical Report Eqs. A29 and A32. So it might well be possible to discard that, using the nonsmooth MVT.
+
+Question: what allows these authors to discard the whole shebang of optimizing in a descending chain of Euclidian spaces, which faced Wardi, and for which he had to introduce the complicated analysis using the curve C(lambda)? Is it Assumption 4? The answer should lie in the proof of Thm. 2.},
+}
+
+
+@INPROCEEDINGS{6314919, 
+author={Wardi, Y. and Egerstedt, M.}, 
+booktitle={American Control Conference (ACC), 2012}, 
+title={Algorithm for optimal mode scheduling in switched systems}, 
+year={2012}, 
+pages={4546-4551}, 
+keywords={differential equations;iterative methods;minimisation;multidimensional systems;nonlinear control systems;optimal control;time-varying systems;Gaâteaux differentials;autonomous switched dynamical system;computational workload;cost functional minimization;descent directions;infinite-dimensional optimization problems;mode-sequences;optimal mode scheduling;optimality functions;performance function;sequence minimization;system continuous state variable trajectory;Algorithm design and analysis;Convergence;Equations;Optimization;Schedules;Switches}, 
+ISSN={0743-1619},
+description = {	This builds on their previous paper [2]. The optimization variable is again (sigma = modal sequence, s = switching times). The objective function is the usual integral. In [2], they used a bi-level algo, where the lower level computed optimal switching times (really, duration of insertion) for a given sequence generated by the upper level, and the upper-level computes what mode to insert where.
+In this paper, they compute an interval S(lambda) of width lambda composed entirely of time instants where D_(sigma,t,f) < 0 (D_(sigma,t,f)  is the one-sided derivative of cost J after inserting f at t for 0 time inside schedule sigma. It is D_(f,t) or previous paper [2]). [p.49 col'1]. Then they change the modes at all time instants in S(lambda). What they change them to is the result of a minimization that chooses the best mode to change to [last paragraph p.50] (this is another brute force thing in the experiment).
+Fix schedule sigma. The left-point of the insertion interval S(lambda) is the left-point of S_(sigma,nu) = {set of all time instants where D_(f,t) <= nu*D_sigma< 0}. The duration lambda is determined as an Armijo step-size [Step 2 Algo 1], where the search direction leads to the new modal schedule obtained from sigma by updating the modes in S(lambda).
+They establish sufficient descent, in part by bounding D_{sigma,s} when s is in-between switching times [Lemma 1], and also when across switching times [Lemma 2]
+This paper is much cleaner than [2] and the focus it brings on D_sigma, and the fact that it doesn't seem to depend on its particular form, makes it a much better candidate for nonsmooth generalization than [2]. So focus on this.
+	
+},
+}
+
+@ARTICLE{AxelssonEtAl08optimization,
+  author = {Axelsson, H. and Wardi, Y. and Egerstedt, M. and Verriest, E.},
+  title = {Gradient descent approach to optimal mode scheduling in hybrid dynamical
+	systems},
+  journal = {Journal of Optimization Theory and Applications},
+  year = {2008},
+  volume = {136},
+  pages = {167-186},
+  number = {2},
+	description = {This is an important paper.
+They deal with switched systems (so no resets). The initial point of the trajectory is fixed throughout. 
+A 'mode' corresponds to the application of a particular flow f_i. 
+The problem [section 3] is to find a number of modes N,  sequence of modes {f_i1, f_i2,…, f_iN} and control times {tau_1, tau_2, …, tau_N} so as to minimize a cost functional. The functional is the usual integrated cost (Eq. 3) J = integral from 0 to T of L(x(t),t), with cont. differentiable flows, cont. differentiable instantaneous cost L, and flows bounded: ||f(x)|| \leq K(||x||+1) with a uniform K [Assumption 3.1 p.3].
+The optimization variable is Xi = (sigma, s) where sigma = (i1, i2, …,iN) is the modal sequence, and s = (tau_1, tau_2,…,tau_N) is the sequence of control times. The nb N of mode applications is determined as a result of the algo that computes sigma and s. 
+The cost function J depends on sigma and s. 
+Consider the mode insertion procedure which, given a schedule Xi = (sigma, s) inserts mode f at time t for a duration [t-lamda/2, t+lambda/2], yielding new schedule Xi'. The objective function value for the new schedule is J'(lambda) as a function of lambda. It turns out (based on previous work of the authors) that the one-sided derivative 
+	D_(f,t)(Xi) = dJ'(lambda+)/dlambda evaluated at lambda = 0 
+is well-defined for all insertion times t, and is continuous except at the switching times. Then the minimum
+	D(Xi) = min D(f,t)(Xi) over all (f,t)
+Will play the role of an optimality function for the algorithm which we now describe:
+
+[Algorithm 3.1 p.4]:
+	0. Start with an initial arbitrary sigma_0. set j=0.
+	1. For this given sigma_j, compute a KKT point s of J(sigma_j): this computes a KKT point for the problem of minimizing J over the time schedule s given a modal sequence. Let Xi_j be the schedule (sigma_j, s)
+	2. If D(Xi_j) = 0, stop: schedule Xi_j is a stationary point of this algorithm's iterations, with D(Xi_j) as optimality function.
+	Else, find a mode g and insertion time t such that D(Xi_j, g,t) \in argmin D(Xi_j, f, tau) 
+	3. Let Xi_{j+1} be the schedule obtained by inserting g at time t inside Xi_j for duration lambda=0 (step 1 handles setting the control times).
+	4. J <-- j+1 and repeat.
+
+Steps 1 and 2 are obviously the heart of this algo. For step1 (finding a KKT vector s), they derive a characterization of the KKT point [Corollary 3.1] and show how to find it using first an Armijo step [Procedure 4.1 First step], followed by "any convergent feasible descent algorithm" [Procedure 4.1]. The Armijo step is on a carefully-constructed curve C(lambda) parameterized by the insertion duration lambda [bottom p.6]. E.g. in experiment they use the projection of the negative gradient onto the feasible set. They key relevant result is that Procedure 4.1 yields a sufficient descent [Lemma 4.7], thereby giving Algo 3.1 sufficient descent property.  Finding the KKT point after the first step of Procedure 4.1 seems like a cherry on top, since already the first step gives the sufficient descent property. 
+For Step 2, they don't give an algo other than "this is a nonlinear program". In the experiment they use brute force gridding. This step has simply descent (Since D(Xi) < 0) but this is enough since Step 2 introduces sufficient descent.
+
+I can imagine replacing D_(f,t)(Xi) by a suitable sub-gradient (for use in Step 2). The question is then how do you find that sub-gradient? Typically this hits the problem of approximating the sub-differential, but that might not be an issue, just do it...But: do we want to do mode insertion like they do here? e.g. what if instead we fix the nb of modes N, and make hamming moves to different mode sequences? In general, there are many different ways of updating the modal sequence.
+For Step 1, this depends on differentiability of cost function J w.r.t. switching times. Even if we forget the cherry of getting an KKT point, and focus on the first step of Procedure 4.1: the Armijo step-size uses the one-sided derivative h'(0+) which in turn uses the derivative of J w.r.t. switching times. They use a co-state vector throughout. Nonetheless I don't think it's all lost because the crucial point of h'(0+) = 2D(Xi) [Lemma 4.2] might use the sub-gradient on the RHS, like in Step 2.
+
+},
+}
+
+
+@INPROCEEDINGS{6315508, 
+author={Jie Fu and Tanner, H.G.}, 
+booktitle={American Control Conference (ACC), 2012}, 
+title={Optimal planning on register automata}, 
+year={2012}, 
+pages={4540-4545}, 
+keywords={automata theory;continuous systems;control system synthesis;convergence;dynamic programming;finite state machines;optimal control;state-space methods;time-varying systems;control design;convergence;convergent continuous component dynamics;dynamic programming;finite state machine;finite time;limit set parameterization;optimal planning problem;parameterized limit set;register automata;state space;switched dynamical system;switching input sequence;switching sequence;Aerospace electronics;Automata;Planning;Registers;Switches;Thermostats;Vectors;Hybrid systems;dynamic programming;register automata}, 
+ISSN={0743-1619},
+DESCRIPTION = {This paper introduces a discrete abstraction of a hybrid agent (a specialized class of hybrid automata) into a register automaton (a finite discrete transition system), and uses this abstraction to solve a time-optimal control problem. We start by summarizing the previous journal paper that introduces the abstraction in more details.
+"Finite abstractions for hybrid systems with stable continuous dynamics" by H. G. Tanner, Jie Fu, Chetan Rawal, Jorge L. Piovesan, Chaouki T. Abdallah
+A hybrid agent H [Def. 6] is a hybrid automaton s.t. 
+	There are finitely many locations k
+	The continuous state x does not reset
+	The continuous state can have boolean components l
+		so the hybrid "state" (or "configurtion") is given by (x,l,k) (continuous, boolean, location).
+	Each location corresponds to a controller, so switching between locations means switching controllers. Each controller has a parameter vector whose values can be reset (while staying in the same location, or while changing locations). E.g. the temperature of heating controller is a parameter.
+	When in mode k, the system can't switch to a new mode until the continuous dynamics have settled to positive limit set L(k;p), which is parameterized by p. 
+	When switching to a new mode k', the state must switch to a new state s.t. the continuous evolution from there must evolve into L(k';p) for some p.
+Using this, they define a discrete abstraction T(H) that lumps together into one discrete state v all hybrid states h satisfying the same set of predicates [Def. 8], and T(H) makes a transition v --> v' on input symbol sigma whenever H makes either [Def. 9]
+	a cont. evolution (h,p) --> (h', p) that doesn't change parameter vector p, or 
+	when H makes a discrete jump (h,p,k) --> (h,p', k') 
+
+Because the cont. evolutions always converge to L(k;p) before switching, and the L(k;p) are given a priori [p. 5], they can ignore how they get there.
+Frankly from that point on-wards it is NOT clear to me how the abstraction T(H) follows H: Thm. 1 part 2 seems to say that any T(H)-transition corresponds to a continuous evolution, but what about discrete H-jumps? The reading gets very frustrating at this point.
+
+Anyway, back to conference paper. Here they use register automata as T(H), and instead of a weak bi-simulation they allow a simple simulation [Def. 6]. Whatever. And of course, they change some of their notation, because HEY! Why not?!
+Crap frustrating crap. Then they wave their hands about using established results in Regular Expressions and DP [p. 44] for solving the problem of finding a minimum-time trajectory that visits a particular subset of the state-space [Problem 2 p. 43] (with the understanding that this target set is contained in L(k;p) for some (k,p)). The problem is solved given an initial state h and parameter vector. The solution is sub-optimal.
+
+So this method can be applied (given the constraints on the hybrid agent, in particular the settling requirement) to find a walk from initial set to unsafe set in minimum time. BUT:
+	The settling requirement may be too much: unsafe behavior is likely to occur in transient modes. This is particularly true in the case of non-hybrid  systems where letting the system settle might not make "sense"…(?)
+	There is no notion of (continuous) robustness: if the T(H) says no valid walk exists, we're left without any further information.
+
+ 
+},
+}
+
+@INPROCEEDINGS{6315423, 
+author={Caldwell, T. M. and Murphey, T.D.}, 
+booktitle={American Control Conference (ACC), 2012}, 
+title={Projection-based switched system optimization}, 
+year={2012}, 
+pages={4552-4557}, 
+keywords={control system synthesis;multidimensional systems;optimisation;time-varying systems;Pontryagin maximum principle;design variable projection;infinite dimensional problem;integer constraint handling;projection-based switched system optimization;switching control design variable;switching time optimality;Aerospace electronics;Indexes;Optimization;Switched systems;Switches;Trajectory}, 
+ISSN={0743-1619},
+description = {We are given a switched system x'(t) = F(x(t), u(t)) where at any time t, F is one of a finite number of flows {f1, …, fN}. The control u simply serves to select one of the N flows, so can think of u(t) as u(t) = [u1(t), …, uN(t)], where only one ui(t) is 1 at any given time, and the rest are 0. The flows are as smooth as needed.
+The cost is the usual integrated cost J(x,u) = integral from 0 to T of L(x(t),u(t)) where L is continuously differentiable with respect to both arguments.
+Instead of conducting search on the constrained space:
+	S = {(x,u) | x is a trajectory of the system and u is a binary "selection" input} [Eq. 2]
+they propose a projection approach: search over the unconstrained space 
+	R = {alpha, mu) | alpha and mu are Lebesgue integrable functions over [0,T]}
+but evaluate the cost function over the projection of the unconstrained pair (y,v) onto S. [section III]
+Given the form of the input, the constrained problem is a search for the switching times and the mode sequence. The nb M of switches is pre-fixed.
+The main tool is the Pontryagin Max Principle PMP, adjusted to the switched S scenario [III.B]. They seem to imply that it applies in this case essentially unchanged from its classical formulation, although the cost function now involves a projection operator for which possibly only a distributional derivative is available, involving Dirac's delta [II.B]. Anyway, from the PMP they get a necessary condition over the switching times and mode sequence. They give no algo to find the optimum values.
+},
+}
+
+@article{Dang_CovGuidedTestGen09,
+year={2009},
+issn={0925-9856},
+journal={Formal Methods in System Design},
+volume={34},
+number={2},
+doi={10.1007/s10703-009-0066-0},
+title={Coverage-guided test generation for continuous and hybrid systems},
+url={http://dx.doi.org/10.1007/s10703-009-0066-0},
+publisher={Springer US},
+keywords={Hybrid systems; Model-based testing; Conformance testing; Test coverage; Test generation},
+author={Dang, Thao and Nahhal, Tarik},
+pages={183-213},
+language={English},
+description = {We are given a non-deterministic non-autonomous hybrid automaton As modeling a system, and a hybrid automaton describing its specification A. System As only has one initial state sinit= (q_init, x_init), and a finite set of locations Q.
+The goal is to explore the state space of As, in a testing framework (and not reachability beecause of computational comlexity). So first they define a measure of coverage startign with the star discrepancy. 
+The star discepancy D*(P,S) of a set of points P in a set S (section 4.1) measures how evenly spread P is in S. lower values mean better spread. So given Pq, the set of points of a trajectory in Inv(q), 1-D*(Pq,Inv(q)) measures the coverage of Inv(q) by Pq: higher values mean better coverage. For the whole hybrid space, sum (1-D*(Pq,Inv(q))) over all locations.
+
+Next, they give an algo that guides the hybrid trajectory so as to maximize coverage (Algorithm 1) based on RRT from motion planning. Starting from the unique hybrid state sinit, it samples the hybrid space S to select a state s_goal based on the coverage measure: visiting s_goal is supposed to increase coverage. then a neighbor of s_goal, s_near, is selected out of the already visited states. It is chosen to minimze a hybrid distance to s_goal. Then an input is computed (optimal control problem) to steer from s_near towards s_goal in a continuous fashion (which might not be reached). This leads to s_new = (q_near, x_new). From s_new, all possible discrete transitions are taken, and added to the set of already-visited states. Repeat by sampling again, etc.
+
+The sampling of a goal state s_goal is done in two steps (Algorithm 2, section 6.2), with the aim of increasing coverage: the location q_goal is sampled using a distribution on Q that assigns probabilities inversely proportional to the coverage of Inv(q) by Pq. Having selected q_goal, Inv(q) is divided into boxes, and x_goal is selected in one of these boxes via a heuristic that minimzes bounds on the potential coverage increase (6.3)
+
+A reachability completeness property of Algorithm 1 is proven (Thm 2), which basically says that if s is a reachable state, then as the nb of iterations of Algo 1 approaches infty, the probability of a neighbor of s being selected approaches 1.
+The interest of this result is that from that neighbor, s is reachable by a continuous evolution. So the algo can cover the entire state space. Of course, this can be seen at base as a consequence of us visiting more and more states as the iterations increase. But like SA, the promise is that this is more efficient than a uniform random search on neighbors, or a systematic reachability analysis.
+
+Implementation and results follow.
+},
+}
+
+@incollection{
+year={2012},
+isbn={978-3-642-34690-3},
+booktitle={Testing Software and Systems},
+volume={7641},
+series={Lecture Notes in Computer Science},
+editor={Nielsen, Brian and Weise, Carsten},
+doi={10.1007/978-3-642-34691-0_12},
+title={State Estimation and Property-Guided Exploration for Hybrid Systems Testing},
+url={http://dx.doi.org/10.1007/978-3-642-34691-0_12},
+publisher={Springer Berlin Heidelberg},
+author={Dang, Thao and Shalev, Noa},
+pages={152-167},
+description = {(See Dang & Nahhal) In second paper, they add the requirement that there are interesting regions of state space that we wish to explore more than others, so  instead of selecting s_goal based on coverage values, they select it based on a proba density that favors those regions. Once the goal region is reached by the trajectory, the previous coverage-guided Algo1 is used to explore it well.
+This second paper also adds some extensions to non-fully observable systems , which I don't care for.
+},
+}
+
+
+@ARTICLE{RizkEtAl2011tcs,
+  author = {Aurelien Rizk and Gregory Batt and Francois Fages and Sylvain Soliman},
+  title = {Continuous Valuations of Temporal Logic Specifications with applications
+	to Parameter Optimization and Robustness Measures},
+  journal = {Theor. Comput. Sci.},
+  year = {2011},
+  volume = {412},
+  pages = {2827-2839},
+  number = {26},
+	description = {Presents a different robustness measure: given a formula phi that involves some cosntants (e.g. "concentration > 10"), and a trace tau, first abstracts the formula into a "formula pattern" by replacing the constants by variables, so we get pattern psi(x) =  "concentration > x". Then suppose the trace tau doesn't satisfy psi(10) (which is what we want), but it satisfies at the most psi(5) (i.e. satisifies psi(v) for all v <= 5). Then the violation degree of tau is 
+	Vd(tau, phi, psi) = min distance between desired valuation vector ([10]), and valuation vector chosen from set of vectors v s.t. tau |= psi(v) = (-infty, 5]
+Note that Vd = 0 means satisfaction.
+Using this, they use the CMA-ES evolutionary heuristic to optimize the vd (Algorithm 5.1 and following paragraph)
+},
+}
+
+@INPROCEEDINGS{JuliusP09hscc,
+  author = {A. Agung Julius and George J. Pappas},
+  title = {Trajectory Based Verification Using Local Finite-Time Invariance},
+  booktitle = {Hybrid Systems: Computation and Control},
+  year = {2009},
+  volume = {5469},
+  series = {LNCS},
+  pages = {223-236},
+  publisher = {Springer},
+  bibsource = {DBLP, http://dblp.uni-trier.de},
+  ee = {http://dx.doi.org/10.1007/978-3-642-00602-9_16},
+	description = {Building on earlier work where they they introduced the concept of robustness ellipsoid using a global bi-simulation function, this work uses local functions, over finite time. 
+Specifically, in earlier work, the HS had to have a bi-simulation phi in each mode, valid over the whole of the invariant set, and for all time. In In this work, they relax this requirement to functions (not necessarily bi-simulations), over finite time, and a subset of the invariant set.
+They define a function phi, called barrier function (not necessarily bi-simulation) such that, given a nominal trajectory starting at x0, any other trajectory starting in a neighborhood L of x0, remain in a set D for all time in [0,T]. (proposition 3)
+The nhbd L is the alpha level set of phi (7), for some alpha >0. the set D is a generalization of the tube from earlier work and can be anything. T is a time bound.
+By stitching together the domains of validity of these barrier functions, we can cover the entire test trajectory.},
+}
+
+
+@inproceedings{AydinGol:2013:TLM:2461328.2461379,
+ author = {Aydin Gol, Ebru and Lazar, Mircea},
+ title = {Temporal Logic Model Predictive Control for Discrete-time Systems},
+ booktitle = {Proceedings of the 16th International Conference on Hybrid Systems: Computation and Control},
+ series = {HSCC '13},
+ year = {2013},
+ isbn = {978-1-4503-1567-8},
+ location = {Philadelphia, Pennsylvania, USA},
+ pages = {343--352},
+ numpages = {10},
+ url = {http://doi.acm.org/10.1145/2461328.2461379},
+ doi = {10.1145/2461328.2461379},
+ acmid = {2461379},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ keywords = {formal synthesis, linear temporal logic, model predictive control},
+ description = {The paper presents an MPC algorithm for solving the following problem: Given a discrete-time linear system, an LTL specification for it, a reference trajectory, and an initial point x0 in the state space, design an input sequence that generates a system trajectory starting at x0 that satisfies the specification, while minimizing a quadratic cost function expressing the distance to the reference trajectory.
+The atomic propositions pi \in P correspond to halfspaces in R^n, so the set of subsets of P, 2^P, corresponds to the set of polyhedra in R^n. The specification then expresses a sequence of polyhedra that the trajectory must visit (or avoid), in a given order and with some delay constraints.
+The specification is, more specifically, in co-safe LTL, which has the important property that every satisfying trajectory has a satisfying finite prefix. Moreover, one can build an FSA that accepts all these prefixes. Specifically, 
+	FSA = (state-set Q, initial state-set Q0, ---> = (q,wi,q’), F)
+The state-set of the FSA is some Q, its transitions are decorated by the input symbols w_i \in 2^P, so its input set is 2^P. A word w1.w2.w3…wm is accepted by the FSA iff it has the property that a trajectory that visits its corresponding polyhedra P(w1).P(w2).P(w3)…P(wm) is a satisfying trajectory. So from here on, we may use the FSA as a finite abstraction of the system+specification. The last construction is that of the dual A^D of FSA. The transitions of FSA are the states of A^D, and its states are labeled with the input symbol causing this transition in FSA. We will be using A^D in all that follows.
+The first part of the paper presents a previous result of the authors, which shows how to synthesize a controller that drives the system through the successive polyhedra of the specification. This synthesis algo uses the dual A^D: an accepted word of AD corresponds to a satisfying trajectory of the system.
+Next, a Lyapunov-like function is introduced which decreases along discrete transitions of A^D. This will be used in an optimization problem to constrain the search for optimal trajectories to those trajectories that satisfy the specification <-> those whose word is accepted by A^D.
+The optimization itself is solved using an MPC algo. The cost function is the quadratic function mentioned above (with arguments the predicted length-N state and input sequences), the search space is the set of length-N input sequences that generate automaton-enabled trajectories. The optimization problem is shown to be convex and recursively feasible.
+
+Overall the paper is well-written, well-presented, and the problem well-motivated. While the definitions (of cost functions, etc) could’ve used a visual aid, it only takes a little pondering to get an intuitive grasp of them. The complexity of the algorithm is certainly a concern, not adequately addressed here, though it is recognized and the Conclusions suggest work is forthcoming along that front. The literature overview is a weakness, as it only covers MPC methods, and it’d have been opportune to cover a couple of non-MPC methods. 
+Technical issue: the definition of J^T in (9) does not include the case where x is not in any convex hull: Pq is a possibly unbounded polyhedron, and the hull is bounded, so it can be the case that there exists a x in Pq \ hull: how is J^T defined there?
+
+It's not clear whether the controller from previous work [7] is reliable, in the sense that if it fails to find a satisfying trajectory, that's because there isn't one. If it is reliable, then can use it to get the subset of X0 whose trajectories satisfy the specification. Then perform a search over that subset to minimize a continuous robustness. Alternatively, use it to find a part in the partition defined by location sequences, and search within that.
+},
+} 
+
+@article{Brooks_SAConvAssessement,
+year={1998},
+issn={0960-3174},
+journal={Statistics and Computing},
+volume={8},
+issue={4},
+doi={10.1023/A:1008820505350},
+title={Convergence assessment techniques for Markov chain Monte Carlo},
+url={http://dx.doi.org/10.1023/A%3A1008820505350},
+publisher={Kluwer Academic Publishers},
+keywords={MCMC; Gibbs Sampler; Metropolis Hastings; Convergence Rate},
+author={BROOKS, STEPHENP. and ROBERTS, GARETHO.},
+pages={319-335},
+language={English},
+description = {This paper offers a slew of techniques for experimentally assessing whether a given Markov chain has converged to the stationary dsbn, using quantities available from the run so far. It applies to two MCMC methods, the Metropolis-Hastings algo, and the Gibbs sampler. 
+It also provides experimental assessments of "performance" of the sampler, as measured by how much the search space is covered by the chain.
+The techniques are divided into:
+Output analysis, which uses only the output of the chain
+Empirical kernel-based methods, which use the chain output and the form of the transition kernel.
+Regeneration and coupling methods, that use the coupling inequality
+Eigenvalue bounds and semi-empirical methods.
+},
+}
+
+@ARTICLE{Thompson_sample-sort,
+AUTHOR = "Dale R. Thompson and Griff L. Bilbro",
+TITLE = "Sample-sort simulated annealing",
+JOURNAL = "IEEE Transactions on Systems, Man, and Cybernetics, Part B",
+PAGES = {625-632},
+YEAR = {2005},
+description = {Proposes, and validates experimentally, a parallel SA. 
+The algo consists of m parallel SA samplers, each running at a fixed temperature Tk, T1 < T2 <… < Tm. There are two stages at each iteration of the algo: in the first stage, each sampler updates its state with the states of its neighbors (neighborhood size N pre-specified). In second stage, each sampler updates its state using the usual criteria, by generating a uniform candidate in a ball around its current state, and accepting with the usual exponential. 
+They show that, 
+	If each sampler is in steady-state (bif if…)
+	And each sampler uses a constant temperature
+The the probability of being in any of the samplers is 1/m, thus convergence from sequential case is preserved. 
+Experiments follow.
+},
+  }
+
+@article{Locatelli_FirstHittingTime01,
+year={2001},
+issn={1432-2994},
+journal={Mathematical Methods of Operations Research},
+volume={54},
+issue={2},
+doi={10.1007/s001860100149},
+title={Convergence and first hitting time of simulated annealing algorithms for continuous global optimization},
+url={http://dx.doi.org/10.1007/s001860100149},
+publisher={Springer-Verlag Berlin Heidelberg},
+keywords={Key words: global optimization; simulated annealing; convergence; first hitting time},
+author={Locatelli, M.},
+pages={171-199},
+language={English},
+description = {First defines a new form of SA where the cooling schedule and the generation probability both depend on the difference between current objective value Vk and the optimum objective value V*, the latter assumed known:
+The next temperature is
+	t_k = alpha1[Vk-V*]^g1
+And the generation kernel is the uniform distribution over B(xk-1, R_xk), where the radius is 
+	R_xk = alpha2[Vk-V*]^g2
+for some non-negative alpha1/2 and g1/2.
+
+Gives a general condition ("Assumption 1") under which this algo will converge in probability to an epsilon-neighborhoood of the global min.
+Then gives a bound on the expected time to first hit this epsilon-neighborhood, namely the bound is 
+
+	N(epsilon)/C*epsilon
+
+where C is an unknown constant (from Assumption 1), N(epsilon) is an integer fnt of epsilon that we can compute.
+
+Gives some ways to relax the constraint that we know V* in advance.
+Then gives conditions to satisfy Assumption 1.
+},
+
+}
+
+
+@ARTICLE{5184877, 
+author={Xavier-de-Souza, S. and Suykens, J. A K and Vandewalle, J. and Bolle, D.}, 
+journal={Systems, Man, and Cybernetics, Part B: Cybernetics, IEEE Transactions on}, 
+title={Coupled Simulated Annealing}, 
+year={2010}, 
+volume={40}, 
+number={2}, 
+pages={320-335}, 
+keywords={probability;simulated annealing;acceptance probability function;continuous variables optimization;cooperative behavior;coupled simulated annealing;coupling term;parallel SA processes;Cooperative behavior;distributed optimization;global optimization;simulated annealing (SA)}, 
+doi={10.1109/TSMCB.2009.2020435}, 
+ISSN={1083-4419},
+description = {Proposes the following algo for reducing computation time of SA optimization: have m chains run in parallel, each with its generation and acceptance probability. The acceptance probability of a given chain depends on the current states of all other chains via a coupling term. The form of the acceptance probability and of the coupling term are left open, and the authors make three suggestions for them, summarized in Table 1.
+In two of the suggestions (BA and M), the acceptance probability doesn't even depend on the candidate. In all three, the coupling term gamma is a scalar, typically a sum of energy functions.
+Presents an application to reduce the variance between the acceptance probabilities of the m chains. Presumably, this reduces the sensitivity to the initial choice of parameters and state, and it seems the results confirm that.
+Experimental results follow.
+},
+}
+
+@ARTICLE{Belisle98_markov_hitandrun,
+  author = {Claude Belisle and Arnon Boneh and Richard J. Caron},
+  title = {Convergence Properties of Hit-and-Run Samplers},
+  journal = {Commun. Statistics - Stochastic Models},
+  year = {1998},
+  volume = {14},
+  pages = {767-800},
+  number = {4}, 
+	description = {Starts by re-capping some result on hit-and-run algorithms: these are algos that run a Markov Chain (MC) on a set A in order to generate A-samples following a pre-determined "target" dsbn \pi. Hit-and-run works as follows (P.768): 
+	1. k=0, absolutely continuous target dsbn \pi on A, direction dsbn \nu on the unit sphere S (centered at 0).
+	2. Start with state X0=  x \in A, direction \theta0 \in S
+	3. (Hit step) Select \theta_k+1 ~ \nu
+	4. Determine set \Lambda = {\lambda | Xk + \lambda*\thetak \in A}
+	5. (Run step) Select lambda_{k+1} ~ conditionalization of \pi on \Lambda. Set x_{k+1} = xk + \lambda*\thetak
+	6. If stopping criterion met, return x_k+1. Else, k <-- k+1, goto 3.
+
+Defines HD and CD, 2 special-case H&R algos: both have target \pi = uniform, and A is open bounded. HD chooses the direction vectors uniform iid on S, while CD chooses direction vectors uniformly iid over the coordinate set {e1,e2,...,ed} (i.e. \theta = ei with probability 1/d).
+Compares computational complexity of CD and HD when A = m-faced polyhedron: HD has per-iteration complexity md, is uniformly recurrent (i.e. time-to-first visit to set B \subset A is upper-bounded in initial state X0 = x, for any B), and converges geometrically to \[pi. CD has per-iteration complexity m, is Harris-recurrent, but doesn't always converge geometrically.
+
+Introduces a new H&R algo, HD2: this chooses direction vectors according to a Markov Kernel Q, so {\theta_i} is a MC, and {Xn} is a second-order MC, and {Xn,\theta_n)} is a MC.
+The per-iteration complexity of HD2 is O(m) (Thm 1).
+ If A is a convex bounded open subset, and \pi = uniform, and under some conditions C1-C4, then {(Xn,\theta_n)} is uniformly Harris-recurrent (Thm 5) and Xn and \thetan are asymptotically independent (Thm 7) , and (consequence) stationary dsbn of {Xn} converges uniformly geometrically to \pi (Thm 8).
+},
+}
+
+@INPROCEEDINGS{Belta_VFLumin_DCC01,
+  author = {Calin Belta and Jonathan Schug and Thao Dang and Vijay Kumar and
+	George Pappas and Harvey Rubin},
+  title = {Stability and rechability analysis of a hybrid model of luminescence
+	in the marine bacterium Vibrio Fischeri},
+  booktitle = {Proceedings of the 40th IEEE Conference on Decision and Control},
+  year = {2001},
+  month = {December},
+  location = {Florida},
+	description = {Paper develops and anlyzes a hybrid model of the genetic regulation mechanism of VF. After presenting a nonlinear model (non-hybrid), the hybrid model is presented as a simplification (trade a nonlinear system for a lower-D, swithced system). They then study the existence, stability and reachability of equilibria of the hybrid model.
+},
+}
+
+@incollection{
+year={2010},
+isbn={978-3-642-15296-2},
+booktitle={Formal Modeling and Analysis of Timed Systems},
+volume={6246},
+series={Lecture Notes in Computer Science},
+editor={Chatterjee, Krishnendu and Henzinger, ThomasA.},
+doi={10.1007/978-3-642-15297-9_9},
+title={Robust Satisfaction of Temporal Logic over Real-Valued Signals},
+url={http://dx.doi.org/10.1007/978-3-642-15297-9_9},
+publisher={Springer Berlin Heidelberg},
+author={Donzé, Alexandre and Maler, Oded},
+pages={92-106},
+description = {Very similar in spirit and details to Fainekos' work on robust semantics for MTL of continuous real-valued signals.
+Starts by introducing the MITL (Metric Interval TL) semantics, which assigns values {-1,1} to formulae over system trajectories (which they call "traces"). Then they define STL (Signal Temporal Logic) which quantifies robustness of satisfying a formula: this is GF's robustness measure, and they call it "spatial robustness". 
+Then they define temporal robustness, which _is_ new: for how long is a formula satisfied at a given spatial robustness level (or better).
+Then they combine these spatial and temporal robustness values into one robustness measure, and they dedicate a section to how to compute this robustness.
+Finally, they extend sensitivity analysis from reachability properties (subject of previous work) to general MTL formulae, almost by fiat: assume that the robustness value is parameterized by some parameter lambda, and assume that it is differentiable w.r.t. this parameter.
+},
+}
+
+
+@ARTICLE{Belisle92_convergence,
+  author = {Claude J. P. Belisle},
+  title = {Convergence Theorems for a Class of Simulated Annealing Algorithms
+	on $\mathbb{R}^d$},
+  journal = {Journal of Applied Probability},
+  year = {1992},
+  volume = {29},
+  pages = {885-895},
+  number = {4},
+  month = {Dec},
+	description = {Presents 3 results on the convergence of SA on continuous (bounded closed) domains with an adaptive (probabilistic) cooling schedule.
+
+Background and definitions
+Converge in probability: Pr[|Vk - V*| > epsilon ]  --> 0 as k-->\infty. Call this probability "prob of error".
+Converge almost surely: Pr[ Vk --> V*] = 1
+A.S. convergence implies In Probability convergence (but not the other way around). If a sequence does NOT converge A.S., this means it has accumulation points that are not global minima. Moreover, these accumulation pnts have non-0 probability. We can still have IP convergence in this case: indeed the probability of error tends to 0, but can be always positive. The points contributing to this positive prob of error are the accumulation points. The prob of error keeps decreasing as k --> infty, but is always > 0.
+
+Main Results
+Thm.1 gives conditions under which SA converges in probability to the global minimum V* of objective function V(x).
+Thm.2 says that if the cooling schedule is deterministic converging to 0 "slowly enough", then almost sure convergence does not hold.
+Thm.3 says that if the cooling schedule is deterministic converging to 0 "fast enough", then almost sure convergence does hold.
+These results are consistent with Hajek's: Hajek quantified "fast/slow enough" using the notion of depth d*. For finite state spaces, condition C2 of Belisle (entire state-space reachable at every step) implies that d* = 0, and all cooling schedules are "slow enough" in Hajek's terms.
+
+Proofs
+Thm.1: Define three bad events, A, B and C, then show that the probability of each can be made arbitrarily small beyond a certain sample index Xn. Event A = "we never enter the good set D_e after a ceratin index", event B = "we enter good set but leave it to a bad set", event C = "we enter good set but leave it to an even worse set". 
+Thm.2: given any set G of non-zero measure, the probability of selecting a candidate in it is bounded below away from 0, and the probability of accepting such a candidate is bounded below away from 0. Using these 2 bounds it is shown that the probability of never transitioning to a state in G is upper bounded by a function of the cooling schedule. If the schedule is slow enough, then this upper bound goes to 0.
+Thm.3: bla bla.
+},
+}
+
+@ARTICLE{SanfeliceT10automatica,
+  author = {Sanfelice, Ricardo G. and Teel, Andrew R.},
+  title = {Dynamical properties of hybrid systems simulators},
+  journal = {Automatica},
+  year = {2010},
+  volume = {46},
+  pages = {239--248},
+  number = {2},
+	description = {This paper builds on a lot of previous work by the authors and collaborators, to derive sufficient conditions under which it is possible to simulate a hybrid system (HS).
+They start with families of (continuous) perturbations  {H_delta} with parameter delta, with the end goal of viewing simulators as perturbations of actual HS to be simulated. This is in the spirit of "Dynamical systems and numerical analysis" by Humphries & Stuart. 
+The family is a simulator over a given compact set K if, for all  (T,J,epsilon), there exists a delta* with the following property: for any solution x_\delta of H_delta starting in K+delta*B, there exists a solution x of H starting in K, such that x and x_delta are (T,J,epsilon)-close. The latter closeness means that at all times t <T, and after any identical nb of jumps, the two trajectories are epsilon close (the times of proximity may differ by at most epsilon) [Def 3.2]
+They then derive conditions on the system ("hybrid basic condition") and on the family of perturbations so that the family is a "simulator" of system H. [Assumption 2.5 and Thm 3.4]
+From there, they move into discrete simulators proper [section 4]. From the discrete simulator Hs they define a perturbed system H_delta. Saying that the family {Hs} is a simulator of H (with parameter s, e.g. step-size of integrator) is to say that the corresponding family of perturbations {H_delta(s)} is a simulator of H. They derive conditions on {Hs} [Assumption 4.6] that imply the corresponding perturbations {H_delta} satisfy the hybrid basic conditions [lemma 5.1].
+},
+}
+
+@BOOK {Azencott_SAParallelization92,
+        AUTHOR={Robert Azencott},
+        TITLE={Simulated Annealing: Parallelization Techniques},
+        PUBLISHER={Wiley-Interscience},
+        YEAR={1992},
+				description = {In this book, "configuration" = state = point in search space E. E is finite.
+
+Ch.1: "Sequential SA: speed of convergence and acceleration techniques", By Robert Azencott.
+Results given over a finite search space E. First presents a basic result of Catoni, which states that 
+	[Theorem 1.1] for all asymptotically good logarithmic cooling schedules and for a given energy landscape and generation matrix, the speed of convergence is given by Pr[Xn \notin E_min] \leq (K/n)^\alpha, where E_min is the set of global minima.
+Since alpha is usually small and K is usually large, this means the bound is slow. So how to improve?
+Catoni also shows that suitably adjusted exponential cooling schedules are "robust" (in what sense?) and thus might be preferable to logarithmic schedules when only a finite nb N of iterations is allowed (which is always the case in practice).
+Another acceleration method is to minimize f(U) instead of U (where U is the objective fnt) for f concave. Specifically,
+	[Theorem 1.2] If f is continuously differentiable, increasing and strictly concave then the convergence exponent \alpha_f of f(U) is strictly larger than \alpha (of original U), unless they're both infinite.
+A third acceleration method is to run s independent versions of sequential SA, each with n iterations (such that s*n <= N), and select the best minimum of all s runs (called multiple annealing). It is then shown that
+	[Theorem 1.3] If the sequential SA has convergence speed ~ (K/N)^\alpha, the optimal multiple annealing with s ~ N/(eK) each of fixed length n ~ eK yields an exponential convergence rate ~ e^{-\rho*N}, with rho = alpha/2eK
+	
+
+
+Ch.2 "A common large deviations mathematical framework for sequential annealing and parallel annealing" by Robert Azencott
+Summarizes the "generalized annealing" framework of Freidlin and Wentzell, whereby the transition matrix, at a given temperature T, is given by 
+	p_T(i,j) ~ cij*exp( -Wij/T) for all i,j \in E (the search space)
+This is called an "exponentially vanishing" matrix. So in the classical annealing case, Wij = Ui - Uj (Ui is the cost fnt value, or "energy", of configuration i \in E.
+	Many annealing schemes can be put in this form, including parallel annealing, so the result of this form are widely applicable.
+Then gives general convergence speeds for this generalized algo (Thm. 2.1), namely 
+	Pr[Yn \notin E0] <= (K/n)^{B/A}
+where E0 is a set which reduces, in the classical case, to the set of global minima, and B,A are some constants to be determined.
+Gives an explicit equation of the optimal convergence exponent alpha (Eq 2.11) for generalized annealing.
+Finally, presents a way to "abstract" a configuration space E into one where we can apply generalized annealing, via the notion of "cycles at energy level lambda", which are sets of mutually reachable states without exceeding a given energy level \lambda anywhere along the path between the 2 states. This is the notion of cups in Hajek, and Hajek's weak reversibility is present here as well (section 2.5). The cycles become the new "states" in this abstracted configuration space, and the construction is repeated.
+
+
+Ch.3 "Rates of convergence for sequential annealing: a large deviation approach" by Olivier Catoni
+Assume a symmetric generation matrix q(i,j).
+Using LD estimates of the exit times from a given cycle C (section 3.2), author finds 
+	a best possible convergence speed in the form of a lower bound on Pr[U(Xn) >= lambda | X0=i] (Eq 3.19).
+(A cycle is a subset C of the search space E such that the chain will visit it many times before finally leaving it, regardless of the starting point in C. When the chain leaves it, it has "forgotten" its entry point and its starting point in C. Therefore viewed from the outside, it is as though the cycle is a single point in the search space E.
+We can then partition E into cycles as outlined in Ch.2. The classes of the equivalence relation "i and j communicate at level lambda" are called "cycles at level lambda".)
+A characteristic of all results here is that they depend, in various ways, on the energy landscape, and the lesson is that, based on what we know, we should build a corresponding cooling schedule that uses that information to get the best convergence rate. No "silver bullet" for all cases.
+Author also gives 
+	an upper bound on the finite-time cooling schedule that maximizes Pr[U(X_N) <= delta] for a given delta 
+(section 3.5), where N is the maximum allowed chain length (i.e. can generate at the most N states).
+Finally, shows that 
+	Exponential cooling schedules lead to good upper bounds on  Pr[U(X_N) >= lambda | X0=i] (Thm. 3.3) in finite-time chains.
+Difference with first result is that the first result is for asymptotic probabilities, this is for finite chains.
+ 
+
+Ch.4 "Parallel SA: an overview of basic techniques" by Robert Azencott
+Goes over a few basic parallel SA algos and describes their acceleration factors over sequential SA.
+We always have p processors
+Simultaneous independent searches: each processor simulates a chain of length M independently of the others, using an optimal cooling schedule as outlined in Ch.1. Then the speed up factor, for a given upper bound (K/N)^alpha (see Ch.1) is
+	Speed-up = N/M = (n/M)^[(p-1)/p]
+With some tweaks to the sequential algo running on each processor, can get a speed-up of p.
+Periodically interacting searches: at regular intervals, each processor k, 0 <= k <= p, transmits its state to processor k+1 which preserves, for its own current state, the best of its state (computed by its chain) and the state it received from processor k.
+	Initial theoretical results (Ch.6) and experiments (in Ch.5) indicate there is no speed up.
+Multiple trials: all processors maintain the same global configuration Xn. At each step n, each processor carries out an independent trial: generate a candidate and accept/reject it, getting Yk for processor k. If one of the processors accepts its Yk different from Xn, then the new global configuration Xn+1 is set to that. (if more than a processor accepts, we choose the Yk of the first processor that accepts). 
+	Experiments (Ch.7 and 8) suggest improvement, and theory (Ch.9) shows convergence.
+Partitioning of configuration: no meaningful results here.
+
+
+Ch. 9 "Parallel annealing by multiple trials: a mathematical study" by Olivier Catoni and Alain Trouve
+Studies mathematically the Multiple Trials parallel algo introduced in Ch.4. Namely, shows that the Y chain thus generated is Markov, has a stationary dsbn that concentrates on the set of global minima, and computes the average acceleration introduced by the processors.
+},
+}
+
+

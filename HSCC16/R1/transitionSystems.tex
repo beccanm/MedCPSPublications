@@ -1,0 +1,54 @@
+\subsection{Transition and hybrid systems}
+\label{sec:transition systems}
+
+%{\large Partitions.} Given a set $Q$, a \emph{partition} $\partition = \{P_1,\ldots,P_k\}$ of $Q$ is a set of disjoint subsets of $Q$ whose union equals $Q$. 
+%Let $\equiv_\partition$ be the associated equivalence relation.
+%Partition $\partition'$ \emph{refines} $\partition$ if every block $P'$ of $\partition'$ is a subset of some block $P$ of $\partition$; we write this as $\partition' \subset \partition$.
+%
+\begin{defn}
+	\label{defn:transition system}
+	A \emph{transition system} $T = (Q,\labelSet,\trans{},Q_0)$ consists of a set of states $Q$, a set of events $\labelSet$ , a transition relation $\trans{} \subset Q \times \labelSet \times Q$, a set of initial states $Q_0$. 
+	We write $q \trans{\slabel}q'$ to denote a transition element $(q,\slabel,q') \in \trans{}$.
+	Given $P\subset Q$, we define $Post_\slabel(P) \defeq \{q'\;|\;\exists q\in P. q \trans{\slabel}q'\}$
+	%
+	Given an equivalence relation $\sim$ on $Q$, the \emph{quotient system} $T/\sim$ is
+	$T/\sim = (Q/\sim, \{*\}, \trans{}_\sim, Q_0/\sim)$
+	where $[q] \trans{*}_\sim [q']$ iff $q \trans{\slabel} q'$ for some $\slabel \in \labelSet$.
+	Here $[q]$ is the equivalence class of $q$ and $Q/\sim$ is the set of equivalence classes of $\sim$.
+\end{defn}
+
+\begin{defn}
+	\label{defn:simulation}	
+	Given two transition systems $T_1$ and $T_2$ with the same state space $Q$,
+	a \emph{simulation} relation from $T_1$ to $T_2$ is a relation $\simu \subset Q \times Q$ such that 
+	for all $(q_1,q_2) \in \simu$, if $q_1 \trans{\slabel}_1 q_1'$, there exists a $q_2' \in Q$ s.t. $q_2 \trans{\slabel}_2 q_2'$ and $(q_1',q_2') \in \simu$.
+	A \emph{bisimulation relation} between $T_1$ and $T_2$ is both a simulation relation from $T_1$ to $T_2$ and from $T_2$ to $T_1$.
+\end{defn}
+%Given a partition $\partition$ of $Q$, the \emph{natural bisimulation} between $T$ and $T/\partition$ is $\Bc_P = \{(q,P) \in Q \times \partition \;|\; q \in P\}$.	
+%Conversely, a bisimulation $\Bc$  of $T$ defines a partition $\partition_\Bc$ of $Q$ where $q,q'$ are in the same block of the partition iff $(q,q') \in \Bc$.
+%
+The bisimulation $\bisimu$ is said to \emph{respect} $\sim$ if $(q,q') \in \bisimu \implies q \sim q'$.
+%
+The following algorithm, if it terminates, yields a finite bisimulation for $T$ that respects the given equivalence relation~\cite{AlurHLP00ieee}.
+Moreover, it is the \emph{coarsest} bisimulation (with respect to inclusion) that respects $\sim$.
+\begin{algorithm}[t]
+		\caption{Computing a bismimulation respecting $\sim$}
+		\label{algo:bisimulation}
+		\begin{algorithmic}
+			\Require Transition system $T = (Q,\labelSet,\trans{},Q_0)$, equivalence relation $\sim$.
+			\State Set $\simu = Q/\sim$			
+			\While{$\exists P,P' \in \simu$ and $\slabel \in \labelSet$ s.t. $\emptyset \neq P' \cap Post_\slabel(P) \neq P'$}
+				\State Set $\simu = \simu \setminus \{P'\} \cup \{P' \cap Post_\slabel(P) , P' \setminus Post_\slabel(P) \}$
+			\EndWhile	
+			\State Return $\simu$
+		\end{algorithmic}
+\end{algorithm}
+Given a set of atomic propositions $AP$, if $\sim$ is s.t. $q \sim q'$ iff both states satisfy exactly the same set of atomic propositions, then model checking temporal logic properties can be done on the finite bisimulation instead of the possibly infinite $T$.
+%The \emph{coarsest} bisimulation $\bisimu$ that refines a partition $\partition$ is one such that there is no other bisimulation $\bisimu'$ satisfying $\partition_\bisimu \subset \partition_{\bisimu'} \subset \partition$.
+
+%Given a subset $P$ of $Q$, we define its $\slabel$-successor as $Post_\slabel(P) = \{q \in Q | \exists p \in P. q \trans{\slabel} p\}$.
+%In other words, $Post_\slabel(P)$ is the set of states forward-reachable from $P$ via the event $\slabel$.
+
+
+%
+%Note that the resulting bisimulation is the \emph{coarsest} bisimulation (i.e., with the least number of blocks in its induced partition) that refines $\partition$.

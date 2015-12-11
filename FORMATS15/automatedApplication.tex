@@ -1,0 +1,30 @@
+\subsection{Automatic rule application}
+\label{automatedApplication}
+
+Because we start from a set of initial models, and each one may be abstracted using a number of abstraction rules, we have a choice of which rules to apply to which models, and the order in which to apply them.
+Depending on which rule is applied when, we end up with different abstract models.
+\emph{We seek a rule application order which yields the most abstract model that is still appropriate for the requirement $\phi$}.
+In this section we propose a measure of abstractness, and sketch how an optimal order of application can be found as the solution of a Mixed-Integer Nonlinear Program (MINLP).
+Due to space limitations the following discussion omits certain details which can be found in the technical report. 
+
+First, we observe that when a rule is applied to a labeled graph $G=(V,E,A)$, it either decreases the number of vertices, or the number of edges, or it enlarges the invariant and/or guard sets of some of the automata (by manipulating the parameters as done, e.g., by rule R4).
+Let $\{R_i\}_{i=1}^n$ be the set of abstraction rules, $\{G_s\}_{s=1}^m$ be the initial set of labeled graph heart models, and assume a pre-fixed maximum number of rule applications $N \geq 1$.
+We define a measure of the abstraction power $\alpha(R_i,G_s)$ of a rule $R_i$ applied to graph $G_s$ to be
+\[\alpha(R_i,G_s) = |V(G_s)| - |V(R_i(G_s))| + |E(G_s)| - |E(R_i(G_s))| + \sum_{x \in \Ec(R_i(G_s))}|\theta^x - R_i(\theta^x)|\] 
+Intuitively, a rule $R$ is more abstract than rule $R'$ if it removes more elements or enlarges the parameter ranges more.
+Then if we apply rules $R_{i_1}, R_{i_2},\ldots, R_{i_N}$ in that order to the set $\{G_i\}$, the abstractness of the final model is given by given by
+$\alpha = \sum_j \alpha(R_{i_j},G_{i_j})$
+where $G_{i_j}$ is the graph to which $R_{i_j}$ was applied.
+
+Rule application must respect the following constraints, all of which can be encoded as the constraints of a MINLP:
+\begin{enumerate}
+	\item Only one rule can be applied at a time.
+	\item A rule can only be applied to a (sub)graph with a given structure, and whose parameters respect certain conditions.
+	\item When a rule is applied to a subgraph, it may disable future rule applications to this subgraph, either because a) it changed the subgraph's structure, or b) it updated the subgraphs's parameters.
+\end{enumerate}
+We define binary variables $a_{isj}$ such that $a_{isj} = 1$ iff at the $j^{th}$ time step, we apply rule $R_i$ to graph $G_s$.
+The first constraint, for example, can be encoded as
+\[\forall j=1,\ldots, N, \sum_{i,s}a_{isj} \leq 1\]
+
+Proceeding in this manner, we formulate a MINLP whose solution gives an optimal order of rule application, in the sense of maximizing $\alpha$.
+Then model-checking can be performed on this most abstract model returned by the optimization.

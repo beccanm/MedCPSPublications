@@ -1,0 +1,12 @@
+\begin{exmp}[Inadequacy of predicate-based abstraction]
+	\label{predicateBasedAbstraction}
+	Consider the graph $G$ in Fig.???, which represents a human heart with a ??? condition.
+	The clock $t_3$ measures the amount of time spent between successive activations of node $N_3$.
+	The physiological requirement is $\phi = t_3 \leq 1000ms$, which expresses that there should be maximum delay of 1sec between two successive activations of the ventricle node $N_3$.
+	The state space $S(G)$ for $G$ is the product of the state-spaces of all nodes and automata in $G$. 
+	The clock $t_3$ is part of the state $s \in S(G)$.
+	The predicate $p := t_3 \leq 1000ms$ splits the state space in two as follows:
+	$S = S_1 \cup S_2$, $S_1 = \{s \in S(G) \;|\; s.t_3 \leq 1000ms\}$, $S_2 = S \setminus S_1$.
+	The initial abstraction function $h$ is then given by its domain $S$, its range $\{\hat{s}_1, \hat{s}_2\}$, and $h(s) = \hat{s}_i$ iff $s \in S_i$.	
+	
+\end{exmp}

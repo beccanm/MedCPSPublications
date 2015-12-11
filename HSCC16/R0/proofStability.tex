@@ -1,0 +1,13 @@
+Proof of Lemma \ref{lemma:stability}.
+\begin{prf}
+We show the resets are monotonic - the other properties are immediate.
+The state is $x = (t,L_2,L_1,\kappa,\sigma_2)^T$.
+The self-transition ACCUMULATE $\rightarrow$ ACCUMULATE is initiated by VEvent (ventricular peak).
+At reset time, $0 \leq t \leq DL$, we have that 
+$\phi\cdot(0-t,t^2,t,1,0)^T \geq -\phi_1 DL + \phi_4 \stackrel{Want}{\geq} \zeta$.
+
+The transition ACCUMULATE $\rightarrow$ FINALIZE, initiated at the end of Duration, saves the value of the variance in $\sigma_2$.
+This reset produces the constraint
+$\phi_5 ((L_2 -L_1^2/\kappa)/\kappa) \geq \varepsilon |((L_2 -L_1^2/\kappa)/\kappa)|$.
+But the quantity in absolute value is itself a variance and so is positive, therefore the constraint is simply $\phi_5 \geq \varepsilon$, compatible with the previous inequality.
+\end{prf}

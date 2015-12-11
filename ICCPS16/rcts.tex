@@ -1,0 +1,16 @@
+\section{Clinical trials and RIGHT}
+\label{sec:rcts}
+
+At the clinical trial stage (Fig.~\ref{fig:spectrum}), the objective is no longer to find bugs in the device: it is, rather, to evaluate the safety and efficacy of the validated device on humans. 
+\acp{RCT} are the gold standard for evaluating the safety and efficacy of a new medical device \cite{FriedmanFD10_ClinicalTrials}.
+They constitute the only time prior to market use where the effects of the device on humans are actually observed, and are legally mandated for new high-risk medical devices like \acp{ICD}.
+%It is important to understand how a typical RCT proceeds to appreciate where CPS modeling can help in that process.
+%Very broadly, in an \ac{RCT}, a new treatment also known as the \emph{intervention}, is compared to the current standard of care, commonly known as the \emph{control}.
+%For example, two competing ICDs are compared.
+%Each patient recruited to the trial is randomly assigned to either the intervention or the control group and undergoes the corresponding treatment.
+%At the end of the trial, any clinically relevant differences between the two groups are evaluated to determine if they are statistically significant.
+The planning and execution of an \ac{RCT} requires carefully navigating a number of technical, logistical and ethical issues to obtain reliable and statistically significant results.
+
+Because of the very high cost of \acp{RCT} in terms of money, time, and the risk of harm they present to enrolled patients, our focus in this paper is on the use of CPS models, formalized in an \ac{MBCT}, \emph{to validate the assumptions made by the investigators and thus increase the chances of success of an \ac{RCT}}.
+We illustrate our approach by applying it to the Rhythm ID Going Head-to-Head Trial (RIGHT) \cite{GoldABBTB11_RIGHTresults}, which we present next.
+\input{right}

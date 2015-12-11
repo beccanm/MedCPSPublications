@@ -1,0 +1,19 @@
+\textbf{Formal definitions}.
+A \emph{language} is a set of relations, functions and constants.
+E.g. $\Lc_\Re = (<,+,-, \cdot,\Re)$ is the language where the only relation is $<$, the functions are $+,-,\cdot$, and the constants are taken from $\Re$,
+and  $\Lc_{exp} = (<,+,-, \cdot,\exp, \Re)$ adds the exponential symbol to it.
+Let $\Vc = \{x,y,z,x_1,x_2,\ldots\}$ be a set of variables.
+A \emph{term} of a language is either a variable, a constant, or $F(\theta_1,\ldots,\theta_m)$ where $F$ is an $m$-ary function expressible in the language and the $\theta_i$ are terms.
+E.g. $2x-3.6y$ is a term of $\Lc_\Re$.
+The \emph{atomic formulas} of the language are of the form $\theta_1=\theta_2$ or $R(\theta_1,\ldots,\theta_m)$ where $R$ is an $m$-ary relation on the terms $\theta_i$.
+E.g., $2x-3.6y < z\cdot z$ is a an atomic formula in $\Lc_\Re$ which uses the terms $2x-3.5y$ and $z \cdot z$.
+The set of (first-order) \emph{formulas} is defined recursively as follows: every atomic formula is a formula, and if $\formula_1,\formula_2$ are formulas, then so are $\formula_1 \land \formula_2, \neg \formula_1, \forall x: \formula_1, \exists x:\formula_1$.
+Here the symbols are the usual boolean connectives ( conjunction $\land$ and negation $\neg$), and quantifiers (there exists $\exists$ and for all $\forall$).
+A \emph{sentence} in the language is a formula where all variables are inside the scope of a quantifier, e.g. $\exists y . (x+y>3)$ is not a sentence.
+
+So far, a language has been defined in a purely syntactic manner.
+A \emph{model} of a language is a set $S$ along with an interpretation of the relations, functions and constants of the language.
+We are interested in this paper in the model of $\Lc_{exp}$ where the set $S = \Re$, and the symbols $<,+,-, \cdot,exp$ have their usual meaning (less than, addition, etc).
+A set $Y \subset \Re^n$ is \emph{definable} in $\Lc_\Re$ if there exists a formula of the model such that $Y$ can be expressed as $Y = \{(a_1,\ldots,a_n) \in \Re^n \;|\; \formula(x_1,\ldots,a_n)\}$.
+E.g., the formula $x^2-1=0$ defines the set $\{-1,+1\}$.
+Finally, a \emph{theory} is a subset of sentences in the model $\Lc_\Re$, i.e. it is a collection of sentences that are true in $\Lc_\Re$.

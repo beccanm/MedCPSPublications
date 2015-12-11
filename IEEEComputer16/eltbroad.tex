@@ -1,0 +1,28 @@
+\section{Life-critical Closed-loop Software}
+\label{sec:eltbroad}
+
+The heart is a specialized muscle that pumps oxygenated blood to the rest of the body.
+It is composed of four chambers: two upper chambers called the left and right atrium, and two lower chambers called the left and right ventricle, which contract synchronously.
+%The blood depleted of oxygen flows into the right atrium and passes into the right ventricle. 
+%The latter contracts and pumps the blood to the lungs.
+%Once oxygenated in the lungs, the blood flows into the left atrium and thereafter into the left ventricle. 
+%The latter contracts and pumps the oxygenated blood to the rest of the body.
+%Ventricular contractions are synchronized, as are atrial contractions.
+In a healthy resting adult, the heart rate is 60 to 100 beats per minute (each ventricular contraction is a beat). The contractions of the heart are controlled by the waves of spontaneous electric depolarization that traverse it regularly.
+A spontaneous electric current originates in the \emph{Sino-Atrial (SA) node} in the right atrium and propagates throughout the atria, causing them to contract. 
+It then propagates down to the ventricles along well-defined conduction pathways, causing the ventricles to contract in turn.
+The SA node is thus termed the natural pacemaker of the heart.
+
+Under certain diseased conditions, the heart rate drops below what is needed to maintain adequate blood flow to the body. 
+This clinical condition is called \emph{bradycardia}.
+When such a heart rate drop is due to abnormalities in the electrical conduction system, an implanted pacemaker might be recommended as treatment. A pacemaker is implanted near the left collar of the patient as shown in Fig.\ref{fig:pacemaker},
+and has two leads: one connects to the right atrium, the other to the right ventricle. 
+
+The leads act as both sensors and effectors: if the pacemaker fails to sense electric activity on either lead within certain time constraints, indicative of a delayed/missed contraction, it will send an electric pulse to the corresponding chamber to provoke contraction, thus acting as an artificial pacemaker.
+The algorithms for detecting missed beats are complex and implemented in software which runs within the pacemaker itself. 
+Part of the difficulty of performing that detection comes from the great variability in heart rates between patients and even within a single patient across time.
+Moreover, because the pacemaker is limited to sensing electrical activity through its two leads, different phenomena can manifest themselves identically to the pacemaker, thus making detection even harder.
+
+For example, in Endless Loop Tachycardia (ELT), this ambiguity causes the pacemaker to actually \emph{induce} dangerously elevated heart rates (tachycardia), which would not have arisen had the heart been operating on its own.
+This is an example of a \emph{adverse closed-loop condition}: a dangerous situation that arises as a result of the \emph{interaction} between device and heart.
+No amount of open-loop device testing and verification can reveal this condition - hence the need for closed-loop validation of medical devices, and for physiological heart models that enable early and affordable closed-loop validation.

@@ -1,0 +1,90 @@
+%\subsection{Hybrid systems}
+%\label{sec:hybridSystems}
+\begin{defn}
+	\label{defn:hybrid system}	
+	A \emph{hybrid automaton} is a tuple \[\Sys = (\stSet,\modeSet,\hsSet_0,\{f_\mode\}, Inv,E, \{\reset_{ij}\}_{(i,j)\in E}, \{\guard_{ij}\}_{(i,j)\in E})\] where 
+		 $\stSet \subset \Re^n$ is the continuous state space equipped with the Euclidian norm $\|\cdot\|$, 
+		$\modeSet \subset \Ne$ is a finite set of modes,
+		 $\hsSet_0 \subset \stSet \times \modeSet$ is an initial set,
+		 $\{f_\mode\}_{\mode \in \modeSet}$ determine the continuous evolutions with unique solutions,
+		 $Inv: \modeSet \rightarrow 2^\stSet$ defines the invariants for every mode,
+		 $E \subset \modeSet^2$ is a set of discrete transitions,
+		 \yhl{$\guard_{ij} \subset \stSet$ is guard set for the transitions (so $\Sys$ transitions $i \rightarrow j$ when $\stPt \in \guard_{ij}$),
+		 $\reset_{ij}: \stSet \rightarrow \stSet$ is an edge-specific reset function.}
+		 \\
+		 Set $\hsSet = \modeSet\times \stSet$.
+		 Given $(\mode,\stPt_0) \in \hsSet$, the \emph{flow} $\theta_{\mode}(;\stPt_0):\Re_+ \rightarrow \Re^n$ is the solution to the IVP $\dot{x}(t) = f_\mode (x(t))$, $\stPt(0)=\stPt_0$.
+\end{defn}
+%
+The associated transition system is $T_\Sys = (\hsSet,  E \cup \{\tau\},\trans{},\hsSet_0)$ 
+with $\trans{} = (\bigcup_{e \in E} \trans{e}) \cup \trans{\tau}$ 
+where $(i,\stPt) \trans{e} (j,y)$ iff $e = (i,j), \stPt \in \guard_{ij}, y = \reset_{ij}(\stPt)$ and $(i,\stPt) \trans{\tau} (j,y)$ iff $i = j$ and there exists 
+a flow $\theta_i(\cdot;x)$ of $\Sys$ and $t\geq 0$ s.t. $\theta_i(t;x)=y$ and $\forall t' \leq t$, $\theta_i(t';x) \in Inv(i)$.
+%Note that the transition $\trans{\tau}$ abstracts away time, i.e. it doesn't preserve information about the duration of continuous flow.
+For a set $P \subset \hsSet$,$P_{|\stSet}$ denotes its projection onto $\stSet$, 
+and $P_{|\modeSet}$ its projection onto $\modeSet$. 
+\begin{defn}
+	\label{defn:reachability operators}[Reachability]
+	Let $\Sys$ be a hybrid system with hybrid state space $\hsSet$, 	 
+	$I = [0,b) \subset [0,+\infty)$ be a (possibly unbounded) interval, 
+	$t \in I$, 
+	and $\epsilon >0$.
+	The \emph{$\epsilon$-approximate continuous reachability operator}, 
+	$\Rc^{\epsilon}_t : 2^\hsSet \rightarrow 2^\hsSet$ is given by
+	\begin{eqnarray*}
+		\Rc^{\epsilon}_t(P) = \{(i,\stPt) \in \stSet | \exists x_0 \in P_{|\stSet}, t \geq 0. 
+		||\theta_i(t;x_0) - \stPt|| \leq \epsilon\} 
+	\end{eqnarray*}
+%	\begin{eqnarray*}
+%	&&\Rc^{\epsilon}_t(P) = \{(i,\stPt) \in \stSet | \exists z: [0,t] \rightarrow \Re^n . z(0) \in P_{|\stSet},
+%	\\
+%	&&||z(t) - \stPt|| \leq \epsilon,
+%	\forall t' \in [0,t]\; \dot{z}(t') = f_i(z(t')), z(t') \in Inv(i) \} \nonumber
+%	\end{eqnarray*}
+	where $P = \{i\}\times W$, $W \subset Inv(i)$.
+	%
+	Define also $\Rc^{\epsilon}_I(P) = \cup_{t\in I} \Rc^{\epsilon}_t(P)$.
+	%
+	The (exact) \emph{discrete reachability operator} is:
+	\begin{eqnarray*}
+	\Rc_{d}(P) &=& \cup_{j: (i,j) \in E} \reset_{ij}(P \cap G_{ij})
+	\end{eqnarray*}
+\end{defn}
+%
+For a hybrid system, $Post_\slabel$ computes the forward reach sets, and is implemented by $\Rc^0_{[0,\infty)}$ and $\Rc_d$. 
+Algorithm \ref{algo:bisimulation}, applied to $T_\Sys$, implements the following iteration, 
+in which 
+$\Fc_t(\partition)$ is the coarsest bisimulation with respect to $\trans{\tau}$\footnote{I.e., $\Ft$ only considers the continuous transition relation. Namely, it is a bisimulation of $T_\Sys^c \defeq (Q/\sim,\{*\},\trans{\tau},Q_0/\sim)$.} 
+respecting the partition $\partition$, 
+and 
+$\Fc_d(\partition) \defeq \{(h_1,h_2)  \;|\; (h_1 \trans{e} h_1') \implies (\exists e' \in E, h_2' \; . h_2 \trans{e'} h_2' \land h_1' \equiv_\partition h_2') \} \cap \partition$ \cite{VladimerouPVD08_STORMED}:
+\begin{eqnarray}
+W_0 = \Ft(Q/\sim), \quad\forall i\geq 0,\; W_{i+1} = \Ft(\Fd(W_i))
+\end{eqnarray}
+This iteration (equivalently, Alg.~\ref{algo:bisimulation}) does not necessarily terminate for hybrid systems because the reach set might intersect a given block of $Q/\sim$ an infinite number of times (see \cite{LaFerrierePS00_Ominimal} for an example).
+The class of systems introduced in the next section has the property that Algorithm \ref{algo:bisimulation} does terminate for it and returns a finite $\simu$.
+
+%By iterating the above two reachability operators, we get:
+%\begin{defn}\cite{VladimerouPVD08_STORMED}
+%	\label{defn:iterated reachability operators}	
+%	Let $\Sys$ be a hybrid system with hybrid state space $\hsSet$, 	 
+%	$I = [0,b) \subset [0,+\infty)$ be a (possibly unbounded) interval, 
+%	$t \in I$, 
+%	and $\epsilon >0$.
+%	Given a partition $\partition$ of $\hsSet$, 
+%	$\Fc_t(\partition)$ is the coarsest bisimulation with respect to $\trans{\tau}$ respecting $\partition$, and 
+%	$\Fc_d(\partition) = \{(h_1,h_2)  \;|\; (h_1 \trans{d} h_1') \implies (\exists h_2' \; . h_2 \trans{d} h_2' \land h_1' \equiv_\partition h_2') \} \cap \partition$.
+%\end{defn}
+
+%\begin{algorithm}
+%	\caption{Bisimulation for continuous transitions}
+%	\label{algo:Ft}
+%	\begin{algorithmic}
+%		\Require Hybrid system $\Sys$, a partition $\partition$ of $\hsSet$.
+%		\State Set $\simu = \partition$			
+%		\While{$\exists P,P' \in \simu$ s.t. $\emptyset \neq P' \cap \Rc_I^0(P) \neq P'$}
+%		\State Set $\simu = \simu \setminus \{P'\} \cup \{P' \cap \Rc_I^0(P) , P' \setminus \Rc_I^0(P) \}$
+%		\EndWhile	
+%		\State Return $\simu$
+%	\end{algorithmic}
+%\end{algorithm}

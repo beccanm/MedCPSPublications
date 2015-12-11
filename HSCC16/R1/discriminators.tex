@@ -1,0 +1,64 @@
+\subsection{Three Consecutive Fast Intervals}
+\label{sec:tcfi}
+\begin{figure}[t]
+	\centering
+	\includegraphics[scale=0.3]{figures/TCFI}
+		\vspace{-10pt}
+	\caption{Three Consecutive Fast Intervals $\Sys_{TCFI}$}
+	\label{fig:tcfi}
+\end{figure}
+Our first module simply detects whether three consecutive fast intervals have occurred, where `fast' means the interval length, measured between 2 consecutive peaks on the \ac{EGM} signal, is shorter than some pre-set amount.
+See Fig. \ref{fig:tcfi}.
+States $t$ and $t_p$ are clocks as before.
+The vector $L_3$ is three-dimensional, and stores the values of the last three intervals.
+The event VEvent? is shorthand for the transition $y(t) \geq Th$ being taken by the $\Sys_{Sense}$ automaton.
+In other words, it indicates a ventricular event.
+Then $L_3$ gets reset to $L_3^+ = (z_1,z_2,z_3)^+ \defeq \text{Circulate}(L_3,t-t_p)$ where
+\begin{equation}
+L_3^+ = 
+\left(\begin{matrix}
+z_2\\z_3\\t-t_{p}\\
+\end{matrix}
+\right)
+=
+\left(\begin{matrix}
+0 & 1 & 0\\0& 0& 1\\0& 0 &0
+\end{matrix}
+\right) L_3 + 
+\left(\begin{matrix}
+0\\0\\t-t_p
+\end{matrix}
+\right)
+\end{equation}
+%
+\begin{lemma}
+	$\Sys_{TCFI}$ is STORMED.
+\end{lemma}
+\begin{prf}
+We show that the reset are monotonic - the other properties are easily checked.
+For reset monotonicity, we invoke the fact that there is a minimum beat-to-beat separation: heartbeats can't follow one another with vanishingly small delays. 
+In other words, there exists $m>0$ such that $t - t_p^- > m$.
+Similarly, there's a maximum delay between two heartbeats, call it $B$.
+Now, we seek a vector $\phi \in \Re^5$ s.t. 
+\begin{equation}
+\label{eq:tcfi resets}
+\phi \cdot \left(\begin{matrix}
+t-t\\t - t_p\\L_3^+ - L_3\\
+\end{matrix}
+\right) = \phi_p(t-t_p) +\phi_{L_3} \cdot \underbrace{\left(\begin{matrix}
+z_2-z_1\\z_3-z_2\\t-t_p - z_3\\
+\end{matrix}
+\right)}_{\delta} \stackrel{Want}{\geq} \zeta > 0
+\end{equation} 
+Now $|\delta|$ is upper bounded by $\sqrt{3\cdot (2B)^2}$ since each element is the difference of intervals shorter than $B$.
+Also, $t-t_p^- > m > 0$.
+So choose $\phi_{L_3} = (\phi_{z,1},\phi_{z,2},\phi_{z,3})>0$ element-wise.
+\eqref{eq:tcfi resets} is satisfied if the following stronger inequality is satisfied, which can be achieved by an appropriate choice of $\phi_{z,i}$: \;
+$\phi_p m \geq \zeta + \sqrt{12B^2}\sum_1^3\phi_{z,i}$
+\end{prf}
+
+\input{VTC}
+
+\input{stability}
+
+

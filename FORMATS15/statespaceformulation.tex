@@ -1,0 +1,115 @@
+%\subsection{State Space Formulation}
+%\label{[statespaceformulation]}
+%Kripke structure $<S,\Sigma,L,I>$ in which $S$ is a set of states, $\sigma(s_1,s_2)\in\Sigma\subset S^2$ is a set of transitions, $I\subset S$ is a non-empty set of initial states.
+%
+%To clarify things, we first introduce \emph{state groups} and \emph{transition groups}. The state space is defined by state variables. 
+%$$s\{\theta_1,\theta_2\dots \theta_n\}\in S$$
+%Each state $s$ is a valuation of all the state variables. Partial valuations can be used to represent a state group. For example, $s\{\theta_1=v_1\}$ represents all states in which $\theta_1=v_1$.
+%
+%Each state transition $\sigma\in\Sigma$ is defined as $\sigma(s_1,s_2)$ such that:
+%$$s_1\xrightarrow{\sigma}s_2\text{ in which }s_1,s_2\in S$$
+%Certain transitions have the same behaviors, mostly observablly equivalent . It is convinient to group them together to describe the behaviors of the system. A \textsf{transition group} is a group of transitions that the pre- and post- states satisfy certain criteria:
+%$$\Sigma_\phi\subset\Sigma \text{ s.t. }\forall\sigma(s_1,s_2)\in\Sigma_\phi,f(s_1,s_2)\models\phi,s_1,s_2\in S$$
+%in which $f(s_1,s_2)$ is certain proposition of the two states or their substates. It is possible that $\Sigma_{\phi_1}\cap\Sigma_{\phi_2}\neq \emptyset$.
+%
+%Ideal execution path of length n: $\delta:s_0\sigma_0\dots\sigma_i\dots\sigma_ns_n\in\Sigma^*$ in which: 
+%$$s_0\in I, \sigma_i(s_i,s_{i+1})\in\Sigma, i\in[0,n-1]$$ 
+%The set of all the transitions in a path is represented by $\Sigma_\delta$.
+%
+%Each transition takes time. We denote it as $t=T(\sigma)$. The time for each execution path: $$T(\delta)=\sum_{i=0}^nT(\sigma_i)$$
+%
+%Partial paths: Not all the transitions in a path are necessary. In fact, ideal paths are not possible, so do ideal models. One way to represent partial paths is timed execution path: sequence of transitions with unobservable ones abstracted with time lapse $\delta_t\in(\sigma_o,t)^*, t\in \mathbb{R}$
+%
+%$\delta_t$ is an abstraction of $\delta$, we denote it as $\delta\models\delta_t$. For a execution path 
+%$$\delta=\sigma_0\sigma_1\dots\sigma_n$$
+%there is a corresponding timed execution path 
+%$$\delta^t=(\sigma_0^t,t_0)(\sigma_1^t,t_1)\dots(\sigma_m^t,t_m)$$ 
+%in which
+%$$\forall i,j,k \text{ s.t. } \sigma_i=\sigma_k^t,\sigma_j=\sigma_{k+1}^t,(\sigma_{i+1}\dots\sigma_{j-1})\neq\sigma_{j},T(\sigma_i\dots\sigma_j)=t_{k+1}-t_k$$
+%with length $m<n$ such that $\delta\triangleleft\delta^t$. 
+%
+%Execution path produceable by model
+%$$\delta\in^p M$$
+%\subsection{A1: Observability Distinction}
+%The lowest distinction requirement for a model
+%
+%The most basic observable transitions are input and output of the entity under modeling
+%
+%Input triggered transitions $\Sigma_i$
+%
+%Output inducing transitions $\Sigma_o$
+%
+%If we have a timed trace such that $\delta\triangleleft\delta_t$, all the transitions in a path $\delta$ which are input/output transitions should be preserved in the timed trace $\delta_t$. 
+%%$$\delta\triangleleft\delta^t\rightarrow\forall \sigma\in(\Sigma_i\cup\Sigma_o)\cap\Sigma_\delta,\sigma\in\Sigma_(\delta_t)$$
+%
+%A model $M$ is observability distinctive iff
+%$$\forall\delta^t\in^p M, \forall\delta\triangleleft\delta^t,\forall \sigma\in(\Sigma_i\cup\Sigma_o)\cap\Sigma_\delta,\sigma\in\Sigma_{\delta^t}$$
+%The observability of the system and the environment are different. After the system has been developed, the observability of the environment is fixed. However, for the system itself, the observability can range from full white-box (code level) to full blackbox (input-output only)
+%
+%\subsection{A2: Property Distinction}
+%We refer a model $M$ is property distinctive for property $\phi$ by $M\triangle\phi$, such that
+%
+%$$\forall \delta^t\in^p M, \delta^t\models\phi\leftrightarrow\forall \delta\triangleleft\delta^t,  \delta\models\phi$$
+%%$$\forall \delta_1,\delta_2\triangleleft\delta_t, \delta_1\models\phi\leftrightarrow \delta_2\models\phi$$
+%
+%\subsection{A3: Validity Distinction}
+%
+%
+%For system model $M^s$
+%$$\delta^t\in^p M^s \text{ iff }\exists\delta\triangleleft\delta^t\text{ s.t. } \delta\in^p M^s$$
+%
+%
+%There can be multiple execution path correspond to the same timed execution path. 
+%$$\exists \delta_1,\delta_2\text{ s.t. } \delta_1\models\delta_t,\delta_2\models\delta_t$$
+%In this case, we say that $\delta_1$ and $\delta_2$ are not \textbf{distinguishiable}. 
+%
+%Distinguishible transitions: a lot of the times two paths have to be distinguishible (healthy vs. unhealthy)
+%
+%
+%Trace produceable by model: For an execution path $\delta$ with length $n$, we denote that the path is produceable by model $M$ with $\delta\triangleleft M$, such that:
+%$$\forall \sigma(s_i,s_{i+1})\in \delta,i\in[0,n-1], s_0\in I, \sigma(s_i,s_{i+1})\in\Sigma_M$$
+%
+%Timed trace produceable by model:
+%
+%
+%non-determinism
+%
+%For system:
+%$$\delta\models\delta_t,\delta_t\triangleleft M_s \text {  iff  } \delta\triangleleft M_s$$
+%For environment:
+%$$\delta$$
+%%\section{Model Abstraction With Over-approximation}
+%%For two models $M_1$ and $M_2$, we denote $M_2$ is an abstraction of $M_1$ as $M_1\preceq M_2$. A function $s'=h(s),s\in S_1,s'\in S_2$ is a mapping from the states in $M_1$ to states in $M_2$. 
+%%
+%%For two models $M_1$ and $M_2$ such that $M_1\preceq M_2$, we know that all the transitions are preserved:
+%%$$\forall \sigma(s,s') \in\Sigma_1\text{ s.t. }s,s'\in S_1,\rightarrow\sigma(h(s),h(s')) \in\Sigma_2,h(s),h(s')\in S_2$$
+%%Due to the mapping the transition groups in $M_2$ are changed as well. For a transition group in $M_1$:
+%%$$\Sigma_{\phi1}\subset\Sigma_1 \text{ s.t. }\forall\sigma(s_1,s_2)\in\Sigma_{\phi1},f(s_1,s_2)\models\phi1,s_1,s_2\in E_1$$
+%In the more abstract model, the propsition is often relaxed. For certain $\phi2\supseteq\phi1$, we have:
+%$$\Sigma_{\phi2}\subset\Sigma_2 \text{ s.t. }\forall\sigma(h(s_1),h(s_2))\in\Sigma_{\phi2},f(h(s_1),h(s_2))\models\phi2,s_1,s_2\in S_1$$
+%
+%
+%Some of the transition groups are merged. For two transition groups $\Sigma_{\phi1},\Sigma_{\phi2}\subset\Sigma_1$ there exists a new relation $\Sigma_{\phi3}\subseteq\Sigma_2$ such that: $$\phi1\cup\phi2\subseteq\phi3$$
+%We denote this abstraction as:
+%$$\Sigma_{\phi3}=\{\Sigma_{\phi1},\Sigma_{\phi2}\}$$
+%We use $\Sigma_{\phi1}\lhd\Sigma_{\phi3}$ to represent the abstraction relationship between transition groups.
+%\begin{itemize}
+	%\item Over-approximation and its information loss
+    %\item Abstraction in terms of transition groups
+    %
+%\begin{itemize}
+	%\item Merging
+    %\item \textcolor{red}{Remove}
+%\end{itemize}
+	%\item Assumptions made to simplify the model and increase model behaviors
+    %\item Necessity of model refinements due to information loss
+%\end{itemize}
+%
+%\subsection{System model vs. Environment model}
+%\begin{itemize}
+	%\item System model achieves simplicity during abstraction
+    %\item Environment model also use abstraction to achieve generalization
+    %\item Validation of counter-example cannot be done on a generalized environment model
+%\end{itemize}
+
+

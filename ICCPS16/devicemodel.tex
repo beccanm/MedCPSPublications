@@ -1,0 +1,13 @@
+\section{Implementing Device Algorithms} 
+\label{sec:device models}
+Due to the limited sensing capability of ICDs, device manufacturers have developed different algorithms to identify the electrical events and correctly diagnose the cardiac arrhythmia as being \ac{VT} or \ac{SVT}.
+In this paper we implemented the detection algorithm Rhythm ID of Boston Scientific \cite{compass,Ellenbogen11_Pacingbook},% [???Compass, pacingdefibrillation,VTC paper, ICD book, Ellenbogen].
+and PRLogic+Wavelet (PRL+W) of Medtronic \cite{Singer,Wavelet}.
+%In available literature on the evaluations of device algorithms descriptions of the device algorithms are not detailed enough for full implementation.
+%To obtain the detailed implementation we further reviewed clinical execution traces from literature like \cite{Singer} to infer detailed executions of the algorithms. 
+We also set up a testing platform to validate our implementations against real ICDs using conformance testing.
+
+\input{sensing}
+\input{detectionoverview}
+
+\input{validation}

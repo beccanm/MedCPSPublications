@@ -1,0 +1,58 @@
+Proof of Prop.~\ref{prop:spaceex definable}.
+\begin{prf}
+	\newcommand{\EPS}{\mathcal{E}}
+	We show that if $S \subset \Re^n$ is o-minimal, then $\boxdot S$ and $TH_\Vc(S)$ are o-minimal. 
+	O-minimality of the other sets is a standard result.
+	
+	We start with $\boxdot S$.
+	\begin{eqnarray*}
+		\boxdot S &=& \{y \in \Re^n \;|\; -\overline{|x_i|}\leq y_i \leq \overline{|x_i|},i=1,\ldots,n\}
+		\\
+		&=& \{y \in \Re^n \;|\; \exists a_i \in \Re_+. (a_i = \sup \{|x_i|,x\in S\} 
+		\\
+		&& \land (-a_i\leq y_i \leq a_i)),i=1,\ldots,n\}
+		\\
+		&=&  \{y \in \Re^n \;|\; \exists a_i \in \Re_+. (\forall \varepsilon_i>0 \exists x_i \in S . a_i-\varepsilon < |x_i(i)|)
+		\\
+		&& \land (-a_i\leq y_i \leq a_i)),i=1,\ldots,n\}
+		\\
+		&=&  \{y \in \Re^n \;|\; \exists a_i \in \Re_+. (\forall \varepsilon_i>0 \exists x_i \in S . a_i-\varepsilon < x_i(i)
+		\\
+		&& \lor a_i - \varepsilon > -x_i(i)) \land (-a_i\leq y_i \leq a_i)),i=1,\ldots,n\}
+\end{eqnarray*}
+
+The template hull is given by
+\[TH_\Vc(X) \defeq \{x\in\Re^n \;|\;\land_{a \in \Vc} a\cdot x \leq \rho(a,X)\}\]
+where the support function is given by 
+\begin{equation}
+\label{eq:supportfnt}
+\rho(a,S) \defeq \max_{x \in S} a\cdot x
+\end{equation}
+Therefore $TH_\Vc(X)$ is definable if $\rho$ is.
+The graph of $a \mapsto \rho(a,S)$ is given by 
+\begin{eqnarray}
+\textbf{Gph}\rho = \{(a,r) \;|\; \forall x\in S.\; r\geq a\cdot x \land \exists x\in S. r=a\cdot s\}
+\end{eqnarray}
+which is a first-order formula on predicates that use $+,\times$.
+Since $S$ is o-minimal, Gph$\rho$ is o-minimal.
+%
+%To do so we show that it can be computed using a finite number of operations from the o-minimal structure $\Lc_{\exp}$.
+%As we assume that $S$ is a polytope (a closed bounded intersection of half-spaces), it has a finite number of extreme points. 
+%Let $\mathcal{E} =  \{e_i,i=1,\ldots,k\}$ be the set of extreme points and any point $x\in S$ can be written as a convex combination of the extreme points: $x = \sum_{i}\alpha_i e_i$.
+%Therefore we can write
+%\[ \rho(a,S) = \max_{\alpha \in I^k} \sum_{i=1}^k \alpha_i a\cdot e_i \]
+%where $I^k = \{(\alpha_1,\ldots,\alpha_k)\;|\; \alpha_i \geq 0, \sum \alpha_i = 1\}$
+%
+%The maximizer $x^*$ of \eqref{eq:supportfnt} is necessarily a boundary point of $S$.
+%Indeed let $x^0$ be an interior point of $S$ ($x^0 \in S\setminus \partial S$).
+%Then the line through $x^0$ intersects $\partial S$ twice, at points $\lambda_1x^0$ and $\lambda_2x^0$, with $\lambda_1 \geq 1$ and $\lambda_2 \leq 1$.
+%This is the case because $S$ is closed and bounded.
+%If $a\cdot x^0 \geq 0$, then $a\cdot \lambda_1 x^0 \geq a\cdot x^0$. 
+%And if $a\cdot x^0<0$ then $0 \geq a\cdot \lambda_2 x^0 \geq a\cdot x^0$. 
+%Thus to any interior point of $S$ there exists a boundary point with a larger projection on $a$.
+%
+%A boundary point can always be written as the convex combination of exactly $n$ extreme points, namely the extreme points that are the vertices of the face to which the boundary point belongs.
+%
+%Therefore the support function expression is further simplified to:
+%\[ \rho(a,S) = \max_{\alpha \in [0,1], \mathcal{F} \subset \EPS:|\mathcal{F}|=n } \sum_{i=1}^n \alpha_i a\cdot e_i \]
+	\end{prf}

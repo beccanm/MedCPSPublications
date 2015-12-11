@@ -1,0 +1,6 @@
+commands;
+reset;
+model idrules.mod;
+data id2.dat;
+option solver gecode;
+option show_stats 1;

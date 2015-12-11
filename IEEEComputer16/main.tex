@@ -1,0 +1,62 @@
+\documentclass[obeyFinal]{llncs}
+\usepackage{llncsdoc}
+\usepackage{fainekos-macros}
+\usepackage{color}
+
+
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos,obeyFinal]{todonotes}
+\usepackage{wrapfig}
+\usepackage{makeidx}  % allows for indexgeneration
+\usepackage{bibspacing}
+\usepackage{fancyvrb}
+\usepackage{amsfonts}
+\usepackage{color}
+\usepackage[ruled]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{authblk}
+
+\setlength{\bibspacing}{\baselineskip}
+\usepackage[tight,footnotesize]{subfigure}
+
+\newcommand{\tableref}[1]{Table~\ref{tab:#1}}
+\newcommand{\figref}[1]{Fig.~\ref{fig:#1}}
+\newboolean{TECH_REPORT}
+\newcommand{\process}[1]{{\color{red}\emph{#1}}}
+\DeclareSymbolFont{extraup}{U}{zavm}{m}{n}
+%\setlength{\textwidth}{12.5cm}
+%\setlength{\textheight}{20.4cm}
+\usepackage{tikz}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\setboolean{TECH_REPORT}{TRUE}
+\booltrue{HIGHLIGHTCHANGES}%{true}
+
+\begin{document}
+%\title{High confidence verification of medical device software}
+\title{The Challenge of High-Confidence Medical Device Software}
+
+\author{Zhihao Jiang, Houssam Abbas, Kuk Jin Jang and Rahul Mangharam}
+\institute{Department of Electrical and Systems Engineering, University of Pennsylvania, USA\\
+\{zhihaoj, habbas, jangkj, rahulm\}@seas.upenn.edu}
+
+
+\maketitle
+\input{promiseAndChallenges}
+\input{eltbroad}
+\input{pickingTheRightModel}
+\input{section32}
+\input{puttingItTogether}
+\input{mbctshort}
+%\input{conclusion}
+
+\bibliographystyle{unsrt}
+\bibliography{bibliography}
+
+
+
+
+
+\end{document}

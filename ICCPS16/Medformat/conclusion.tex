@@ -1,0 +1,26 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+Clinical trials study the effect of an intervention \emph{in the patient}, and report patient-level results (e.g., ``The event of interest was observed in X\% of patients in Group 1''). 
+Our results are at the condition level: they take the form ``the event of interest was observed in X\% of generated conditions".
+To produce patient-level estimates requires an estimate of how conditions are distributed among patients. 
+This low-level data is not publicly nor readily available.
+A trial's investigators, however, should be able to obtain such data from previous trials.
+
+It is important to stress that in general, one should not expect \emph{absolute numbers} from an MBCT to match those from a clinical trial, nor should this be the goal of the MBCT.
+For example, in this work, it is unlikely that our MBCT will yield rates of inappropriate therapy that are equal to the rates obtained by RIGHT itself.
+The reasons for this are many:
+\begin{itemize}
+	\item The RIGHT in vivo cohort, and our synthetic cohort, are not comparable:
+	indeed, a myriad of factors affect the outcome of a clinical trial, e.g., whether some patients take up smoking. 
+	These factors are not modeled.
+	\item The adjudication of episodes in RIGHT (and other trials) is limited by the fact that only therapy episodes were recorded by the devices.
+	The adjudication process is further limited by the lack of surface EKGs, which makes it hard to reliably distinguish certain atrial arrhythmias. 
+	Neither of these is a limitation in MBCT since we have the ground truth: we know exactly what arrhythmia is being simulated by the model.  Furthermore, the AAEL signals have both device electrograms (EGMs) and the corresponding surface EKGs which allow for precise adjudication.  
+	\item Experts may disagree on how to adjudicate the more complex episodes, so our classification of episodes from the AAEL database and the classification of the RIGHT investigators have an irreducible discrepancy.
+	Again, this will affect the statistics that they and we compute.
+\end{itemize}
+
+That said, we can expect that a good heart model will reveal \emph{the trend} of the results, such as improvement of intervention over control or not, as shown in this paper. 
+The MBCT conducted here clearly showed that the Medtronic algorithms outperforms the Boston Scientific's and resulted in a negative outcome of RIGHT across all population distributions and relevant heart conditions. In hindsight, the Boston Scientific-sponsored RIGHT would have needed reconsideration prior to running it to prevent a failed outcome.
+

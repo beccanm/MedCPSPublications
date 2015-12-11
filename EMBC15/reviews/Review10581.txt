@@ -1,0 +1,11 @@
+Reviewer 2 of EMBC'15 submission 2332
+
+Comments to the author
+======================
+
+This paper describes the use of closed-loop control for
+testing of cardiac devices - the authors employ a virtual
+heart model using finite state machines to generate
+requirements and pacemaker-like signals that are assessed
+against the requirements that best reflect the behaviour
+(including malfunctioning) of the cardiac device.

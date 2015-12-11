@@ -1,0 +1,122 @@
+\begin{abstract}
+Regulatory authorities require that the safety and efficacy of a new high-risk medical device be proven in a Clinical Trial (CT), in which the effects of the device on a group of patients are compared to the effects of the current standard of care. 
+Phase III trials can run for several years, cost millions of dollars, and pose an inherent risk to the patients by exposing them to an unproven device.
+In this paper, we demonstrate how to use a large model-based synthetic group of patients and device models to improve the planning and execution of a CT so as to increase the chances of a successful trial.
+%In this paper, we demonstrate how to use closed-loop models of a medical device and of a large patient cohort to improve the planning and execution of a CT so as to increase the chances of a successful trial.
+%\mynote{SD}{confusing: what is a large patient cohort?}
+We illustrate our approach by applying it to a real CT that compares two algorithms within implantable cardioverter defibrillators (ICDs) for the detection of potentially fatal cardiac arrhythmias. 
+The CT posited that one algorithm would be better than the other but the results of the trial were opposite to this hypothesis. 
+As we show, we could have predicted this with our model.
+We begin by modeling the heart and processing 100's of real patients' electrogram signals, mapping the timing and morphology components of the signals to the heart model. 
+This is followed by generating a population of 10,000+ synthetic heart models and implementing diagnostic algorithms of two very commonly used ICD platforms in the USA, i.e. Boston Scientific and Medtronic.
+We perform conformance testing to validate our device models against real ICDs. 
+Now, using the closed-loop of the device models and synthetic patient population we conduct multiple trials to compare the performance of the two algorithms to appropriately discriminate between potentially fatal ventricular tachycardias (VT) and non-fatal SupraVentricular Tachycardias (SVTs).
+The results of our model-based clinical trials (MBCT) indicate that Boston Scientific's algorithm was less able to discriminate between SVT and VT and so may lead to inappropriate therapy.
+We further demonstrated that the result continues to hold if we vary the characteristics of the synthetic population and device parameters.
+% - thus indicating that the CT was unlikely to prove the desired effect. 
+While MBCTs do not seek to replace a CT, they may provide early insight into the factors which affect the outcome at a fraction of the cost and duration and without the ethical issues.
+This effort is an early step towards using computer modeling as regulatory-grade evidence for medical device certification. 
+
+
+\end{abstract} 
+
+%%Primary result: 
+%What is: 
+%Early feasibility of a clinical trial
+%Model-based clinical trials provide empirical evidence to the feasiblity of a clinical trial (compared to extrapolating from literature)
+%Provide insight into the feasiblity of a clinicial trial
+%
+% - Comparative analysis of ICD algorithms: 
+%	 - By generating a large cohort (over 10,000 heart models) we show that the Medtronic algorithm delivers less inappropriate therapy than the Boston Scientific algorithm.
+% 
+% - Condition-specific analysis
+%	 - The Medtronic algorithm has better specificity than the BSc algorithm and we isolated the arrhythmias where the effect is most pronounced
+%	 
+% - Effect of device parameters on discrimination ability
+%	 - By running multiple model-based trials across a range of parameters, this provides insight to the physician on the most appropriate parameter values.
+%	 
+%While the goal of MBCT is not to replace RCT it provides the following benefits:
+%
+%- Generate large and varied population distributions
+%- Ability to input the same signal to multiple devices
+%- At low cost in a short time and with no ethical risk
+%
+%OUTLINE:
+%1. Introduction (Rahul)
+%- High-level discussion of MBCT
+%- fig:bringDeviceToMarket
+%- fig:ICD
+%- Modeling as regulatory grade evidence
+%- Contributions and Results
+%
+%2. Clinical trials and the RIGHT Trial (Houssam)
+%- Clinical trial difficulties
+%- Short paragraph explaining background EP
+%- Summary of RIGHT Trial, including results
+%	- high-level VT vs SVT; Bsc worse
+%
+%3. Model-based Clinical Trials (Sunday)
+%
+%- What is MBCT?
+%- What are the advantages/benefits?
+%- Pipeline of MBCT for RIGHT (Overview figure - previous fig. 3)
+%	- fig:MBCToverview
+%	- high-level VT vs. SVT
+%- What MBCT is not.
+%
+%4. Heart Models (Hao)
+%- Basic EP
+%- Timing, morphology
+%	-fig:timingModel
+%	-fig:EGMgeneration
+%- What we did: 
+%	-Adjudication (Kuk)
+%		-fig:Adjudication
+%	-Mapping of parameters to model
+%	-Generated 10,000 + models
+%		
+%
+%5. Device Algorithms (Hao)
+%- Discrimination algorithm - What? Why?
+%	-VT vs SVT
+%	
+%- VT detection algorithm (Part a: sensing (Kuk) Part b: detection)
+%	-fig:SVTVTDetection
+%- What we did: 
+%	-Implement complex algorithm
+%		- reference for different components
+%	- Validation (Kuk)
+%		-fig:validationsetup
+%		-fig:validation
+%			(add text: Real device, Device model)
+%			
+%6. Results (Hao, Houssam)
+%- Overview of results
+%
+% - Comparative analysis of ICD algorithms: 
+%	 - By generating a large cohort (over 10,000 heart models) we show that the Medtronic algorithm delivers less inappropriate therapy than the Boston Scientific algorithm.
+%	 -fig:population variation
+% 
+% - Condition-specific analysis
+%	 - The Medtronic algorithm has better specificity than the BSc algorithm and we isolated the arrhythmias where the effect is most pronounced
+%	 -table:condition-level specificity
+% 
+% - Effect of device parameters on discrimination ability
+%	 - By running multiple model-based trials across a range of parameters, this provides insight to the physician on the most appropriate parameter values.
+%	 -fig:device params
+%	 
+%7. Discussion (Houssam)
+%- Limitations w.r.t. RIGHT Trial 
+%	- Don't expect to get exact numbers, trends can match (overall outcome)
+%		- Cannot get patient-level out
+%		- We can get condition-specific trends 
+%	- Only implemented components of sensing and detection (no onset, post-shock detection)
+%- Differences in adjudication
+%	- Different doctors, different adjudication
+%	- Not reliable without EKG
+%
+%8. Conclusion
+%
+%
+% 
+% 

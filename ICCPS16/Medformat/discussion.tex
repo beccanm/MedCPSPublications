@@ -1,0 +1,7 @@
+\subsection{Known lacunae in implementation}
+\label{sec:discussion}
+We did not account for post-shock detection (a phase of detection that follows the delivery of therapy), which was part of the RIGHT results.
+We did not implement the Onset discriminator, which is part of the detection algorithms, so the results exclude its effects.
+RIGHT included both dual-chamber and single-chamber devices, whereas we only implemented the algorithms for dual-chamber devices.
+For the VTC and Wavelet algorithms, the literature did not specify which samples are taken from the electrogram. 
+We chose to sample the electrogram uniformly in time, and validated that this gives correct results.

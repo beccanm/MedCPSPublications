@@ -1,0 +1,95 @@
+\section{Closed-loop Model Checking With Abstraction Tree}
+%\subsection{Heart Model Abstraction Tree}
+A set of heart models corresponding to different heart conditions are first developed. 
+The list can be expanded as new heart conditions are discovered.
+Because we start from a set of initial models, and each one may be abstracted using a number of abstraction rules, we have a choice of which rules to apply to which models, and the order in which to apply them.
+Depending on which rule is applied when, we end up with different abstract models.
+Thus an \emph{abstraction tree} $T_{HM}$ for the heart is created, as shown in \figref{HM_abs}. 
+%Note that applying rules in different order results different abstraction tree. 
+%The order used to obtain $HM\_tree$ is based on the domain knowledge that certain heart conditions may have similar behaviors and similar inputs to the pacemaker. 
+%This systematic grouping maintains the physiological-relevance of the heart model even at higher abstraction levels, and reduce the necessity to resolve ambiguities at lower abstraction levels when model checking certain requirements.
+\begin{figure}[!t]
+	\centering
+	\includegraphics[width=0.85\textwidth]{figs/abs.pdf}
+	%\vspace{-5pt}
+	\caption{\small Heart Model Abstraction Tree}
+	\vspace{-15pt}
+	\label{fig:HM_abs}
+\end{figure}
+%\subsection{Model Checking Procedure}
+After the abstraction tree is built, it can be used for closed-loop model checking by non-domain experts. 
+The question is which models to select from the abstraction tree to perform model checking, and provide the most concrete counter-examples.
+These counter-examples are provided to the physicians, along with the heart models that generated them, to determine their physiological validity.
+
+We now summarize the model checking procedure, and give a detailed example in the next section.
+Recall the definition of appropriateness from Section \ref{preliminaries}.
+
+\ifthenelse{\boolean{TECH_REPORT}}{\include{proofAppropriateness}}{In the technical report \cite{regar_tech}, we show that a sufficient condition for a model $M$ to be appropriate for a requirement $\varphi$ with monitor $Mon$ is
+$Var(\varphi) \subset Var(M) \cup Var(Mon)$.}
+
+A search algorithm is developed to select the most abstract models from the abstraction tree $T_{HM}$ that are appropriate for a requirement $Req$. 
+\ifthenelse{\boolean{TECH_REPORT}}
+{
+\begin{figure}[!t]
+		\centering
+		\includegraphics[width=0.9\textwidth]{figs/algorithm.pdf}
+		%\vspace{-5pt}
+		\caption{\small Algorithms for closed-loop model checking with abstraction tree}
+		  \vspace{-10pt}
+		\label{fig:algorithm}
+\end{figure}}
+{The detailed implementation of the algorithm can be found in \cite{regar_tech}.
+}
+Model checking is run on these models. 
+When a run returns a violation, it returns an abstract counter-example $\delta_{cex}$, along with the heart model $M_{cex}$ that generated it.
+For each such violation, we search the tree for the most concrete descendant of $M_{cex}$ that still displays a counter-example to $Req$.
+This is then provided to the physician along with the counter-example.
+%The detailed implementation of the algorithm can be found in \cite{regar_tech}.
+%Algorithm 2 (\figref{algorithm}) describes the process for closed-loop model checking with an abstraction tree.
+
+
+%The most abstract model in the abstraction tree is built to cover the input space to the device as much as possible, thus it may not have enough details to constrain the behaviors of the model according to the constraints in the requirement. Thus the first step of closed-loop model checking is to select the most abstract models which are appropriate for the requirement. A model $M$ is appropriate for a requirement $Req$ if the environment transitions mentioned in the requirement, denoted as $EnvT(Req)$, is a subset of the environment transitions associated with the model $EnvT(M$). The following algorithm finds the most abstract heart models in the abstraction tree $HM\_tree$ that are appropriate for a requirement $Req$.
+%\begin{Verbatim}
+%Algorithm 1
+%function [HM]=eligible(HM_tree,Req)
+%BM = root of HM_tree
+%while (BM is not empty)
+ %For every model M in BM
+  %If (Var(Req) is a subset of Var(M)+Var(Mon))
+   %Remove M from BM
+   %save M in HM
+  %else
+   %add children of M in BM
+  %endif
+ %endfor
+%endwhile
+%Return HM
+%\end{Verbatim}
+%BM = all models in HM_tree with all Prop(Req)
+%For all M in BM
+ %while (in the parent of M no behavior in Prop(Req) is abstracted with other behaviors)
+	 %M = parent of M
+ %endwhile
+ %save M in HM
+ %endfor
+
+%\begin{Verbatim}
+%Algorithm 2
+%Input: system model PM, abstraction tree for environment HM_tree, requirement Req
+%Output: Counter examples CE and corresponding model refinements, if any
+%[HM]=eligible(HM_tree,Req);
+%Mc= HM;
+ %while (Mc is not empty)
+  %For all M in Mc
+   %[satisfied,CE]=ModelChecking(M,PM,Req);
+	 %Remove M from Mc
+	 %If satisfied==0
+	  %add the children of M to Mc
+		%cache CE
+	%else
+		%save CE from the parent model
+	%endif
+ %endfor
+%endwhile
+%Return all saved CEs and their corresponding models
+%\end{Verbatim}

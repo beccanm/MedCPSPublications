@@ -1,0 +1,149 @@
+\section{Introduction}
+\label{introduction}
+
+Implantable medical devices like pacemakers are designed to improve certain undesired physiological conditions with very little human interventions. Their capability of autonomously affecting the physiological conditions of the patients makes the medical devices safety-critical, and sufficient evidence on the safety and efficacy of the devices should be provided before the devices can be implanted in the patients. As more functions added to the devices, the complexity of the software component of the device is increasing dramatically, leading to increasing number of potential safety violations due to software bugs. 
+
+There are two categories of software bugs: 1) The software fails to conform to its design, or specifications; 2) The software design fail to improve the physiological conditions as promised, which are specified in physiological requirements. The first category can be found via extensive open-loop testing. Since the physiological requirements describe the intended behaviors of the closed-loop system consists of the environment and the system, evaluation of the physiological requirements requires closed-loop verification. 
+
+%\todo[inline]{reserve the word `verification' for formal verification, and use `validation' when talking more generally}
+In the medical device industry, closed-loop verification is performed in the form of clinical trials in which the devices are tested on the real patients. Clinical trials can only cover very limited physiological conditions due to extremely high cost. Moreover, clinical trials are often conducted at the last design stage. Fixing bugs at this stage is also very costly.
+\subsection{The Model Checking Problem}
+Model-based design has been proposed to speed up system software design and provide safety promises in physiological requirements. %Instead of explore the state space of the actual software, techniques like model checking explore the state space of an abstract model of the software, which is considerably smaller. %Model checking has been widely studied to explore the whole state space of abstract model against properties. %It can potentially enable closed-loop verification of the software requirements at an earlier stage thus reduce cost. %In a model-based design framework, the system software is first designed as an abstract model. Together with an environment model the closed-loop system can be verified against software requirements using model-checking techniques. The verified system model can then be rigorously translated into the software implementation (semi-)automatically so that the software implementation also satisfies all the software requirements.
+%The software and its environment have very different properties that modeling them requires very different focuses. The software is generally a control graph which is generally deterministic given with physics and computations are two different things.
+%One of the biggest challenge for closed-loop model checking is to manage how much detail a model should have during model checking. In general the model should be abstract enough to ignore unnecessary details in order to reduce computational cost, but also detailed enough to distinguish execution paths that 1) satisfy/violate a property, and/or 2) are valid/invalid due to the extra behaviors introduced during model abstraction/approximation. These ambiguities must be removed from model to prevent false positives/negatives during model checking. 
+%\subsection{Challenges}
+%In this paper, we address the following four challenges that stand in the way of applying formal methods to the problem of verifying the correct functioning of pacemakers and other implantable cardiac devices.
+%
+%\begin{enumerate}
+	%\item There are no formal models of the human heart's behavior.
+	%\item There is a wide variety of distinct heart conditions, many of which are ill- or incompletely understood.
+	%This results in the a priori need to create many heart models.
+	%\item The physiological requirements are worded in the language of physicians and medical practitioners, so there is a need to express these requirements formally.
+	%\item A related challenge is that these requirements are often vague, in the sense that a violation of the requirement does not necessarily indicate a preventable issue or a bug in the pacemaker. 
+	%Thus there is a need to transmit back our findings to the physicians and device manufacturers who can decide whether the found counter-example is a bug or not.
+%\end{enumerate}
+%
+%\todo[inline]{Question to be resolved: why is the application of abstraction rules preferred to `regular' predicate-based abstraction?}
+%\subsection{The Model Checking Problem}
+%\label{MCproblem}
+%\todo[inline]{This section is too long. Reduce to half a page. Also, doesn't belong in the introduction.}
+%Model-based design enables closed-loop verification at an early design stage. 
+For a model $M$ with state space $S$, we define a behavior of the model as an execution trace $\delta\in S^*$. The reachable behavior space of the model $M$ is denoted as $\mathbb{B}(M)\subset S^*$. A property $\varphi$ defines a region in the behavior space within which the property is satisfied, which can be denoted as $\mathbb{B}(\varphi)$. A model checking problem is to use mathematical tool to explore the whole reachable behaviors of a model $M$ against a property $\varphi$ such that $\mathbb{B}(M)\subseteq \mathbb{B}(\varphi)$. We denote it as $M\models\varphi$. Execution traces $\delta_v\in\mathbb{B}(M)/(\mathbb{B}(M)\cap\mathbb{B}(\varphi))$ will be returned by the model checker as property violations so that the designer can analyze and address the problem. 
+
+In closed-loop model checking, the closed-loop system $M_E||M_P$ consists of the system under check $M_P$, and environment conditions modeled as $M_E$. In the case of medical devices, the devices are designed to improve certain physiological conditions. In general, a closed-loop requirement $\varphi_C$ is in the form of $\varphi_E\Rightarrow \varphi_P$, in which $\varphi_E$ is the open-loop physiological condition that the device encounters, and $\varphi_P$ is the closed-loop physiological condition that the device should achieve. Then we have:
+ \begin{equation}\label{req_def}
+M_E\models\varphi_E, M_E||M_P\models \varphi_P\Rightarrow M_E||M_P\models\varphi_C
+\end{equation}
+
+\subsection{Model Abstraction with Over-approximation}
+The behavior space of the actual system is too large for model checker to exhaustively explore. A model of the system which covers all behaviors of the system can be developed which can not only reduce complexity, but also having the suitable formalism for the model checker. An abstraction function $h$ abstracting model $M$ to $M'$ is a non-surjective function from state space $S$ to the new abstract state space $S'$ such that: 
+$$\forall s\in S, \exists s'\in S' \text{ s.t. } h(s)=s'$$
+This definition can be extended to behaviors $\delta\in \mathbb{B}(M)$, such that:
+$$\forall \delta\in \mathbb{B}(M),\exists \delta'\in\mathbb{B}(M')\text{ s.t. } h(\delta)=h(\delta')$$
+From the definition, we know that the abstract model $M'$ covers all behaviors of $M$, which is referred to as \emph{over-approximation}. We represent the over-approximation relationship as $M\triangleleft_h M'$, and the relationship between reachable behavior spaces as $h(\mathbb{B}(M))\subseteq\mathbb{B}(M')$. Then we have:
+$$h(\mathbb{B}(M))\subseteq \mathbb{B}(M'),\mathbb{B}(M')\subseteq h(\mathbb{B}(\varphi))\Rightarrow h(\mathbb{B}(M))\subseteq h(\mathbb{B}(\varphi))\Rightarrow M\models\varphi$$
+\todo[inline]{The behavior space in which $\varphi$ is defined need to be clarified.}
+In general the state space of $S'$ is smaller than $S$ while preserving the property, thus preferable during model checking. 
+
+Over-approximation can also be used to cover the behaviors of multiple models. A model $M'$ is an over-approximation of model $M_1$ and $M_2$ if 
+$$\forall \delta\in \mathbb{B}(M_1)\cup\mathbb{B}(M_2),\exists \delta'\in\mathbb{B}(M')\text{ s.t. } h(\delta)=h(\delta')$$
+We denote it as $\{M_1,M_2\}\triangleleft_h M'$, such that $h(\mathbb{B}(M_1)\cup\mathbb{B}(M_2))\subseteq\mathbb{B}(M')$.
+
+\subsection{Ambiguities Caused by Over-approximation}
+\subsubsection{Validity Ambiguities: }
+Since $h$ is non-surjective, there exists behaviors in $M'$ that do not exists in the original model $M$:
+$$\exists\delta'\in\mathbb{B}(M')\text{ s.t. }h^{-1}(\delta')\not\subset\mathbb{B}(M)$$
+These invalid behaviors may contribute to false-negatives during model checking.
+\subsubsection{Context Ambiguities: }
+For models over-approximated to cover the behaviors of multiple models, distinct behaviors from different models can be indistinguishable in the abstract model. For $\{M_1,M_2\}\triangleleft_h M'$, we may have :
+$$ \delta_1\in\mathbb{B}(M_1),\delta_2\in \mathbb{B}(M_2)\text{ s.t. }h(\delta_1)=h(\delta_2)=\delta',\delta'\in \mathbb{B}(M')$$
+It is not a problem if $M'\models\varphi$, however if $\delta'\not\models\varphi$ is returned as a counter-example, it loses the context in which the property is violated and is hard to interpret the result. A small example is shown in \figref{ambiguity} to illustrate the potential ambiguities due to over-approximation. 
+
+%\todo[inline]{The following example seems important but has a lot of overlap with the text above}
+%We use a small example to illustrate the ambiguities. In .(a) %we have two models such that $\{Sys1,Sys2\}\triangleleft_h M$. An over-approximation function $h_a$ is applied to $M$ to obtain $M'$. By model checking the abstract model $M'$ against property $\varphi$ we have $M'\not\models\varphi$ and $\delta'$ is returned as counter-example. However, $\delta'$ corresponds to 3 different behaviors in the original behavior space:
+%Since $h_a$ is non-surjective, for two models with $M\triangleleft_h M'$, we may have:
+%$$\exists s_1,s_2\in S \text{ s.t. }h(s_1)=h(s_2)=s',s'\in S'$$
+%For behaviors we have:
+%$$ \delta_1\in\mathbb{B}(Sys1),\delta_2\in \mathbb{B}(Sys2), \delta_3\in\mathbb{B}(M)/(\mathbb{B}(Sys1)\cup\mathbb{B}(Sys2))$$
+%s.t. 
+%$$h_a(\delta_1)=h_a(\delta_2)=h_a(\delta_3)=\delta',\delta'\in \mathbb{B}(M')$$
+%With $\delta'$ alone it is difficult to interpret the counter-example and use it to improve the software.
+
+\begin{figure}[!t]
+		\centering
+		\includegraphics[width=0.8\textwidth]{figs/distinction.png}
+		%\vspace{-5pt}
+		\caption{\small Two models such that $\{Sys1,Sys2\}\triangleleft_h M$. An over-approximation function $h_a$ is applied to $M$ to obtain $M'$. By model checking the abstract model $M'$ against property $\varphi$ we have $M'\not\models\varphi$ and $\delta'$ is returned as counter-example. However, $\delta'$ corresponds to 3 different behaviors in the original behavior space}
+		  %\vspace{-15pt}
+		\label{fig:ambiguity}
+\end{figure}
+
+\subsection{System Modeling vs. Environment Modeling}
+During closed-loop model checking, there are different focuses on the system model and the model of its environment, thus modeling them require different strategy.
+\subsubsection{Over-approximation: }In closed-loop model checking, there is only one concrete system. However there can be countless number of environmental conditions which require different models to represent. While over-approximating the system model aim to reduce its state space and computational cost, over-approximating the environment models aim to cover the behaviors of multiple environmental conditions that are explicitly modeled, or implicitly included. Since it is impossible to exhaustively model all possible environment conditions, over-approximation is a good way to cover multiple environment condition without increasing computational cost. %\figref{distinction}
+
+\subsubsection{Validity of a counter-example: }Behaviors introduced into the over-approximation of a system model are all \emph{spurious}, or invalid. For two models such that $M\triangleleft_h M'$, $\delta'$ is spurious if the following condition holds: 
+$$\not\exists \delta\in\mathbb{B}(M) \text{ s.t. }h(\delta)=\delta'$$
+However, for environment models such that $\{M_1,M_2,...M_n\}\triangleleft_h M'$, and an execution $\delta'\in\mathbb{B}(M')$, the following condition is not enough to prove $\delta'$ is spurious.
+$$\forall i\not\exists \delta\in\mathbb{B}(M_i)\text{ s.t. }h(\delta)=\delta'$$
+Since there may be a valid environment model $M_c\not\in\{M_1,M_2,...M_n\}$ and $\mathbb{B}(M_c)\subset\mathbb{B}(M')$ and $\delta'\in\mathbb{B}(M_c)$. It is thus up to the domain experts to determine the validity of the counter-example.
+%\begin{figure}[!b]
+%		\centering
+%		\includegraphics[width=0.6\textwidth]{figs/env_sys.png}
+%		%\vspace{-5pt}
+%		\caption{\small }
+%		  %\vspace{-15pt}
+%		\label{fig:distinction}
+%\end{figure}
+
+\subsection{Counter-Example-Guided Abstraction and Refinement (CEGAR)}
+In \cite{CEGAR} the authors proposed a framework to over-approximate the system using proposition abstraction. Upon property violation the abstract counter-example is checked for its validity on the system. If the counter-example is spurious the model is then refined to eliminate the spurious counter-example. This process is then resumed on the refined model until either a valid counter-example returns or no counter-examples are returned.
+
+From the above procedure we can see that CEGAR framework works on system modeling. However, CEGAR cannot be applied for environment modeling for the following reasons. First, the proposition abstraction can not over-approximate multiple models into one abstract model. 
+%Proposition abstraction only abstract the domain of the substates and the dimensions of the state space is unchanged. For environment models with different substates, more aggressive abstraction functions are needed to over-approximate
+With multiple environment models the validity of counter-examples cannot be determined by concretizing them on the set of environment models, as discussed in the last section. If over-approximation is used for environment modeling, there needs to be a more suitable framework to balance the abstraction and refinement of the environment models.
+
+\subsection{Abstraction-tree-based Model Abstraction for Environment Modeling}
+In this paper we propose framework for environment modeling in closed-loop model checking of medical device software. An incomplete set of physiological models are first developed to represent different physiological conditions. 
+
+A set of physiological abstraction rules are then developed based on physiological knowledge, which ensure the physiological relevance of the behaviors introduced into the abstract models. 
+
+Then the rules are applied in certain order onto the set of physiological models, resulting an abstraction tree $G=(V,E)$. Each leaf in the tree is a physiological model and the edges are applications of an abstraction rule. The abstraction tree can then be used as environment models for closed-loop model checking.
+
+The closed-loop requirement $\varphi_c:(\varphi_E\Rightarrow\varphi_P)$ has constraints on the environment in $\varphi_E$. During the abstraction steps, certain sub-states or transitions of the environment models may be removed or merged. If the variables mentioned in $\varphi_E$, which is denoted as $Var(\varphi_E)$, is not a subset of the variables of an environment model $M$, which is denoted as $Var(M)$, the model $M$ is not appropriate for the requirement $\varphi_c$. The first step for closed-loop model checking is to choose the most abstract environment model(s) from the tree which are appropriate for the requirement. These models will be used as the initial environment models $M_E$ during model checking. 
+
+For a system model $M_S$ and a physiological requirement $\varphi_c$, closed-loop model checking is performed such that:
+$$\forall M\in M_E, \text{ check } M||M_S\models\varphi_c$$
+If the requirement is all satisfied, the system model $M_S$ satisfy $\varphi_c$ under environment condition covered by the models in $M_E$. Upon violation of the requirement, the model checker returns a counter-example $\delta_c\in M_c\in M_E$. However, counter-examples at the abstract level are difficult to interpret and there may exists ambiguities. To concretize the counter-example and enumerate possible physiological context, we explore the abstraction tree. Model checking is then performed such that:
+$$\forall M\in Child(M_c), \text{ check } M||M_S\models\varphi_c$$  
+The procedure recurs until 1) the leaves of the tree is reached, or 2) there is no violations in the child nodes. The counter-examples returned from the most refined models are then submitted to the physicians for analysis. 
+
+%\todo[inline]{why give new names to familiar things? Especially since these names don't make sense at this point. E.g. you speak of validity ambiguity, but it is not at all clear what is being validated and why the equation expresses an `ambiguity'. This is basically a description of what happens when abstracting, which most formal people are familiar with, so merge with section \ref{MCproblem}}
+
+
+
+%During the software development process, there are two key documents that track the safety and efficacy of the software component, namely the \textbf{Software Requirements} and \textbf{Software Specifications}. These two terms are sometimes used interchangeably, however, requirements and specifications provides different angle of system safety and require very different verification techniques.
+%
+%A requirement states the objective of the system in design in terms of environmental conditions. For example, a requirement of a self-driving car would be: \emph{The car should not hit a pedestrian.} A specification is how the system developers propose to satisfy the requirements. For example, the specification corresponding to the requirement of a self-driving car would be: \emph{If an object is detected in front of the car and the distance to the object is less than $d$, the car should brake.} As we can see, a specification may not satisfy the corresponding requirement, thus two steps are required to guarantee the safety of the system software. The first is the conformance between the system software and the software specification. The second one is whether the software specifications can satisfy all the software requirements.
+%
+%Currently in most system design, the conformance between the software specifications and the system software are verified using extensive \textbf{open-loop} testing. The test cases are extracted from the system software using static analysis based on certain coverage criteria. The conformance between the specifications and the requirements are maintained by traceability documents, which is insufficient for safety guarantee.
+% \begin{figure}[!t]
+% 		\centering
+% 		\includegraphics[width=0.8\textwidth]{figs/SysVSEnv.png}
+% 		%\vspace{-5pt}
+% 		\caption{\small Modeling in terms of behavior coverage. As model becomes more abstract, the coverage increases while the boundary becomes more simple. (a) System modeling in which there is only one concrete system; (b) Environment modeling in which abstraction can be used to generalize different conditions}
+% 		  %\vspace{-15pt}
+% 		\label{fig:sys}
+% \end{figure}
+
+
+
+
+
+\input{contributions}
+
+
+%\paragraph{Notation}. For a positive integer $n$, $[n] = \{1,2,\ldots,n\}$.
+
+%\input{formulation}
+%\input{example}

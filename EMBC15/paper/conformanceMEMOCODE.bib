@@ -1,0 +1,176 @@
+
+@INPROCEEDINGS{HuangVG_PropertyPreservation_MEMOCODE03, 
+author={Jinfeng Huang and Voeten, J. and Geilen, M.}, 
+booktitle={Formal Methods and Models for Co-Design, 2003. MEMOCODE '03. Proceedings. First ACM and IEEE International Conference on}, 
+title={Real-time property preservation in approximations of timed systems}, 
+year={2003}, 
+month={June}, 
+pages={163-171}, 
+abstract={Formal techniques have been widely applied in the design of real-time systems and have significantly helped detect design errors by checking real-time properties of the model. However, a model is only an approximation of its realization in terms of the issuing time of events. Therefore, a real-time property verified in the model can not always be directly transferred to the realization. In this paper, both the model and the realization are viewed as sets of timed state sequences. In this context, we first investigate the real-time property preservation between two neighboring timed state sequences (execution traces of timed systems), and then extend the results to two "neighboring" timed systems. The study of real-time property preservation gives insight in building a formal link between real-time properties satisfied in the model and those in the realization.}, 
+keywords={formal specification;program verification;real-time systems;systems analysis;temporal logic;time-domain analysis;design error detection;execution trace;model property checking;real time property preservation;real time system;system design;system neighbor;timed state sequence;timed system approximation;Buildings;Electronic mail;Embedded system;Lighting control;Logic;Real time systems;Time measurement;Timing}, 
+doi={10.1109/MEMCOD.2003.1210101},
+}
+
+
+@article{Mukhopadhyay_MixedSignal10,
+title = "A static verification approach for architectural integration of mixed-signal integrated circuits ",
+journal = "Integration, the \{VLSI\} Journal ",
+volume = "43",
+number = "1",
+pages = "58 - 71",
+year = "2010",
+note = "",
+issn = "0167-9260",
+doi = "http://dx.doi.org/10.1016/j.vlsi.2009.05.002",
+url = "http://www.sciencedirect.com/science/article/pii/S016792600900025X",
+author = "Rajdeep Mukhopadhyay and Anvesh Komuravelli and Pallab Dasgupta and S.K. Panda and Siddhartha Mukhopadhyay",
+keywords = "Static verification",
+keywords = "Design integration",
+keywords = "Mixed-signal circuit specification",
+keywords = "Formal model ",
+description = "Can reference as an argument for the devlopment of analog circuits behavioral models, suitable for fast simulation",
+}
+
+@INPROCEEDINGS{MajumdarSZ_TestingControlApps_MEMOCODE10, 
+author={Majumdar, R. and Saha, I. and Zilong Wang}, 
+booktitle={8th IEEE/ACM MEMOCODE}, 
+title={Systematic testing for control applications}, 
+year={2010}, 
+month={July}, 
+pages={1-10}, 
+abstract={Software controllers for physical processes are at the core of many safety-critical systems such as avionics, automotive engine control, and process control. Despite their importance, the design and implementation of software controllers remains an art form; dependability is generally poor, and the cost of verifying systems is prohibitive. We illustrate the potential of applying program analysis tools on problems in controller design and implementation by focusing on concolic execution, a technique for systematic testing for software. In particular, we demonstrate how a concolic execution tool can be modified to automatically analyze controller implementations and (a) produce test cases achieving a coverage goal, (b) synthesize ranges for controller variables that can be used to allocate bits in a fixed-point implementation, and (c) verify robustness of an implementation under input uncertainties. We have implemented these algorithms on top of the Splat test generation tool and have carried out preliminary experiments on control software that demonstrates feasibility of the techniques.}, 
+keywords={control system analysis computing;program diagnostics;program testing;safety-critical software;Splat test generation tool;concolic execution;control application;controller design;controller variable;fixed-point implementation;physical process;program analysis tool;safety-critical system;software controller;software testing;systematic testing;Algorithm design and analysis;Concrete;Control systems;Input variables;Mathematical model;Robustness;Software}, 
+doi={10.1109/MEMCOD.2010.5558629},
+description = {example of a CPS, uses standard benchmarks from our hybrid systems world (Automatic transmission,etc). 
+This paper proposes using concolic (=concrete+symbolic) execution, which is a software analysic techinque, to perform the following on generated code: path coverage, range finding (find the range of each variable in program under all input scenarios), and robustness analysis (how much does program output change due to a change in the input variables).
+Concolic execution is originally meant for path coverage: given one symbolic run, use the constraints from that run to generate another one with a different path taken.
+Range finding is done at each step of each path generated during concolic execution, by solving an optimization to find min and max values of a variable given the constraints that led to that step in that path.
+Robustness analysis also uses an optimization, one per path pair from all the paths found in concolic execution. That's a lot of pairs. They don't give details of how each optimization is solved (very tough in general. They mention using LINDO sovler, so I'm guessing they extract the constraints by hand (or similar) to give to each optimization). 
+This aspect of the work is the closest to ours, but it only gives an idea of max difference at a given moment in time (rather than max over a trajectory).
+The operations are too different for comparison with our algos.
+},
+}
+
+@INPROCEEDINGS{FunchalM_ModelingTimeInSoC_MEMOCODE11, 
+author={Funchal, G. and Moy, M.}, 
+booktitle={9th IEEE/ACM MEMOCODE}, 
+title={Modeling of time in discrete-event simulation of systems-on-chip}, 
+year={2011}, 
+month={July}, 
+pages={171-180}, 
+abstract={Today's consumer electronics industry uses modeling and simulation to cope with the complexity and time-to-market challenges of designing high-tech devices. In such context, Transaction-Level Modeling (TLM) is a widely spread modeling approach often used in conjunction with the IEEE standard SystemC discrete-event simulator. In this paper, we present a novel approach to modeling time that distinguishes between instantaneous actions and tasks with a duration. We argue that this distinction should be natural to the user. In addition, we show that it gives us important insight and better comprehension of what actions can overlap in time. We are able to exploit this distinction to parallelize the simulation, achieving an important speedup and exposing subtle software bugs related to parallelism. We propose a set of primitives and discuss the design decisions, expressiveness and semantics in depth. We present a research simulator called jTLM that implements all these ideas.}, 
+keywords={consumer electronics;discrete event simulation;electronic engineering computing;system-on-chip;IEEE standard SystemC discrete event simulator;consumer electronics industry;discrete event simulation;high-tech device;systems-on-chip;time-to-market challenge;transaction-level modeling;Computational modeling;Hardware;Registers;Software;Time domain analysis;Time varying systems;Timing}, 
+doi={10.1109/MEMCOD.2011.5970524},
+description = {their model of time is basically hybrid-time (t,j), so can use as an argument for using it},
+}
+
+
+@INPROCEEDINGS{BriandJ_ControlAbstraction_MEMOCODE09, 
+author={Briand, X. and Jeannet, B.}, 
+booktitle={Formal Methods and Models for Co-Design, 2009. MEMOCODE '09. 7th IEEE/ACM International Conference on}, 
+title={Combining control and data abstraction in the verification of hybrid systems}, 
+year={2009}, 
+month={July}, 
+pages={141-150}, 
+abstract={We address the verification of hybrid systems built as the composition of a discrete software controller interacting with a physical environment exhibiting a continuous behavior. Our goal is to attack the problem of the combinatorial explosion of discrete states that may happen if a complex software controller is considered. We propose as a solution to extend an existing abstract interpretation technique, namely dynamic partitioning, to hybrid systems described in a symbolic formalism. Dynamic partitioning allows to finely tune the tradeoff between precision and efficiency in the analysis. We show the effectiveness of the approach by a case study that combines a non trivial controller specified in the synchronous dataflow programming language Lustre with its physical environment.}, 
+keywords={Computer languages;Control systems;Convergence;Differential equations;Domain specific languages;Ellipsoids;Explosions;Hypercubes;Linear approximation;Performance analysis}, 
+doi={10.1109/MEMCOD.2009.5185390},
+description = {cite as an application that uses hybrid system formalism},
+}
+
+@INPROCEEDINGS{CortadellaGK_ElasticSystems_MEMOCODE11, 
+author={Cortadella, J. and Galceran-Oms, M. and Kishinevsky, M.}, 
+booktitle={Formal Methods and Models for Codesign (MEMOCODE), 2010 8th IEEE/ACM International Conference on}, 
+title={Elastic systems}, 
+year={2010}, 
+month={July}, 
+pages={149-158}, 
+abstract={Elastic systems provide tolerance to the variations in computation and communication delays. The incorporation of elasticity opens new opportunities for optimization using new correct-by-construction transformations that cannot be applied to rigid non-elastic systems. The basics of synchronous and asynchronous elastic systems will be reviewed. A set of behavior-preserving transformations will be presented: retiming, recycling, early evaluation, variable-latency units and speculative execution. The application of these transformations for performance and power optimization will be discussed. Finally, a novel framework for microarchitectural exploration will be introduced, showing that the optimal pipelining of a circuit can be automatically obtained by using the previous transformations.}, 
+keywords={electronic design automation;asynchronous elastic system;behavior preserving transformation;communication delay;computation delay;optimal pipelining;performance optimization;power optimization;synchronous elastic system;Delay;Elasticity;Latches;Multiplexing;Receivers;Registers;Throughput}, 
+doi={10.1109/MEMCOD.2010.5558639},
+description = {might be interesting as it explicitly defines transformations that preserve behavior despite introduced latency},
+}
+
+%******************************************************************************************************************************************************************
+@INPROCEEDINGS{GuglielmoFFPS_EFSMConcolicTesting_MEMOCODE11, 
+title={{EFSM}-based model-driven approach to concolic testing of system-level design}, 
+author={Di Guglielmo, G. and Fujita, M. and Fummi, F. and Pravadelli, G. and Soffia, S.}, 
+booktitle={9th IEEE/ACM MEMOCODE}, 
+year={2011}, 
+month={July}, 
+pages={201-209}, 
+abstract={State-of-the-art approaches for testing of system-level design of embedded systems generally work at source-code level, thus they require an implementation of the system to be tested. For this reason, they cannot be applied in the context of model-driven design, where code is available only at end of the design process. Moreover, traditional approaches based on combined concrete and symbolic execution (concolic) suffer two main drawbacks: they are limited in width and depth of the search and not corner-cases oriented. To address such limitations, this paper presents a concolic testing approach for model-driven design of embedded systems. It explores a model of the system, i.e., the extended finite state machine (EFSM), and it relies on weight-oriented analysis of the EFSM paths to achieve high controllability of EFSM transitions, by interleaving longrange concrete approach with symbolic multi-level backjumping strategy. The experimental evaluation on several case studies demonstrates the competitiveness of the proposed approach, which achieves higher transition and instruction coverage than other approaches in significantly reduced time.}, 
+keywords={embedded systems;finite state machines;program testing;systems analysis;concolic testing;embedded system;extended finite state machine;interleaving longrange concrete approach;model-driven design;source-code level;symbolic multilevel backjumping strategy;system-level design;weight-oriented analysis;Concrete;Embedded systems;Input variables;Solid modeling;Switches;Testing;Unified modeling language}, 
+doi={10.1109/MEMCOD.2011.5970527},
+description = {EFSM is a (somewhat impoverished) hybrid system model in the memocode community. Also, MBD},
+}
+
+@INPROCEEDINGS{VillarragaSBBSK_EventConformance_MEMOCODE13, 
+author={Villarraga, C. and Schmidt, B. and Bormann, J. and Bartsch, C. and Stoffel, D. and Kunz, W.}, 
+booktitle={Formal Methods and Models for Codesign (MEMOCODE), 2013 Eleventh IEEE/ACM International Conference on}, 
+title={An equivalence checker for hardware-dependent embedded system software}, 
+year={2013}, 
+month={Oct}, 
+pages={119-128}, 
+abstract={This paper presents a novel approach to formally prove the equivalence of low-level hardware-dependent programs. Inspired by hardware verification techniques, a software miter is created that compares the behaviors of two programs, taking into account the interfaces between the software and the hardware environments. Two programs are considered equivalent if they produce the same outputs for the same input assignments and also exhibit the same sequences of interactions with the relevant hardware peripherals. This motivates a hardware-dependent computational model combining a path-oriented program view, as is common in hardware-independent software verification, with a structural hardware representation of the program's computation. Experimental results show the effectiveness of the proposed technique for industrial low-level software in important equivalence checking scenarios such as code porting and automated/manual code transformations.}, 
+keywords={embedded systems;formal verification;hardware-software codesign;equivalence checker;hardware verification techniques;hardware-dependent computational model;hardware-dependent embedded system software;hardware-independent software verification;input assignments;low-level hardware-dependent programs;path-oriented program view;software miter;Computational modeling;Computer architecture;Hardware;Integrated circuit modeling;Microprocessors;Ports (Computers);Software},
+description = {conformance testing (by another name) where what matters is the outputs and the events. Can use as an example of relevance of conformance between systems},
+}
+
+@INPROCEEDINGS{WatanabeS_ManySoCModels_MEMOCODE12, 
+author={Watanabe, Y. and Swan, S.}, 
+booktitle={10th IEEE/ACM MEMOCODE}, 
+title={Clearing the clutter: Unified modeling and verification methodology for system level hardware design}, 
+year={2012}, 
+month={July}, 
+pages={21-23}, 
+abstract={The state-of-the-art design practice for complex SoCs employs multiple models of hardware components with different use cases. The cost of building and maintaining those models is high, and verifying the consistency among those models is time consuming. This paper highlights needs and issues of creating these models, and presents emerging approaches for developing solutions to address the issues.}, 
+keywords={formal verification;integrated circuit design;system-on-chip;clutter clearance;complex SoC design;hardware component model;system level hardware design;unified modeling;verification methodology;Clutter;Computational modeling;Hardware;Software;Solid modeling;System-on-a-chip;Timing}, 
+doi={10.1109/MEMCOD.2012.6292296},
+description = {makes a case for using several models of different fidelity, and their challenges},
+}
+
+@inproceedings{BombieriFPM_EqTLMandRTL_MEMOCODE07,
+ author = {Bombieri, Nicola and Fummi, Franco and Pravadelli, Graziano and Marques-Silva, Joao},
+ title = {Towards Equivalence Checking Between {TLM} and {RTL} Models},
+ booktitle = {Proceedings of the 5th IEEE/ACM MEMOCODE},
+ year = {2007},
+ isbn = {1-4244-1050-9},
+ pages = {113--122},
+ numpages = {10},
+ url = {http://dx.doi.org/10.1109/MEMCOD.2007.371236},
+ doi = {10.1109/MEMCOD.2007.371236},
+ acmid = {1340631},
+ abstract = {The always increasing complexity of digital system is overcome in design flows based on Transaction Level Modeling (TLM) by designing and verifying the system at different abstraction levels. The design implementation starts from a TLM high-level description and, following a topdown approach, it is refined towards a corresponding RTL model. However, the bottom-up approach is also adopted in the design flow when already existing RTL IPs are abstracted to be reused into the TLM system. In this context, proving the equivalence between a model and its refined or abstracted version is still an open problem. In fact, traditional equivalence definitions and formal equivalence checking methodologies presented in the literature cannot be applied due to the very different internal characteristics of the models, including structure organization and timing. Targeting this topic, the paper presents a formal definition of equivalence based on events, and then, it shows how such a definition can be used for proving the equivalence in the RTL vs. TLM context, without requiring timing or structural similarities between the modules to be compared. Finally, the paper presents a practical use of the proposed theory, by proving the correctness of a methodology that automatically abstracts RTL IPs towards TLM implementations.},
+ address = {Washington, DC, USA},
+description = {use as an example of how implementation and simplification processes pose challenges to formal verification in digital realm. This work doesn't care about timing, only events and their order},
+} 
+%===========================================================================================================================================================================================================
+
+@INPROCEEDINGS{BaiBS_LTLpreservation_MEMOCODE12, 
+author={Yu Bai and Brandt, J. and Schneider, K.}, 
+booktitle={Formal Methods and Models for Codesign (MEMOCODE), 2012 10th IEEE/ACM International Conference on}, 
+title={Preservation of LTL properties in desynchronized systems}, 
+year={2012}, 
+month={July}, 
+pages={53-64}, 
+abstract={The synchronous programming model is perfect for modeling, simulation, verification and implementation of reactive systems. While this paradigm can be directly implemented as hardware circuits, multithreaded software implementations are typically based on asynchronous threads. For this reason, an efficient multithreaded software implementation of a synchronous program requires a so-called desynchronization that could however potentially violate the already verified properties of the synchronous program. In this paper, we therefore present a theory to check whether properties verified for a synchronous system are preserved by a desynchronization. In particular, we prove a theorem based on directed-flow equivalence that specifies the requirements of delay relations among system variables that a desynchronization has to meet.}, 
+keywords={multi-threading;program verification;LTL properties preservation;asynchronous threads;delay relations;desynchronized systems;directed-flow equivalence;hardware circuits;multithreaded software implementation;reactive system modeling;reactive system simulation;reactive system verification;synchronous programming model;Computational modeling;Context;Delay;Embedded systems;Integrated circuit modeling;Synchronization}, 
+doi={10.1109/MEMCOD.2012.6292300},
+}
+
+
+@INPROCEEDINGS{DaveKKAM_mArchRefinements_MEMOCODE11, 
+author={Dave, N. and Katelman, M. and King, Myron and Arvind and Meseguer, J.}, 
+booktitle={Formal Methods and Models for Codesign (MEMOCODE), 2011 9th IEEE/ACM International Conference on}, 
+title={Verification of microarchitectural refinements in rule-based systems}, 
+year={2011}, 
+month={July}, 
+pages={61-71}, 
+abstract={Microarchitectural refinements are often required to meet performance, area, or timing constraints when designing complex digital systems. While refinements are often straightforward to implement, it is difficult to formally specify the conditions of correctness for those which change cycle-level timing. As a result, in the later stages of design only those changes are considered that do not affect timing and whose verification can be automated using tools for checking FSM equivalence. This excludes an essential class of microarchitectural changes, such as the insertion of a register in a long combinational path to meet timing. A design methodology based on guarded atomic actions, or rules, offers an opportunity to raise the notion of correctness to a more abstract level. In rule-based systems, many useful refinements can be expressed simply by breaking a single rule into smaller rules which execute the original operation in multiple steps. Since the smaller rule executions can be interleaved with other rules, the verification task is to determine that no new behaviors have been introduced. We formalize this notion of correctness and present a tool based on SMT solvers that can automatically prove that a refinement is correct, or provide concrete information as to why it is not correct. With this tool, a larger class of refinements at all stages of the design process can be verified easily. We demonstrate the use of our tool in proving the correctness of the refinement of a processor pipeline from four stages to five.}, 
+keywords={combinatorial mathematics;finite state machines;formal verification;knowledge based systems;pipeline processing;surface mount technology;FSM equivalence;SMT solvers;combinational path;complex digital systems;cycle-level timing;design methodology;design process;guarded atomic actions;microarchitectural changes;microarchitectural refinements;processor pipeline;rule-based systems;timing constraints;verification task;Hardware;Observers;Pipelines;Registers;Schedules;Semantics;Timing}, 
+doi={10.1109/MEMCOD.2011.5970511},
+}
+
+
+

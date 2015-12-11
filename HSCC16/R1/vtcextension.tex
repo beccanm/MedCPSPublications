@@ -1,0 +1,41 @@
+\textbf{Extensions}
+The VTC algorithm above is essentially discrete.
+%: it samples the signal at 8 pre-defined time instants, and computes their correlation with the corresponding 8 points on the stored template.
+%The choice of fiducial points is not specified in the literature, nor is the choice of specifically 8 (as opposed to, say, 20) points.
+%One consideration is that we don't want the noise in the signal to affect the correlation calculation.
+%But this should already be taken of by pre-filtering the signal in a bandpass filter at the sensing stage.
+In general, we may conceive of the choice of fiducial points in the time domain as a weighting function applied to the signal $\egm$.
+VTC places weight on exactly 8 points. 
+A general algorithm will use a different weighting function $w(t)$, in which case the correlation calculation in continuous time at the end of a beat is given by
+\begin{eqnarray*}\rho &=& \frac{\frac{1}{T}\int_{0}^{T}\bar{\egm}(t)\bar{\egm}_m(t)w(t)dt}{\frac{1}{T}\int_{0}^{T}\bar{\egm}(t)^2dt \cdot \frac{1}{T}\int_{0}^{T}\bar{\egm}_m(t)^2 dt }   
+	\\
+&=& a \frac{\int_{0}^{T}\bar{\egm}(t)\bar{\egm}_m(t)w(t)dt}{\int_{0}^{T}\bar{\egm}(t)^2dt } = \frac{N(T)}{D(T)}   
+\end{eqnarray*}
+where $\bar{\egm}$ is the centered signal $\egm(t) - \mu = \egm(t) - T^{-1}\int_0^Tv(t)dt$, $a \in \Re$ absorbs all the constants (including the $\bar{\egm}_m$ terms), and $T>0$ is the length of one beat (which typically varies beat-to-beat and is given to $\Sys_{VTC}$ by the Sense system $\Sys_{Sense}$).
+
+We may now define continuous-time dynamics that implement this generalized VTC computation:
+for the numerator
+\begin{eqnarray*}
+\dot{t} &=& 1 \text{   (clock)}
+\\
+\dot{m}(t) &=& \egm(t), m(0) = 0 \implies m(T) = \int_0^T \egm(t)dt \defeq T\mu
+\\
+\dot{A}(t) &=& \bar{\egm}_m(t)w(t), A(0)= 0
+\\
+\dot{\alpha}(t) &=& \egm(t)w(t)\bar{\egm}_m(t), \alpha(0)=0
+\\
+N(T) &=& \alpha(T) - A(T)m(T)/c(T)
+\end{eqnarray*}
+and for the denominator
+\begin{eqnarray*}
+\dot{\beta}(t) &=& \egm^2(t), \beta(0) = 0
+\\
+D(T) &=& \int_{0}^{T}\bar{\egm}^2(t)dt = \beta(T)-(1/c(T))m^2(T)
+\end{eqnarray*}
+Recall that $\egm$ is o-minimal.
+So if $w$ is o-minimal, then all the above flows are also o-minimal by Corollary 1 in \cite{Speissegger99_Pfaffian}.
+It is straightforward to show that the new flows are monotnic along $\phi = (\phi_c, \phi_\mu,\phi_\alpha,\phi_\beta,\phi_A=0, \vec{\nu},\phi_w)$ with $\phi_c, \phi_\mu,\phi_\alpha,\phi_\beta, \vec{\nu},\phi_w$ constrained as in \eqref{eq:phic,phiw}.
+
+The hybrid system $\Sys_{VTC}$ is modified to use $N(T)/D(T)$ to update the variable $\rho_{new}$, and the transition with reset \textbf{R1} is no longer needed.
+The
+Therefore it remains a STORMED system.

@@ -1,0 +1,6 @@
+\subsection{Appropriateness of a Model for a Requirement}
+The state of a model $M$ is represented as $s=(s_1,s_2\cdots s_n)$ in which $s_i, i\in [1,n]$ are the substates. We use $Var(M)={s_1,s_2\cdots s_n}$ to represent all the substates variables in $M$. For an abstraction function $h$ which removes $s_i$ from the substates, we have:
+$$\forall s_j,j\in [1,n], h(s_1,s_2\cdots s_n)=(s_1\cdots s_{i-1},s_{i+1}\cdots s_n)$$
+It shows that $h$ is an over-approximation and in the new model $M$ we have $Var(M')\subset Var(M)$.
+
+A requirement is defined on a set of atomic propositions involving the substates of the model, which we denote as $Var(\varphi)$. If we have $Var(\varphi)\subseteq Var(M')$, all the atomic propositions can be evaluated in $M'$. And if $M'\models \varphi$, we have $M\models\varphi$ as discussed above. In this case we say that $M'$ is \emph{appropriate} for $\varphi$. However if during the over-approximation, certain variables that are in $Var(\varphi)$ are removed from $Var(M)$, such that $Var(\varphi)\not\subseteq Var(M')$, certain atomic propositions cannot be evaluated in $M'$, In this case, $M'$ is not appropriate for $\varphi$. More detailed proof for appropriateness can be found in \cite{regar_tech}.

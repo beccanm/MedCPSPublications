@@ -1,0 +1,26 @@
+\subsection{Virtual heart and pacemaker models}
+\label{heartmodel}
+
+The coordinated contractions of the heart muscles are governed by the generation and conduction of electrical signals throughout the heart. Anomalies in the timing and pattern of the electrical signals results in abnormal heart rhythms, or \emph{arrhythmia}. Implantable pacemakers are designed to treat a subset of arrhythmia by monitoring local electrical activities in the atria and the ventricles and deliver electrical pacing to maintain appropriate heart rhythm. %Since we don't have access to real human hearts for testing, we have developed a \emph{Virtual Heart Model (VHM)}, which simulates the \emph{timing aspects} of the operation of a human heart, and ignores other physiological details.
+%\todo[inline]{ZJ : review following for accuracy}
+
+The electrical activity of the heart is studied extensively in \emph{Electrophysiology} (EP)~\cite{josephson}. 
+The EP principles describe the majority of heart conditions, and are the foundation of all pacemaker operations. 
+In \cite{VHM_proc} we developed the Virtual Heart Model (VHM) based on the EP principles. 
+The VHM uses Finite State Machines (FSM) to model anatomical and/or topological structures of the electrical conduction system of the heart. 
+The refractory properties of heart tissue are captured using node FSMs and the conduction delays between nodes are captured by the path FSMs. 
+See Fig.~\ref{fig:FSMSA} for an example of a node FSM. 
+By assembling node and path FSMs with different parameters we are able to simulate different heart conditions, and more importantly, their interaction with any pacemakers.
+\begin{figure}[t]
+\centering
+\includegraphics[scale=0.4]{node_automata.pdf}
+\caption{FSM modeling the SA node showing Effective and Relative Refractory Periods (ERP and RRP) and the Rest state.}
+\label{fig:FSMSA}
+\vspace{-.5cm}
+\end{figure}
+%The VHM is implemented in both Simulink and Matlab. 
+%We used the VHM to simulate different heart conditions in a closed loop with the pacemaker model, such as Wenckebach AV nodal response, atrial flutter and pacemaker mediated tachycardia.
+The VHM functional output has been validated by the director of cardiac electrophysiology in the Philadelphia VA Hospital and by electrophysiologists in the Hospital of the University of Pennsylvania. 
+More details are available in \cite{VHM_proc}.
+
+\input{pacemakerModel}

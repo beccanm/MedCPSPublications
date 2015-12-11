@@ -1,0 +1,75 @@
+\section{Hybrid systems and simulations}
+\label{sec:preliminaries}
+
+This section presents fairly standard definitions on 
+%transition systems, 
+hybrid systems and their simulations \cite{AlurHLP00ieee}.
+It also defines STORMED hybrid systems, which admit finite bisimulations \cite{VladimerouPVD08_STORMED}.
+
+\input{transitionSystems}
+\input{hybridSystems}
+
+\subsection{O-minimality and STORMED systems}
+\label{sec:ominimality}
+We give a very brief introduction to o-minimal structures.
+A more detailed introduction can be found in \cite{LaFerrierePS00_Ominimal} and references therein.
+We are interested in sets and functions in $\Re^n$ that enjoy certain finiteness properties, called order-minimal sets (o-minimal).
+These are defined inside \emph{structures} $\Ac = (\Re,<, +,-,\cdot,\exp,\ldots)$.
+The subsets $Y \subset \Re^n$ we are interested in are those that are \emph{definable} using first-order formulas $\formula$: $Y = \{(a_1,\ldots,a_n) \in \Re^n \;|\;  \formula(a_1,\ldots,a_n)\}$.
+(First-order formulas use the boolean connectives and the quantifiers $\exists,\forall$).
+The atomic propositions from which the formulas are recursively built allow only the operations of the structure $\Ac$ on the real variables and constants, and the relations of $\Ac$ and equality.
+For example $2x-3.6y < 3z$ and $x=y$ are valid atomic propositions of the structure $\Lc_\Re=(\Re,<, +,-,\cdot)$, while $cosh(x) < 3z$ is not because $cosh$ is not in the structure.
+These structures are already sufficient to describe a set of dynamics rich enough for our purposes and for various classes of linear systems.
+%\input{formalOminimal}
+\begin{defn}
+	\label{defn:ominimal struct}	
+	A theory of $(\Re,\ldots)$ is \emph{o-minimal} if the only definable subsets of $\Re$ are finite unions of points and (possibly unbounded) intervals.	
+	A function $f:x \mapsto f(x)$ is o-minimal if its graph $\{(x,y) \;|\; y=f(x)\}$ is a definable set.
+\end{defn}
+We use the terms o-minimal and definable interchangeably, and they refer to $\Lc_{\exp}= (\Re,<, +,-,\cdot,\exp)$ which is known to be o-minimal.
+%
+The dot product between $x,y\in \Re^n$ is denoted $x \cdot y$, and $d(Y,S)=\inf \{ \|y-s\| \;|\; (y,s) \in Y\times S \}$.
+\begin{defn}\cite{VladimerouPVD08_STORMED}.
+	\label{defn:stormed system}	
+	A \emph{STORMED hybrid system} (SHS) $\SHS$ is a tuple $(\Sys,\Ac, \phi,b_-,b_+, d_{min}, \epsilon,\zeta)$ where $\Sys$ is a hybrid automaton, $\Ac$ is an o-minimal structure, $d_{min}, \epsilon, \zeta$ are positive reals, $b_-,b_+ \in \Re$ and $\phi \in \stSet$ such that:
+	\\
+	\textbf{(S)} The system is $d_{min}$-separable, meaning that for any $e=(\mode, \mode ')\in E$ and $\mode ''\neq \mode'$,$d(\reset_e(\guard_{(\mode ,\mode ')}), \guard_{(\mode' ,\mode '')})>d_{min}$
+	\footnote{\yhl{The original definition of separability \cite{VladimerouPVD08_STORMED} required the guards themselves to be separated, which is insufficient to guarantee that if $\Sys$ flows, it flows a uniform minimum distance along $\phi$. Indeed assume the guards are separated. If $x \in \guard_{(\mode,\mode')}$ and $y = \reset_{(\mode,\mode')}(x)$, it can be that $y \in \guard_{(\mode',\mode'')}$ and thus a jump happens, even though $\guard_{(\mode,\mode')}$ and $\guard_{(\mode',\mode'')}$ are separated. Therefore we need $d(y,\guard_{\mode',\mode''}) > d_{min}$ for all $y \in \reset_e(\guard_e)$, which is the condition we use in Def.~\ref{defn:stormed system}. The properties of SHS, in particular the existence of finite bisimulation, are therefore preserved by this change.}}
+	\\
+	\textbf{(T)} The flows (i.e., the solutions of the ODEs) are Time-Independent with the Semi-Group property (TISG), meaning that for any $\mode \in \modeSet, \stPt \in \stSet$, the flow $\theta_\mode$ starting at $(\mode , x)$ satisfies: 1) $\theta_{\mode}(0;x) = x$, 2) for every $t,t' \geq 0$, $\theta_{\mode}(t+t';x) = \theta_{\mode}(t'; \theta_\mode(t;x))$
+	\\
+	\textbf{(O)} All the sets and functions of $\Sys$ are definable in the o-minimal structure $\Ac$
+	\\
+	\textbf{(RM)} The resets and flows are monotonic with respect to the same vector $\phi$, meaning that \\
+	1) (Flow monotonicity) for all $\mode \in \modeSet$, $x \in \stSet$ and $t,\tau \geq 0$, $\phi \cdot (\theta_\mode (t+\tau;x) - \theta_\mode (t;x) ) \geq \epsilon ||\theta_\mode (t+\tau;x) - \theta_\mode (t;x) ||$, 
+	and \\
+	2) (Reset monotonicity) for any edge $(\mode,\mode') \in E$ and any $x^-,x^+ \in \stSet$ s.t. $x^+ = R_{\mode ,\mode'}(x^-)$, 
+	\begin{compactenum}
+		\item if $\mode = \mode'$, then either $x^-=x^+$ or $\phi \cdot (x^+-x^-)\geq \zeta$
+		\item if $\mode \neq \mode'$, then $\phi\cdot (x^+-x^-) \geq \epsilon ||x^+-x^-||$
+	\end{compactenum}
+
+	\textbf{(ED)} Ends are Delimited: for all $e \in E$ we have $\phi \cdot x \in (b_- , b_+)$ for all $x \in G_{e}$
+\end{defn}
+Intuitively, the above conditions imply the trajectories of the system always move a minimum distance along $\phi$ whether flowing or jumping, which guarantees that no area of the state space will be visited infinitely often. 
+This is at the root of the finiteness properties of STORMED systems.
+%
+The following result justifies the interest in STORMED systems: they admit finite bisimulations.
+\begin{thm}\cite{VladimerouPVD08_STORMED}
+	\label{thm:stormed finite bisimu}	
+	Let $\Sys$ be a STORMED hybrid system, and let $\partition$ be an o-minimal partition of its hybrid state space. 
+	Then $\Sys$ admits a finite bisimulation that respects $\partition$.
+\end{thm}
+%We will need the following result.
+%\begin{lemma}\cite{VladimerouPVD08_STORMED}
+%	\label{lemma:finite steps}
+%	Given a SHS $\SHS$, the number of discrete transitions of any execution of $\SHS$ is uniformly upper bounded.
+%\end{lemma}
+We need the following result in what follows.
+\begin{prop}
+	\label{prop:ED}
+	If the state space $\stSet$ of a hybrid automaton $\Sys$ is bounded, then its guards have delimited ends.
+\end{prop}
+\begin{prf}
+	For all guard sets $G$ and all $x \in G$, $||\phi \cdot x || \leq ||\phi|| \cdot ||x|| \leq ||\phi||.\max\{||x||, x\in \stSet \} < \infty$.
+\end{prf}

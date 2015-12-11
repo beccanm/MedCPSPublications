@@ -1,0 +1,14 @@
+\subsection{Related Work}
+%\todo[inline]{complete}
+Counter-Example Guided Abstraction Refinement (CEGAR) \cite{CEGAR} has been proposed to over-approximate the behaviors of the device using predicate abstraction (\figref{distinction}.(a)).
+%Upon property violation the abstract counter-example is checked for its validity on the actual system. If the counter-example is \emph{spurious} the model is then refined to eliminate the spurious counter-example. 
+%This process is then continued on the refined model until either a valid counter-example returns or no counter-examples are returned. 
+CEGAR works well during device modeling, however, it cannot be applied to environment modeling for two reasons: 1)~predicate abstraction does not guarantee the validity of behaviors introduced into the model. In fact, for device modeling, all additional behaviors introduced into the abstract model are spurious. 2)~the validity of a counter-example cannot be checked automatically as in device modeling. 
+
+Proof-based approaches have also been applied to verify  abstractions and refinements of pacemaker specification using Event-B~\cite{eventb}. However, the authors did not take into account environment behaviors thus the framework cannot be used for verifying physiological requirements.  
+
+Physiological modeling of cardiac activities has been studied at various levels for different applications. In \cite{natalia}, the electrical activity of the heart is modeled with high spatial fidelity to study the mechanisms of cardiac arrhythmia. In \cite{radu}, formal abstractions of cardiac tissue have been studied to reduce the complexity of the heart tissue model. However, these two models do not focus on the interaction with the pacemaker, therefore cannot be used for closed-loop model checking. In \cite{marta}, hybrid automata models of the heart has been used to capture the complex beat-to-beat dynamics of the heart tissue. However the model cannot be used to cover behaviors across different heart conditions.
+
+In previous work \cite{sttt13} a set of formal heart models covering various heart conditions at different abstraction levels was developed, and closed-loop model checking was performed on models of implantable pacemakers. 
+However, the physiological knowledge required during each step of closed-loop model checking prevents the method to be practical.
+

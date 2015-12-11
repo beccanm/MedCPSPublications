@@ -1,0 +1,20 @@
+\subsection{The Heart-on-a-Chip platform}
+\label{HoC}
+
+\begin{figure}[!t]
+	\centering
+	\includegraphics[scale=1.2]{reqGuidedTesting.pdf}
+	\caption{\small Requirements-guided closed-loop testing methodology.}
+	\label{fig:reqGuidedTesting}
+\end{figure} 
+%\begin{figure}[!t]
+%	\centering
+%	\includegraphics[scale=0.3]{figures/HOCannotated.pdf}		
+%	\caption{\small Heart-on-a-Chip platform, showing the pacemaker and the microcontroller running the VHM code.}
+%	\label{fig:hoc}
+%\end{figure} 
+Our closed-loop testing scheme can be performed not only on pacemaker models and code, but also on off-the-shelf pacemaker devices. 
+\figref{hoc} shows the Heart-on-a-Chip (HoC) platform for closed-loop testing of pacemakers. 
+The platform consists of a micro-controller running the code of the VHM, and an analog interface to the pacemaker. 
+The analog interface converts VHM outputs to physiological heart signals, which will be input to the pacemaker, and converts pacemaker pacing signals to node activation events.  
+A user interface on the host computer monitors the closed-loop interaction between the heart and the pacemaker and violations to the physiological requirements are reported.

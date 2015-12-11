@@ -1,0 +1,28 @@
+\subsection{Testing}
+\label{testingObjectives}
+
+Device testing has two objectives
+
+\begin{itemize}
+	\item \textbf{Test whether the device is indeed correct}.
+	This is the classical goal of testing.
+	Correctness is defined by a set of specifications that must be met.	
+	The specifications can be open-loop or closed-loop, leading to open-loop or closed-loop testing.
+	The distinction between the two is detailed in the next sections, but briefly, an open-loop specification specifies the output behavior of the pacemaker given an input sequence.
+	Such a specification does not refer to the heart's behavior.
+	E.g., such a specification could stipulate that \todo[inline]{add one from boston scientific's manual}
+	The heart's behavior is not modeled in open-loop testing and the specification does not describe what it should be.
+	
+	A closed-loop specification specifies the behavior of either pacemaker, heart, or both, when they are connected as they would be in vivo.
+	Thus a closed-loop specification describes the overall closed-loop system, and a heart model is needed for closed-loop testing.
+	It can be argued that what ultimately matters is the closed-loop behavior, and that open-loop testing is a proxy for testing closed-loop behavior.
+		%
+	\item \textbf{Determining the range of parameters and heart conditions under which the device can operate according to certain specifications}.
+	A pacemaker is designed to operate differently depending on the environmental conditions. 
+	The environment of the pacemaker consists of the heart and the human body in which it operates. 
+	For example, \todo[inline]{give example of conditional specification}
+	It is not always clear where the limits of the operating conditions are.
+	Testing can help identify these boundaries, e.g. by demonstrating that if a certain environmental condition is met, then the pacemaker can no longer fulfill a certain function.
+	\todo[inline]{give example}
+	Because this behavior is environment-specific, it can only be tested in a closed-loop setting where the heart and external disturbances are modeled.
+\end{itemize}

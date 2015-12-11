@@ -1,0 +1,89 @@
+\subsection{Limitations of Current Practice: Open-loop Testing of Pacemakers}
+\label{todaysPractice}
+\begin{figure}[tb]
+	\centering
+	\includegraphics[scale=0.2]{placeHolder.pdf}
+	\caption{Setup for pacemaker operation: the device (pacemaker), the plant (human heart), external disturbances (PVCs and PACs), and initial states and parameters (refractory periods, various settings).}
+	\label{fig:liveSetup}
+\end{figure}
+Consider Fig.\ref{fig:liveSetup}, where a typical setup of pacemaker operation is presented.
+The Device Under Test (DUT) is connected to the Plant (here, a human heart) which it is meant to control.
+Together, they are referred to as the \emph{closed loop}, whereas the DUT alone is an \emph{open loop}.
+The plant receives inputs from the DUT, but can also be subject to \emph{external disturbances}: in our case, we consider PVCs and PACs to be external disturbances.
+The terminology is meant to convey that these disturbances are inputs to the heart that do not originate in the DUT, but elsewhere. 
+The origin of these disturbances need not be modeled.  
+They are \emph{disturbances} because they are uncontrolled and can prevent the closed loop from achieving its objectives, namely, a safe and reliable heart operation.
+
+The outputs of the pacemaker are denoted by the letter $u$, e.g. $u = [A_{pace}, V_{pace}]$.
+Let $U$ be the set of possible $u$ values.
+These constitute inputs to the heart, or plant.
+The outputs of the heart are denoted by the letter $y$, e.g. $y = [A_{sense}, V_{sense}]$.
+Let $Y$ be the set of possible $y$ values.
+These constitute inputs to the pacemaker, or DUT.
+A finite sequence, or \emph{string}, of $u$ values will be denoted by $\ub$, and the set of \emph{all} finite $u$-sequences will be denoted by $U^*$: $\ub \in U^*$.
+Similarly, we define $\yb \in Y^*$ to be a finite $y$-string.
+The disturbances are denoted by $w$, their set of possible values by $W$, and strings of disturbance values by $\wb \in W^*$.
+
+A (discrete-time) \emph{open-loop test} $\yb$ for the DUT is a string $\yb = y_1 y_2 \ldots y_n \in Y^*$.
+As a result of being fed a test, the DUT will synchronously produce a string $\ub = u_1 \ldots u_n \in U^*$.
+A (discrete-time) \emph{closed-loop test} $\wb$ for the closed loop DUT+Plant (pacemaker + heart) is a string $\wb = w_1 w_2 \ldots w_n \in W^*$.
+As a result of being fed a test, the closed loop will synchronously produce a string $(\ub,\yb) \in U^* \times Y^*$.
+%The plant $\Hc$ may be seen as an input-output map: $\Hc: U^* \rightarrow Y^*$, where $U^* (Y^*)$ is the set of finite strings over the set $U$ ($Y$).
+
+\subsection{Testing objectives}
+\label{testingObjectives}
+When testing a pacemaker, or any device in general, two crucial decisions must be made:
+\begin{itemize}
+	\item Choice of inputs: first, what input strings should be provided to the device so its behavior can be observed in reaction to them? 
+	Ideally, the answer is: all input sequences that might be produced by the heart to which the device will be connected. 
+	Sequences from outside this set are irrelevant, and missing sequences from within this set might cause us to miss some bugs that will manifest themselves during live operation.
+	In what follows, we use $A_\Hc$ to denote the set of strings that might be produced by the heart when connected to the pacemaker in a closed loop as shown in Fig.\ref{fig:liveSetup}. 
+	Of course, $A_\Hc \subset Y^*$.
+	\item Criterion of correctness: secondly, how do we determine that a particular operation of the device is correct? 
+	In other words, what is the specification according to which the device is being tested?
+	Ideally, the answer is: the specification will describe the safe, acceptable operation of the heart. 
+	I.e. the device is correct if the heart it is controlling does not produce unsafe or undesirable behavior.
+	Because the heart is a complex system and its `acceptable' behavior is dependent on its structural characteristics and current condition, such specifications are hard to describe. 
+	Nonetheless, this is the standard for what a specification should be for the DUT. 
+	A DUT that violates this specification may or may not be modified, depending on the source of the violation. 
+	The task of interpreting test outcomes and acting upon them is left to the designer and physician.	
+	The validation engineer's task is to produce a trace that violates the specification, or confirm that the DUT does not violate it with high confidence.
+\end{itemize}
+Note that we distinguish between unsafe heart behavior and undesirable heart behavior: unsafe behavior is not tolerated under any circumstances.\todo[inline]{give example}
+Undesirable behavior may not be ideal, but it might be acceptable under certain conditions. 
+\todo[inline]{give example}
+It is important to understand the circumstances under which undesirable behavior occurs, and then decide whether this is acceptable or not.
+In Section \ref{experiments}, we illustrate such a case.
+The goal of testing is to establish that the heart's behavior is never unsafe, and establish conditions under which it might be undesirable.
+
+\subsection{Open-loop testing}
+\label{openLoopTesting}
+\begin{figure}[tb]
+	\centering
+	\includegraphics[scale=0.2]{placeHolder.pdf}
+	\caption{Open loop testing setup: the device (pacemaker) is fed with pre-programmed open-loop tests.}
+	\label{fig:OLtestingSetup}
+\end{figure}
+Today, pacemakers are tested in an open loop \todo[inline]{cite}.
+That is, the pacemaker is not connected to the heart, as shown in Fig.\ref{fig:OLtestingSetup}.
+Rather, the validation engineer provides the DUT with $N$ open-loop tests
+\[A_{OL} = \{\yb_k, k=1,\ldots,N\}\]
+E.g., each test is a string of $A_{sense}$ and $V_{sense}$ values. The validator observes the DUT's output $\ub$ to determine correctness.
+The tests $\yb_k$ are meant to mimic some possible signals produced by the heart and are designed in consultation with physicians.
+They are also \emph{the same tests that were used when designing the pacemaker}.
+\todo[inline]{check that last statement}
+What the pacemaker's reaction should be is decided based on a diagnosis of the heart signals $\yb_k$:
+that is, the physician diagnoses what might cause the heart to produce a certain $\yb$, and decides accordingly what the pacemaker should do.
+The heart is thus only implicitly involved in the testing process. 
+How does this compare with the ideal state of affairs outlined in Section \ref{testingObjectives}?
+\begin{itemize}
+	\item Choice of inputs:	There is no guarantee that the validator's tests satisfy $A_{OL} = A_
+	Hc$. 
+	Thus testing might miss valid test cases ($\yb \in A_\Hc \setminus A_{OL}$), or include irrelevant ones ($\yb \in A_{OL} \setminus A_\Hc$).
+	Moreover, there is no automatic way of producing the tests: rather, it is a manual and error-prone process.
+	\item Criterion of correctness: because the heart does not figure in open-loop testing, correctness is decided based on the pacemaker's reactions. 
+	What these mean for the heart is only implicit or assumed, but is not actually tested. 
+	While there is no substitute for the physician's expertise, the fact that they need to diagnose every test means there will be inevitable errors or lapses.
+\end{itemize}
+
+In the next section, we present a closed-loop testing setup which addresses both shortcomings of open-loop testing.

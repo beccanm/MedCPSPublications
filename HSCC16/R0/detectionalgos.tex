@@ -1,0 +1,37 @@
+\section{Arrhythmia detection}
+\label{sec:discriminators}
+Disturbances of the heart's normal rhythm are known as \emph{arrhythmias}.
+\emph{\ac{VT}} is an example of an arrhythmia originating in the ventricles, in which the ventricles spontaneously beat at a very high rate.
+If the \ac{VT} is sustained, or degenerates into \ac{VF}, it is fatal within seconds.
+An abnormally fast heart rate that originates in the atria is referred to as a \emph{\ac{SVT}}.
+This is a diseased but non-fatal condition.
+In what follows, we will refer to sustained \ac{VT} and \ac{VF} together as \ac{VT}.
+\emph{The ICD's main task is to discriminate \ac{VT} from \ac{SVT} and deliver therapy to the former}.
+
+Most \ac{VT}/\ac{SVT} detection algorithms found in ICDs today are composed of individual \emph{discriminators}. 
+A discriminator is a software function whose task is to decide whether the current arrhythmia is SVT or VT. 
+No one discriminator can fully distinguish between SVT and VT.
+%: the two may have similar rates but different EGM morphology, or similar morphology and different rates, or similar morphology and rate but different onset characteristics.
+Thus a detection algorithm is often a decision tree built using a number of discriminators \emph{running in parallel}.
+The detection algorithm of Boston Scientific is shown in Fig. \ref{fig:bsc detection} \cite{compass}.
+%\acp{VT} and \acp{SVT} can share similar characteristics and might even occur simultaneously, so an \ac{SVT} is often mis-detected as a \ac{VT} by the \ac{ICD}. 
+%This is problematic because \ac{VT} therapy consists of low and high energy electric shocks of 30-40 Joules ($\sim$800V) delivered directly to the heart, which causes severe stress to the patient, and might even be linked to increased morbidity \cite{shock_mortality}.
+%Therefore, one of the biggest challenges for ICDs is to discriminate between fatal \acp{VT} that require a shock, and non-fatal \acp{SVT} that should not be shocked.% \cite{Ellenbogen11_Pacingbook}.
+%The detection algorithms of various manufacturers' ICDs share common discriminators: for example, they all have a Rate discriminator, some version of a Morphology discriminator, a Stability discriminator, etc. \cite{compass}\cite{med-book},\cite{SJM13},\cite{Biotronik13_Lumax}.
+%While the details of these software functions differ, their outlines and goals are similar. 
+We have modeled each discriminator in this detection algorithm as a STORMED hybrid system.
+The algorithm itself is then a hybrid system.
+\textbf{The ICD system is thus 
+$\mathbf{\Sys_{ICD} = \Sys_{Sense}||\Sys_{Detection-Algo}}$ where $\mathbf{\Sys_{Detection-Algo}}$ is the parallel composition of the discriminator systems}.
+In what follows, we present three of these discriminators we modeled, which are found in most ICDs and model them as hybrid systems, and prove they are STORMED.
+%We also give one example of how these discriminators and others are brought together in a decision tree to make up a detection algorithm.
+\begin{figure}[t]
+	\centering
+	\includegraphics[scale=0.4]{figures/BS_det_nosig}
+	\vspace{-10pt}
+	\caption{Boston Scientific's detection algorithm}
+	\vspace{-10pt}
+	\label{fig:bsc detection}
+\end{figure}
+
+\input{discriminators}

@@ -1,0 +1,8 @@
+\section{Towards more complex devices}
+As researchers move towards verifying more complex devices, current modeling practices need to accommodate the richer set of behaviors that must be simulated.
+For example, whereas pacemakers only dealt with the timing characteristics of cardiac electrical activity and could be modeled as timed automata, defibrillators additionally deal with the shape of the action potential, so that the model must generate these waveforms and react to defibrillation shocks.
+For the purposes of verification, the model must be either simulated or model checked in an acceptable amount of time.
+The usual tension between model expressiveness and its analyzability is expressed here as a tension between the need to model accurately the behavior of, say, the heart, and the objective of verifying the correctness of a closed-loop medical device connected to it.
+Model-based clinical trials present another set of challenges, as they require that a group of models be representative of a group of human patients. 
+One difficulty in satisfying this requirement stems from the fact that medical data is hard to obtain, and available recordings are often biased representations of the population's statistics, and exist in non-executable formats (e.g., electrogram printouts). 
+These challenges connect model-based clinical trials to the emerging branch of research that applies machine learning methods to mine and learn from electronic health records, and provides several exciting convergence points between these disciplines.

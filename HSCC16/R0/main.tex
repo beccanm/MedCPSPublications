@@ -1,0 +1,137 @@
+% THIS IS SIGPROC-SP.TEX - VERSION 3.1
+% WORKS WITH V3.2SP OF ACM_PROC_ARTICLE-SP.CLS
+% APRIL 2009
+%
+% It is an example file showing how to use the 'acm_proc_article-sp.cls' V3.2SP
+% LaTeX2e document class file for Conference Proceedings submissions.
+% ----------------------------------------------------------------------------------------------------------------
+% This .tex file (and associated .cls V3.2SP) *DOES NOT* produce:
+%       1) The Permission Statement
+%       2) The Conference (location) Info information
+%       3) The Copyright Line with ACM data
+%       4) Page numbering
+% ---------------------------------------------------------------------------------------------------------------
+% It is an example which *does* use the .bib file (from which the .bbl file
+% is produced).
+% REMEMBER HOWEVER: After having produced the .bbl file,
+% and prior to final submission,
+% you need to 'insert'  your .bbl file into your source .tex file so as to provide
+% ONE 'self-contained' source file.
+%
+% Questions regarding SIGS should be sent to
+% Adrienne Griscti ---> griscti@acm.org
+%
+% Questions/suggestions regarding the guidelines, .tex and .cls files, etc. to
+% Gerald Murray ---> murray@hq.acm.org
+%
+% For tracking purposes - this is V3.1SP - APRIL 2009
+
+
+\documentclass{acm_proc_article-sp} 
+
+\usepackage{fainekos-macros}
+\usepackage{color}
+\usepackage[english]{babel}
+\usepackage{acronym}
+%\usepackage{amsmath}
+%\usepackage{graphicx}
+%\usepackage[colorinlistoftodos,obeyFinal]{todonotes}
+%\usepackage{wrapfig}
+%\usepackage{makeidx}  % allows for indexgeneration
+%\usepackage{bibspacing}
+%\usepackage{fancyvrb}
+%\usepackage{amsfonts}
+\usepackage{url}
+\usepackage[ruled]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{paralist}
+
+%\setlength{\bibspacing}{\baselineskip}
+%\usepackage[tight,footnotesize]{subfigure}
+
+\newcommand{\tikzcircle}[2][black,fill=black]{\tikz[baseline=-0.5ex]\draw[#1,radius=#2] (0,0) circle ;}
+\newcommand{\slabel}{\sigma}
+\newcommand{\tlabel}{\slabel_\chi}
+\newcommand{\ulabel}{\slabel_u}
+\newcommand{\labelSet}{\Sigma}
+\newcommand{\ulabelSet}{\labelSet_u}
+\newcommand{\bslabel}{\bar{\slabel}}
+\newcommand{\tlabelSet}{\labelSet_\chi}
+\newcommand{\btlabel}{\bar{\tlabel}}
+\newcommand{\trans}[1]{\xrightarrow{#1}}
+\newcommand{\out}[1]{\left\langle #1\right\rangle}
+\newcommand{\Omapeps}{\Oc_\varepsilon}
+\newcommand{\hsOut}{f}
+\newcommand{\CDtau}{\textbf{CD}_\tau(\Sys_1 , \Sys_2)}
+\newcommand{\simu}{\mathcal{S}}
+\newcommand{\bisimu}{\mathcal{B}}
+\newcommand{\Ft}{\Fc_t}
+\newcommand{\Fd}{\Fc_d}
+\newcommand{\partition}{\mathcal{P}}
+\newcommand{\SHS}{\Sigma}
+\newcommand{\simue}{\simu^\varepsilon}
+\newcommand{\hx}{\hat{\stPt}}
+\newcommand{\Cc}{\mathcal{C}}
+\newcommand{\egm}{s}
+\acrodef{NSR}{Normal Sinus Rhythm}
+\acrodef{AP}{Action Potential}
+\acrodef{ICD}{Implantable Cardioverter Defibrillator}
+\acrodef{SVT}{SupraVentricular Tachycardia}
+\acrodef{VT}{Ventricular Tachycardia}
+\acrodef{VF}{Ventricular Fibrillation}
+\acrodef{SVT}{SupraVentricular Tachycardia}
+\acrodef{EGM}{electrogram}
+\acrodef{CA}{cellular automata}
+
+\newboolean{REPORT}
+\setboolean{REPORT}{FALSE}
+\linespread{0.97}
+
+\begin{document}
+
+\title{Model Checking Implantable Cardioverter Defibrillators}
+
+\author{
+% 1st. author
+\alignauthor
+Houssam Abbas, Kuk Jin Jang, Zhihao Jiang, Rahul Mangharam\\
+       \affaddr{Department of Electrical and Systems Engineering}\\
+       \affaddr{University of Pennsylvania, Philadelphia, PA, USA}\\
+       \email{\{habbas,  jangkj, zhihaoj, rahulm\}@seas.upenn.edu}
+}
+% Just remember to make sure that the TOTAL number of authors
+% is the number that will appear on the first page PLUS the
+% number that will appear in the \additionalauthors section.
+
+\maketitle
+\input{abstract}
+%% A category with the (minimum) three required fields
+%\category{H.4}{Information Systems Applications}{Miscellaneous}
+%%A category including the fourth, optional field follows...
+%\category{D.2.8}{Software Engineering}{Metrics}[complexity measures, performance measures]
+
+%% A category with the (minimum) three required fields
+%\category{H.5.1}{Computing methodologies}{Modeling and simulation}[Model development and analysis]
+%%A category including the fourth, optional field follows...
+%\category{L.2}{Applied computing}{Life and medical sciences}
+%\terms{Medical devices, life-critical CPS, STORMED systems, heart modeling, ICDs}
+
+%\input{outline}
+\input{introduction}
+\input{preliminaries}
+%\input{statementOfResults}
+\input{heartcellularautomata}
+\input{sensing}
+\input{detectionalgos}
+\input{properties}
+\input{compositionality}
+\input{simulationApprox2}
+\input{conlusion}
+\bibliographystyle{abbrv}
+\bibliography{HSCC2015_CompositionalConf,houssam,fainekos_bibrefs,hscc2016,biblio2}  %zhihao
+% ACM needs 'a single self-contained file'!
+%
+%\clearpage
+\input{appendix}
+
+\end{document}

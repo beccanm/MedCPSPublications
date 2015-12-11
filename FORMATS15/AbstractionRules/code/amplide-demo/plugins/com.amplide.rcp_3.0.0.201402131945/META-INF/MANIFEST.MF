@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ActivationPolicy: lazy
+Built-By: viz
+Eclipse-BundleShape: dir
+Bundle-Name: %Bundle-Name
+Bundle-Localization: plugin
+Created-By: Apache Maven
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,org.eclipse.ui
+ .editors,org.eclipse.e4.ui.css.swt.theme
+Bundle-Vendor: %Bundle-Vendor
+Bundle-Version: 3.0.0.201402131945
+Build-Jdk: 1.7.0_51
+Bundle-Activator: com.amplide.rcp.Activator
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.amplide.rcp;singleton:=true
+Import-Package: com.amplide
+Archiver-Version: Plexus Archiver
+

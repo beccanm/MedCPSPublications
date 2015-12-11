@@ -1,0 +1,72 @@
+# This is a boring example in that out of 4 rules, only 1 applies to the graph. 
+# Namely, R2. So we use this example as a sanity check
+data;
+# element = vertex or edge of the graph
+param nvertices 	 := 10;
+param nedges         := 9;
+param N         	 := 2;
+set ELEMENTS     := 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19;
+set RULES        := R1 R2 R4 R5;
+set SUBGRAPHS    := SIness;
+set TIME0        := 0 1 2 ;
+set TIME 		 := 1 2 ;
+
+#set TIME0        := 0 1 2 3 4 5;
+#set TIME 		 := 1 2 3 4 5;
+set ZERO         := 0;
+
+# The initial values of vertex parameters
+# Here I show only one parameter per element
+param Px0 :=
+    1  5
+    2 5
+    3 5
+    4 5
+    5 5
+    6 4
+    7 4
+    8 4
+    9 4
+    10 4
+    11 4
+    12 4
+    13 4
+    14 4
+    15 4
+    16 4
+    17 4
+    18 4
+    19 4    
+    ;
+
+# Terms for the linear predicate Phi
+param C := R1 600  R2 600 R4 600 R5 600;
+param B : 
+       1   2  3  4  5  6  7  8  9  10  11  12  13  14  15  16  17  18  19 :=
+ R1    1   1  1  1  1  1  1  1  1  1    1   1   1   1   1   1   1   1   1 
+ R2    1   1  1  1  1  1  1  1  1  1    1   1   1   1   1   1   1   1   1 
+ R4    1   1  1  1  1  1  1  1  1  1    1   1   1   1   1   1   1   1   1 
+ R5    1   1  1  1  1  1  1  1  1  1    1   1   1   1   1   1   1   1   1 ;
+
+# Preserved elements
+# An element is identified by a unique integer (basically, 
+# we just count the element in the graoh G)
+set VPHI := 1 4 5 6 13 14 15;
+# Element list of induced subgraphs. 
+# (s,x) means x (given by its identity in G) is in subgraph Ks	
+set KX := 
+	(SIness,*) 2 11 7 16 3 12 10 19 9 18 8 17 # SIness is the inessential structure
+	;
+	
+# (R,Ks) in KRULES means that subgraph Ks is a stage for R
+set KRULES := 
+	(R2,*) SIness
+	;
+	
+# DESTROYED[i,s] are the Stages destroyed by application of R_i to ssubgraph s
+set DESTROYED[R2,SIness] := SIness;
+
+# Abstractness for every rule
+# 
+# deltaRS gives how many elements are removed by application of a rule
+param deltaRS := R1 5 R2 12  R4 0 R5 2;

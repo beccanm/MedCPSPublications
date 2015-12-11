@@ -1,0 +1,34 @@
+\subsubsection{Rule R2: Remove Irrelevant Structures}
+After the loops within the topology are removed, the topology of the heart model is in form of tree. Since the "non-essential" structure do not affect the activation signals from and/or to the sensing nodes, all the "non-essential" structure can be then removed.\\
+\textbf{Applicable Conditions: }The rule can be applied after Rule 1 has been applied.\\
+\textbf{Output Graph: } Trimmed graph with only essential structure remaining.\\
+\textbf{Effects on parameters: } There is no effects on parameters of the node and path automata.
+ 
+%\todo[inline]{Not true. Teh behavior is affected. Because this is a formal methods conference, so behavior and so on mean very specific things.}
+\subsubsection{Rule R3: Removing Unnecessary Non-self-activation Nodes}
+The effect of non-self-activation nodes is blocking electrical events with interval shorter than its ERP period. If the self-activation nodes at both ends of a core path have self-activation interval longer than the maximum ERP period of nodes along the core path, the nodes can be removed.\\
+\textbf{Applicable Conditions: } This rule can be applied when there is no circles  in the heart model (Rule 1 has been applied).\\
+\textbf{Output Graph: } For any structure $P_1-N_n-P_2$ which $N_n$ is a non-self-activation node, if $N_n.ERP_{max}<min(N_1.Rest_{min},N_2.Rest_{min})$, replace $P_1-N_n-P_2$ with $P_3$\\
+\textbf{Effects on parameters: }
+$$P_3.cond_{min}=P_1.cond_{min}+P_2.cond_{min}$$
+$$P_3.cond_{max}=P_1.cond_{max}+P_2.cond_{max}$$
+
+\subsubsection{Rule R4: Merge Parameter Ranges}
+Timing periods of heart tissue, like Rest and ERP, are modeled as locations in the node and path automata. 
+The minimum and maximum time an automaton can stay in a location is governed by the parameters in the guards and invariants. 
+By expanding these periods, we introduce new behavior where a heart may stay in Rest for longer, or (self-)activate a node faster, etc.
+\\
+\textbf{(Sub)graph(s) to which it applies}.
+This rule applies to a set of graphs $G_i$ with the same structure (i.e., they are pairwise isomorphic) but possibly with different parameters: $R(G_1,\ldots,G_n) = G'$.
+See Fig.~\ref{fig:HM_abs}.\\
+\textbf{Applicability conditions}.
+None.\\
+\textbf{Output (sub)graph}.
+$G'$ has the same structure as the $G_i$.
+Thus there's an isomorphism $f$ between every $G_i$ and $G'$.
+Given an element $x$ of $G'$, $f^{-1}(x') = \{x_1,\dots,x_n\}$ are used to represent the set of elements that map to it via $f$, where $x_i \in \Ec(G_i)$.\\
+\textbf{Effect on parameters}
+%Recall Def.~\ref{def:labeledGraph}
+For every automaton $A(x'), x' \in \Ec(G')$, and every parameter $\theta^{x'}$ of $A(x')$, 
+$\theta_{min}^{x'} = \min(\theta^x_{min})_{x \in f^{-1}(x') }$ and 
+$\theta_{max}^{x'} = \max(\theta^x_{max})_{x \in f^{-1}(x') }$

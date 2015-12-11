@@ -1,0 +1,34 @@
+\section{Discussion}
+\label{sec:discussion}
+
+The above experiment has illustrated a practical application of the MBCT approach in the use of computer modeling for the support of clinical trial planning and execution.
+We now present the medically relevant limitations of this particular experiment, then discuss the MBCT approach in general.
+First, we did not account for post-shock detection (a phase of detection that follows the delivery of therapy), which was part of the RIGHT results.
+The Onset discriminator was not implemented so the results exclude its effects.
+RIGHT included both dual-chamber and single-chamber devices, whereas we only implemented the algorithms for dual-chamber devices.
+For the VTC and Wavelet algorithms, the literature did not specify which samples are taken from the electrogram. 
+We chose to sample the electrogram uniformly in time, and validated that this gives correct results.
+%In the clinical setting, some of the programmable parameters of the device are set by the physician based on the current state of the patient. 
+%It is not currently possible to model this process.
+%However, it does point the way to an interesting application of MBCT, namely studying the sensitivity of a trial's results to parameter setting strategy.
+
+Clinical trials study the effect of an intervention \emph{in the patient}, and report patient-level results (e.g., ``The event of interest was observed in X\% of patients in Group 1''). 
+Our results are at the condition level: they take the form ``the event of interest was observed in X\% of generated conditions".
+To produce patient-level estimates requires an estimate of how conditions are distributed among patients. 
+This low-level data is not readily available.
+
+It is important to stress that in general, one should not expect \emph{absolute numbers} from an MBCT to match those from a clinical trial, nor should this be the goal of the MBCT.
+For example, in this work, it is unlikely that our MBCT will yield rates of inappropriate therapy that are equal to the rates obtained by RIGHT itself.
+The reasons for this are many:
+\begin{itemize}
+	\item Many factors that affect the outcomes of the trial (such as changes in patient lifestyle) are not modeled.
+	\item The adjudication of episodes in RIGHT (and other trials) is limited by the fact that only therapy episodes were recorded by the devices.
+	The adjudication process is further limited by the lack of surface EKGs, which makes it hard to reliably distinguish certain atrial arrhythmias. 
+	Neither of these is a limitation in MBCT since we have the ground truth: we know exactly what arrhythmia is being simulated by the model.  Furthermore, the AAEL signals have both device electrograms (EGMs) and the corresponding surface EKGs which allow for precise adjudication.  
+	\item Experts may disagree on how to adjudicate the more complex episodes, so our classification of episodes from the AAEL database and the classification of the RIGHT investigators have an irreducible discrepancy.
+	Again, this will affect the statistics that they and we compute.
+\end{itemize}
+
+That said, we can expect that a good heart model will reveal \emph{the trend} of the results, such as improvement of intervention over control or not, as shown in this paper. 
+%The MBCT conducted here clearly showed that the Medtronic algorithms outperforms the Boston Scientific's and resulted in a negative outcome of RIGHT across all population distributions and relevant heart conditions. In hindsight, the Boston Scientific-sponsored RIGHT would have needed reconsideration prior to running it to prevent a failed outcome.
+

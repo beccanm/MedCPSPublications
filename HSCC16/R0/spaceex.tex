@@ -1,0 +1,32 @@
+\subsection{Example: SpaceEx reachable sets}
+\label{sec:spaceex}
+Lemma \ref{thm:finite simulation} required that the over-approximation sets $\Rc^\epsilon_{t}(\{{x}\})$ be definable for every $x$ and $t$ (see proof).
+In practice, we need to show that the over-approximation \emph{actually computed by the reachability tool} (which may not be the full ball $\Rc^\epsilon_{t}(x)$) is definable.
+In this section we show that the over-approximations computed by SpaceEx \cite{FrehseCAV11} are definable.
+Given the set $X\subset \Re^n$ and finite $\Vc \subset \Re^n$, parameter $\lambda \in [0,1]$ a time step $\delta>0$, and $(i,j) \in E$, 
+SpaceEx over-approximates $\reset_{ij}(X)$ by $\Kc(\Vc,X) \defeq \reset_{ij}(TH_\Vc(X)\cap G_{ij})\cap Inv(j)$ and $\Rc_{\lambda \delta}^\epsilon(X)$ by \cite{FrehseCAV11}:
+\begin{eqnarray}
+\Omega_\lambda(X,\delta) &=& (1-\lambda)X \oplus e^{\delta A} X 
+\nonumber \\
+&\oplus&(\lambda E_\Omega^+(X,\delta) \cap (1-\lambda) E_\Omega^-(X,\delta))
+\end{eqnarray}
+where
+$TH_\Vc(X) \defeq \{x\in\Re^n \;|\;\land_{\vec{a} \in \Vc} \vec{a}\cdot x \leq \rho(\vec{a},X)\}$ is the template hull of $X$ and $\rho$ its support function,
+$E_\Omega^+ = \boxdot (\Phi_2 \boxdot(A^2 X)$,
+$E_\Omega^- = \boxdot (\Phi_2 \boxdot(A^2 e^{\delta A}X))$,
+$\oplus$ is the Minkowski sum,
+$\boxdot S =  [-\overline{|x_1|}, \overline{|x_1|} ] \times \ldots \times [-\overline{|x_n|}, \overline{|x_n|} ]$ is the box hull
+with $\overline{|x_i|} \defeq \max\{|x_i| \text{ s.t. } x=(x_1,\ldots,x_n) \in S\}$.
+
+\begin{prop}
+	\label{prop:spaceex definable}
+	For all definable polytopes $X \subset \Re^n$, the sets $\Kc(\Vc,X)$ and $\Omega_\lambda(X,\delta)$ is definable are $\Lc_{\exp}$.
+\end{prop}
+	
+\begin{prf}
+Let $S, Y \subset \Re^n$ be two definable sets in some o-minimal structure $\Ac$.
+Let $\lambda \in \Re$ and let $A$ be a real matrix.
+Then the following sets are also o-minimal: $\lambda S$, $A S$, $S \cap Y$, $S \oplus Y$, $S \cap Y$, $TH_\Vc(S)$ and $\boxdot S$.
+Now the result follows by noting that $\Kc(\Vc,X)$ and $\Omega_\lambda(X,\delta)$ are constructed by composing the above definability-preserving operations.
+\end{prf}
+

@@ -1,0 +1,12 @@
+\begin{abstract}
+This paper proposes a methodology for closed-loop model checking of medical devices, and illustrates it with a case study on implantable cardiac pacemakers.
+To evaluate the performance of a medical device on the human body, a model of the device's physiological environment must be developed, and the closed-loop consisting of device (e.g., pacemaker) and environment (e.g., the human heart) is model-checked.
+Formal modeling of the environment and its application in model checking pose several challenges that are addressed in this paper.
+Pacemakers should guarantee safe operations across large varieties of heart conditions, which are represented by an incomplete set of timed automata models.
+A set of domain-specific abstraction rules are developed that can over-approximate the timing behaviors of a heart model or a group of heart models, such that the new behaviors introduced by abstraction are mostly physiologically meaningful.
+The rules serve as a systematic method to cover heart conditions that may not be explicitly accounted for in the initial set of heart models.
+Closed-loop model checking is systematically performed using the heart models in the abstraction tree, to obtain the most concrete counter-example(s) that correspond to property violation.
+These counter-examples, along with their physiological context, are then presented to the physician to determine their physiological validity.
+The proposed methodology creates a separation between steps requiring physiological domain expertise (model creation and abstraction rules definition) and steps that can be automated (rule application, model checking, and abstraction refinement).
+While the methodology is illustrated for pacemaker verification, it is more broadly applicable to the verification of other medical devices.
+\end{abstract}

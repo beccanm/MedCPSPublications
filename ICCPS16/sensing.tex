@@ -1,0 +1,27 @@
+\subsection{Cardiac Signal Sensing}
+\label{sec:sensing}
+
+%Basic definition and principle
+\emph{Sensing} is the process by which cardiac signals measured through the leads of the \ac{ICD} is converted to cardiac timing events.
+Appropriate sensing is essential for proper \ac{ICD} detection algorithm operation which relies heavily on accurate event timing and morphology information provided by sensing. 
+An \emph{event} corresponds to a depolarization in the heart and manifests as a displacement from the baseline amplitude of the signal.
+In its simplest form, the sensing algorithm declares an event whenever the amplitude of the signal exceeds a given threshold.
+Once an event has been declared, the peak of the amplitude is measured and a \emph{refractory period} begins, during which a consecutive event is ignored for a short period of time. 
+This is to ensure that the same event is not counted repeatedly.
+
+%Difficulty of sensing
+\ac{ICD}s require a balance in sensitivity in order to operate in noisy, complex, environments where cardiac events can vary greatly in signal amplitude and frequency, such as during \ac{VF}. 
+Setting the threshold low achieves higher sensitivity to events of small amplitude, but increases the chances for incorrectly sensing other cardiac electrical artifacts such as T-waves and noise artifacts (oversensing). 
+Conversely, setting the threshold too high allows sensing to be more robust to noise and other cardiac electrical events, but creates the potential for undersensing events of interest, such as during \ac{VF} when the peak amplitude can be low. 
+
+%Enhancement 1: 
+In order to achieve adequate balance, \ac{ICD} sensing algorithms are enhanced by applying dynamic adjustment of the sensitivity threshold.
+Initially, the threshold is raised during the refractory period after an event and once the refractory period concludes, the threshold is decayed to a minimum pre-set threshold.
+In our device models, we implemented the \ac{AGC} algorithm of Boston Scientific and the \ac{AAS} of Medtronic \ac{ICD}s to incorporate dynamic threshold adjustment. 
+
+%%Enhancement 2: Cross-chamber blanking
+%In addition to \ac{AGC}, in our device model for Boston Scientific, we have implemented a specific \emph{cross-chamber blanking} feature present in Boston Scientific \ac{ICD}s. 
+%Cross-chamber blanking starts a blanking period in atrial sensing after a ventricular event has been detected.
+%This reduces the chance of a ventricular event being interpreted as an atrial event.
+
+The complexity of these enhancements adds to the difficulty of properly programming device settings of \ac{ICD}s and requires calibration process at the time of \ac{ICD} implantation and during patient follow-up visits.

@@ -1,0 +1,391 @@
+% This file was created with JabRef 2.6.
+% Encoding: Cp1252
+
+@UNPUBLISHED{Spolsky02_LeakyAbstractions,
+  author = {Joel Spolsky},
+  title = {The law of leaky abstractions},
+  note = {[Online at: http://www.joelonsoftware.com/articles/LeakyAbstr-
+	actions.html]},
+  year = {2002},
+}
+
+@incollection{HurKLC_CodeGenerationCHA04,
+title={Sound Code Generation from Communicating Hybrid Models},
+author={Hur, Yerang and Kim, Jesung and Lee, Insup and Choi, Jin-Young},
+year={2004},
+isbn={978-3-540-21259-1},
+booktitle={Hybrid Systems: Computation and Control},
+volume={2993},
+series={Lecture Notes in Computer Science},
+editor={Alur, Rajeev and Pappas, GeorgeJ.},
+doi={10.1007/978-3-540-24743-2_29},
+url={http://dx.doi.org/10.1007/978-3-540-24743-2_29},
+publisher={Springer Berlin Heidelberg},
+pages={432-447},
+language={English},
+abstract = {Precise translation from hybrid models to code is difficult because models are defined in the continuous-time domain whereas code executes on digital computers in a discrete fashion. Traditional approach is to associate the model with a sampling rate before code generation, and rely on an approximate algorithm that computes the next state numerically. Depending on the choice of the sampling rate and the algorithm, the behavior of the code may vary significantly due to numerical errors, but the discrepancy has been addressed informally, making the analysis results at the model level less meaningful for implementation. Formal relationship between the model and the code becomes even more unclear when components of the code execute concurrently. In this paper, we propose a formal framework that addresses the issue of soundness of concurrent programs generated from communicating hybrid models. The motivation is that concurrent programs executing in different rates may cause an erroneous transition when transition conditions are evaluated using values from different time instances. The essence of our technique is to refine the model by tightening transition conditions according to the maximum errors due to different sampling rates. We claim that the generated code has a trace of discrete transitions that is equivalent to one of the traces observable from the model, and that the values of variables are bounded. Our framework demonstrates how hybrid models defined in the continuous time domain are translated into discretized models with or without consideration of errors due to asynchronous sampling, and finally into executable code with real-time scheduling.},
+description = {Take a Communicating HA (CHA) or a system composed of many such CHA (SCHA = (A1,A2,..,An)). Instrument its guards and invariants by reducing by a certain amount gamma. Generate code that implements the instrumented CHA (ICHA). The reduction amount alpha =  beta + gamma.
+Beta quantifies for numerical integration errors.
+Gamma quantifies the state error caused by a difference in sampling time between members of the SCHA: i.e if A1 reads its input at time 0.2, and that input is produced by A2 at 0.1 and again at 0.3, A1 is reading an outdated value. In the intermittent 0.1sec, the state of A2 might have changed by a certain amount we can calculate (knowing the dynamics).
+By reducing guards and invariants, we guarantee the same sequence of transitions. But NOT that the generated code will not violate an invariant. See section 5 for a discussion.
+This technique requires that the transitions of the original CHA are NON-urgent.
+It also requires that the original CHA be h-insensitive (Def. 13).
+So alpha quantifies state error caused by 2 sources. We may take it to be a component of our epsilon  in (tau,eps).
+The h (in h-insensitivity) is a component of our tau. },
+keywords = {communicating hybrid automata, conformance, code generation},
+}
+
+
+@INPROCEEDINGS{MajumdarSUY_CompositionalEC13, 
+author={Majumdar, R. and Saha, I and Ueda, K. and Yazarel, H.}, 
+booktitle={Decision and Control (CDC), 2013 IEEE 52nd Annual Conference on}, 
+title={Compositional equivalence checking for models and code of control systems}, 
+year={2013}, 
+month={Dec}, 
+pages={1564-1571}, 
+abstract={We present CSEC (Compositional Symbolic Equivalence Checker), a tool to perform automatic and compositional equivalence checking of C code against Simulink models. Such equivalence checking is important in model-based development of safety-critical control software in industrial settings, where either the Simulink models are hand-generated to correspond to existing legacy code bases, or the C code is generated from Simulink models using code generators. In the former case, manual translations may not preserve behavior; in the latter case, equivalence checking is necessary to ensure that the code generator has not introduced bugs. CSEC constructs proofs of equivalence of two call graphs compositionally, by constructing a formula that is valid iff two functions are equivalent, when all called functions are assumed equivalent. The validity of the formula is checked using an SMT solver. We have applied CSEC to a module of powertrain controller C code base and the corresponding semi-automatically translated Simulink model at Toyota, and have automatically uncovered several dissimilar behaviors between models and code. We have also applied CSEC to prove equivalence of a Clutch Lockup Model and the automatically generated C code from the model.}, 
+description = {Assuming each simulink block corresponds to a C function of the same name, they build the call function graph of both Simulink and C. First, they check that the graphs are isomorphic. 
+Then, they check that the (block,function) pairs are equivalent, assuming the functions they call are equivalent. 
+The equivalence question is answered by turning it into a satisfiability problem: is there an assignement to input and global variables that causes these to produce different output assignements?
+The range of valid input and global assignements are determined from the range of the variable types (e.g. boolean, int, short int).
+Each function is represented by a formula Eq. (2).
+The satisfiability is answered with SMT solvers.
+Assumes perfect equality of C function and Simulink block outputs. In the Conclusion, they mention that when there are differences in the computation precision, they may replace equality by a bound on the allowed difference.
+They don't take timing differences into account.
+},
+keywords={control engineering computing;formal verification;graph theory;safety-critical software;C code;SMT solver;Simulink models;Toyota;clutch lockup model;code generator;compositional equivalence checking;compositional symbolic equivalence checker;control system code;control system model;industrial settings;powertrain controller C code;safety-critical control software;Conferences;Cost accounting;Generators;Reactive power;Semantics;Software packages;Switches}, 
+doi={10.1109/CDC.2013.6760105}, 
+ISSN={0743-1546},
+}
+
+@article{TalpinGSG_conformance05,
+year={2005},
+issn={0885-7458},
+journal={International Journal of Parallel Programming},
+volume={33},
+number={6},
+doi={10.1007/s10766-005-8907-y},
+title={A Compositional Behavioral Modeling Framework for Embedded System Design and Conformance Checking},
+url={http://dx.doi.org/10.1007/s10766-005-8907-y},
+publisher={Kluwer Academic Publishers-Plenum Publishers},
+keywords={Embedded system design; formal methods; models of computation; program transformation; verification},
+author={Talpin, Jean-Pierre and Guernic, PaulLe and Shukla, SandeepKumar and Gupta, Rajesh},
+pages={613-643},
+language={English}
+}
+
+@article{BensalemLB_RigourousEmbedded13,
+  author    = {Saddek Bensalem and
+               Axel Legay and
+               Marius Bozga},
+  title     = {Rigorous embedded design: challenges and perspectives},
+  journal   = {STTT},
+  volume    = {15},
+  number    = {3},
+  year      = {2013},
+  pages     = {149-154},
+  ee        = {http://dx.doi.org/10.1007/s10009-013-0271-4},
+  bibsource = {DBLP, http://dblp.uni-trier.de}
+}
+
+@BOOK {GoebelST_HybridSysBook,
+        AUTHOR=" Rafal Goebel and Ricardo G. SanFelice and Andrew R. Teel",
+        TITLE={Hybrid Dynamical Systems: modeling, stability and robustness},
+        PUBLISHER={Princeton University Press},
+        YEAR={2012},
+}
+
+%{\textasciitilde}
+@UNPUBLISHED{AbbasF_ConformanceTechRpt14,
+  author = {Houssam Abbas and Hans Mittelmann and Georgios Fainekos},
+  title = {Formal property verification in a conformance testing framework},
+  note = {[Online at: \url{http://www.public.asu.edu/~hyabbas/techreports/MEMOCODE14TechRpt.pdf}]},
+  year = {2014},
+	keywords = {conformance, tech rpt},	
+}
+
+@inproceedings{AbbasMF_MemocodeConformance14,
+  author = {Houssam Abbas and Hans Mittelmann and Georgios Fainekos},
+  title = {Formal property verification in a conformance testing framework},
+  booktitle={MEMOCODE}, 
+  year = {2014},
+	keywords = {conformance},	
+}
+
+
+@UNPUBLISHED{Saadat_PriusRecall,
+  author = {Abbas Saadat},
+  title = {Defect information report},
+  note = {[Online at: http://www-odi.nhtsa.dot.gov/acms/cs/jaxrs/download/doc/UCM450071/RCDNN-14V053-0945.PDF]},
+  year = {2014},
+	keywords = {toyota, mbd, power converter},	
+}
+
+@incollection{JohnsonN_BuckBoost_ARCH14,
+title={Benchmark: {DC}-to-{DC} switched-mode power converters (buck converters, boost converters and buck-boost converters)},
+year={2014},
+booktitle={ARCH 2014},
+author={Luan Viet Nguyen and Taylor J. Johnson},
+}
+
+@INPROCEEDINGS{JohnsonHD_Converter11, 
+author={Hossain, S. and Dhople, S. and Johnson, T.T.}, 
+booktitle={Power and Energy Conference at Illinois (PECI), 2013 IEEE}, 
+title={Reachability analysis of closed-loop switching power converters}, 
+year={2013}, 
+month={Feb}, 
+pages={130-134}, 
+abstract={A design verification method for closed-loop switching power converters is presented in this paper. The method computes the set of reachable states from an initial set of states. Case studies are presented for closed-loop buck converters using this approach. The buck converter is first modeled as a switched linear system. Two controllers are studied, first a simple hysteresis controller, and then a linear controller. The analysis method is automated and uses the hybrid systems reachability analysis tool SpaceEx. The applications and limitations of the analysis method are explored in this study.}, 
+keywords={closed loop systems;magnetic hysteresis;power convertors;reachability analysis;SpaceEx;closed-loop buck converters;closed-loop switching;hybrid systems;linear controller;power converters;reachability analysis tool;simple hysteresis controller;switched linear system;buck converter;hybrid systems;verification}, 
+doi={10.1109/PECI.2013.6506047},
+}
+
+
+@article{Frazzoli_RRT11,
+  author    = {Sertac Karaman and
+               Emilio Frazzoli},
+  title     = {Sampling-based algorithms for optimal motion planning},
+  journal   = {I. J. Robotic Res.},
+  volume    = {30},
+  number    = {7},
+  year      = {2011},
+  pages     = {846-894},
+  ee        = {http://dx.doi.org/10.1177/0278364911406761},
+  bibsource = {DBLP, http://dblp.uni-trier.de}
+}
+
+@incollection{Zhang_ZenoSystems_HSCC00,
+year={2000},
+isbn={978-3-540-67259-3},
+booktitle={HSCC},
+volume={1790},
+series={Lecture Notes in Computer Science},
+editor={Lynch, Nancy and Krogh, BruceH.},
+doi={10.1007/3-540-46430-1_37},
+title={Dynamical Systems Revisited: Hybrid Systems with Zeno Executions},
+url={http://dx.doi.org/10.1007/3-540-46430-1_37},
+publisher={Springer},
+author={Zhang, Jun and Johansson, KarlHenrik and Lygeros, John and Sastry, Shankar},
+pages={451-464},
+language={English}
+}
+
+
+@INPROCEEDINGS{Peruzzi_BMODs06, 
+author={Peruzzi, R.O.}, 
+booktitle={Behavioral Modeling and Simulation Workshop, Proceedings of the 2006 IEEE International}, 
+title={Verification of Digitally Calibrated Analog Systems with Verilog-AMS Behavioral Models}, 
+year={2006}, 
+month={Sept}, 
+pages={7-16}, 
+abstract={This paper describes the use of behavioral models to verify the design of digitally calibrated analog/mixed-signal systems, too large for either a circuit simulator or a traditional digital simulator. An important goal of using models in this way is to reduce the likelihood of human error resulting in integrated circuit imperfections. A specific example of a calibrated gain stage, with a full set of behavioral models illustrates the modeling and simulation approach}, 
+keywords={calibration;circuit simulation;digital simulation;hardware description languages;integrated circuit design;mixed analogue-digital integrated circuits;Verilog-analog/mixed-signal system behavioral model;calibrated gain stage;circuit simulation;digital simulation;digitally calibrated analog/mixed-signal system verification;integrated circuit imperfection;Analog-digital conversion;Calibration;Circuit simulation;Digital signal processing;Hardware design languages;Humans;Power supplies;Switches;Switching converters;Voltage}, 
+doi={10.1109/BMAS.2006.283462},
+}
+
+@UNPUBLISHED{Butts_ToyotaMBD06,
+  author = {Ken Butts},
+  title = {Presentation: Toyota's direction},
+  note = {[Online at: http://cmacs.cs.cmu.edu/presentations/verif\_csystems
+	/06\_KenButts.pdf]},
+  year = {2010},
+	keywords = {toyota, mbd, v and v},	
+}
+
+@INPROCEEDINGS{AbbasHFDKU_ConformanceWiP14, 
+author={Houssam Abbas and Bardh Hoxha and Georgios Fainekos and Jyotirmoy V. Deshmukh and James Kapinski and Koichi Ueda}, 
+booktitle={Cyber-Physical Systems, 2014 IEEE Intl. Conference on}, 
+title={Work in Progress: Conformance Testing as Falsification for Cyber-Physical Systems}, 
+year={2014}, 
+month={April}, 
+}
+
+@UNPUBLISHED{AbbasHFDKU_ConformanceArxiv14,
+  author = {Houssam Abbas and Bardh Hoxha and Georgios Fainekos and Jyotirmoy V. Deshmukh and James Kapinski and Koichi Ueda},
+  title = {Conformance Testing as Falsification for Cyber-Physical Systems},
+  note = {Technical Report arXiv:1401.5200},
+	month = {January},
+  year = {2014},
+	keywords = {conformance, closeness},	
+}
+
+
+@UNPUBLISHED{AbbasHFDKU_ConformanceJournal14,
+  author = {Houssam Abbas and Bardh Hoxha and Georgios Fainekos and Jyotirmoy V. Deshmukh and James Kapinski and Koichi Ueda},
+  title = {Conformance Testing for Cyber-Physical and Hybrid Systems},
+  note = {Submitted},
+	month = {April},
+  year = {2014},
+	keywords = {conformance, closeness},	
+}
+
+@PHDTHESIS{Quesel_SimilarityGamesThesis13,
+  author = {Jan-David Quesel},
+  title = {Similarity, Logic, and Games: Bridging Modeling Layers of Hybrid Systems},
+  url = {http://www.cs.cmu.edu/~jquesel/paper/diss.pdf},
+	school = {Carl Von Ossietzky Universitat Oldenburg},
+	month = {July},
+  year = {2013},
+	keywords = {simulation, similarity, hybrid systems, refinement, games, logic, hybrid logic, kymera},	
+	description = {Chapter 3 defines a retiming as a relation r \subset \Re_+ x \Re_+ which is surjective, left-total (its inverse is surjective), and order-preserving. 
+	A tau-retiming is one such that all (t,t') \in r, |t-t'|<tau
+	Then defines (tau,eps)-similar traces as those for which there exists a tau-retiming r such that for all (t,t') \in r, |s(t)-s(t')|<eps.
+	System A is a (tau,eps)-refinement of a system B if every trace of A has a B-trace that is (tau,eps)-similar to it.
+	This is almost identical to (tau,eps)-closeness. The only difference is that he doesn't consider discrete events as important.
+	[Note the thesis uses (eps,delta)-similar where I use (tau,eps)-similar, which I do to remain consistent with the notation of conformance.]
+	},
+}
+
+@UNPUBLISHED{BurdenGVBS_MetrizationHybridSys13,
+  author = {Samuel Burden and Humberto Gonzales and Ramanarayan Vasudevan and Ruzena Bajcsy and S. Shankar Sastry},
+  title = {Metrization and Simulation of controlled hybrid systems},
+  note = {Technical Report arXiv:1302.4402},
+	month = {February},
+  year = {2013},
+	keywords = {simulation, metrization, hybrid systems, topology, approximation},
+	abstract = {The study of controlled hybrid systems requires practical tools for approximation and comparison of system
+behaviors. Existing approaches to these problems impose undue restrictions on the system’s continuous and discrete
+dynamics. Metrization and simulation of controlled hybrid systems is considered here in a uniﬁed framework by
+constructing a state space metric. The metric is applied to develop a numerical simulation algorithm that converges
+uniformly to orbitally stable executions of controlled hybrid systems, up to and including Zeno events. Benchmark
+examples of novel hybrid phenomena illustrate the utility of the proposed tools.},
+	description = {Paper is concerned with developing a simulation algorithm for hybrid systems which is provably convergent to the `real' trajectory if the step-size is made small enough. 
+	They start by defining a metric on the hybrid space: the length-induced distance between 2 hybrid points equals the length of the shortest Re-connected curve between them. An f-connected curve, for a function f, is a piece-wise continuous curve such that the end-points a,b of adjacent pieces are related via f: a=f(b) or b = f(a). 
+	Re is the global reset map, so an Re-connected curve is a trajectory whose reset pairs are identified. By identifying the reset pairs in this fasion, the discontinuity in the usual state-space is deleted. This is the main feature, it seems to me, of this metric topology.
+	Note that this definition of distance does not account for the differences in mode: if the hybrid points a and b are a reset pair: b = Re(a), then the distance between them is 0. 
+	The trajectory norm is then the usual sup-norm, where point-to-point distance is the length-induced distance defined above.
+	The rest of the paper develops the notion of 
+		- a relaxed HS (where the domains are inflated by a tau-wide strip to fuzzify when the jump takes place (it can take place anywehre in the strip), the guards are fattened out by the same amount tau, and the flows are extended inside these strips by a fake flow that just lets time flow for a tau duration), 
+		- execution of a relaxed HS, where the trajectory is extended via the fake flow inside the strip, 
+		- and a discrete approximation of a relaxed HS's execution. The latter is shown to converge to the execution of the original HS as the step-size approaches 0. (They use epsilon instead of tau, but I use tau for consistency with (tau,eps)-closeness).
+	The relaxed HS does not capture the Implementation (in a conformance testing context) since it assumes that up until an actual jump, the trajectories are identical. And past a jump, the trajectories are merely delayed by an amount tau.	
+	},
+}
+
+@INPROCEEDINGS{JuliusP_ApxSynchronizationMTS06, 
+author={Julius, A.A. and Pappas, G.J.}, 
+booktitle={Decision and Control, 2006 45th IEEE Conference on}, 
+title={Approximate equivalence and approximate synchronization of metric transition systems}, 
+year={2006}, 
+month={Dec}, 
+pages={905-910}, 
+abstract={In this paper, we consider metric transition systems which are transition systems equipped with metrics for observation and synchronization labels. The existence of metrics leads to the introduction of two new concepts, (i) (epsi, delta)-approximate (bi)simulation of transition systems and (ii) approximate synchronization of transition systems. We show that the notion of (epsi, delta)-approximate (bi)simulation can be thought of as a generalization or relaxation of the earlier work on delta-approximate (bi)simulation by Girard and Pappas. We demonstrate the link between reachability verification and approximate (bi)simulation, and we also provide a characterization of (bi)simulation relations using a tool similar to the (bi)simulation function. Approximate synchronization can be thought of as a generalization of synchronization of transition systems in the usual sense. In fact, the usual synchronization and interleaving synchronization are two special cases of the notion of approximate synchronization developed in this paper. Furthermore, we present a result on the compositional properties of the approximate (bi)simulation with respect to the approximate synchronization}, 
+keywords={bisimulation equivalence;computational complexity;equivalence classes;large-scale systems;synchronisation;(epsi, delta)-approximate b)simulation;approximate equivalence;approximate synchronization;metric transition systems;reachability verification;Computational efficiency;Control systems;Delay;Engineering profession;Interleaved codes;Performance analysis;Robustness;State-space methods;Systems engineering and theory;USA Councils}, 
+description = {Given two Metric Transition Systems (MTS) T1 and T2 with pseudo-metrics on their common output space and common set of labels, T2 (eps,delta)-simulates T1 if there exists a relation R \subset Q1xQ2 s.t. 
+every initial q10 \in Q10 has a corresponding q20 \in Q20 with (q10,q20) \in R,
+every T2-transition on a label A is tracked by a T1-transition on a label B at least eps-close to A,
+all pairs (q1,q2) \in R are s.t. q1 and q2 are at least delta-close to each other. (these last 2 conditions define an (eps,delta)-simulation of T2 by T1).
+So: T2 simulates T1 iff T1 tracks T2. Note this notion is equivalent to (tau,eps)-closeness for non-hybrid systems.
+The rest of the paper is standard fare about implications to reachable set distances and expressing (eps,delta)-bisimulation by level sets of bisimulation functions. Dynamical systems are expressed as MTS in the usual way with time elapse playing the role of labels.
+},
+doi={10.1109/CDC.2006.377763},
+}
+
+@article{JuliusIBP_ApxSynchronizationMTS09,
+title = "Approximate equivalence and synchronization of metric transition systems ",
+journal = "Systems and Control Letters ",
+volume = "58",
+number = "2",
+pages = "94 - 101",
+year = "2009",
+note = "",
+issn = "0167-6911",
+doi = "http://dx.doi.org/10.1016/j.sysconle.2008.09.001",
+url = "http://www.sciencedirect.com/science/article/pii/S0167691108001576",
+author = "A. Agung Julius and Alessandro D'Innocenzo and Maria Domenica Di Benedetto and George J. Pappas",
+keywords = "Metric transition systems",
+keywords = "Approximate equivalence",
+keywords = "Bisimulation",
+keywords = "Approximate synchronization ",
+abstract = "In this paper, we consider metric transition systems which are transition systems equipped with metrics for observation and synchronization labels. The existence of metrics leads to the introduction of two new concepts, (i) ( ϵ , δ ) -approximate (bi)simulation of transition systems and (ii) approximate synchronization of transition systems. We show that the notion of ( ϵ , δ ) -approximate (bi)simulation can be thought of as a generalization or relaxation of the earlier work on δ -approximate (bi)simulation by Girard and Pappas. We demonstrate the link between reachability verification and approximate (bi)simulation, and we also provide a characterization of (bi)simulation relations using a tool similar to the (bi)simulation function. Approximate synchronization can be thought of as a generalization of synchronization of transition systems in the usual sense. In fact, the usual synchronization and interleaving synchronization are two special cases of the notion of approximate synchronization developed in this paper. Furthermore, we present a result on the compositional properties of the approximate (bi)simulation with respect to the approximate synchronization. In addition to the theoretical presentation of approximate bisimulation and synchronization, we also discuss the application of this framework in analyzing control systems over digital communication networks. "
+}
+
+
+@article{Girard08,
+year={2008},
+issn={0924-6703},
+journal={Discrete Event Dynamic Systems},
+volume={18},
+number={2},
+doi={10.1007/s10626-007-0029-9},
+title={Approximate Simulation Relations for Hybrid Systems},
+url={http://dx.doi.org/10.1007/s10626-007-0029-9},
+publisher={Springer US},
+keywords={Hybrid systems; Abstractions; Approximation; Approximate simulation relation},
+author={Girard, Antoine and Julius, A.Agung and Pappas, GeorgeJ.},
+pages={163-179},
+language={English}
+}
+
+
+
+@BOOK {Choset_RobotMotionBook05,
+        AUTHOR=" Howie Choset and Kevin M. Lynch and Seth Hutchinson and George A. Kantor and Wolfram Burgard and Lydia E. Kavraki and Sebastian Thrun",
+        TITLE={Principles of Robot Motion: Theory, Algorithms, and Implementation},
+        PUBLISHER={MIT Press},
+        YEAR={2005},
+}
+
+@incollection{tretmans1999testing,
+  title={Testing concurrent systems: A formal approach},
+  author={Tretmans, Jan},
+  booktitle={CONCUR 1999 Concurrency Theory},
+  pages={46--65},
+  year={1999},
+  publisher={Springer}
+}
+
+@inproceedings{brandl2010automated,
+  title={Automated conformance verification of hybrid systems},
+  author={Brandl, Harald and Weiglhofer, Martin and Aichernig, Bernhard K},
+  booktitle={Quality Software (QSIC), 10th International Conference on},
+  pages={3--12},
+  year={2010},
+  organization={IEEE}
+}
+
+@article{back1990stepwise,
+  title={Stepwise refinement of parallel algorithms},
+  author={Back, RJR and Sere, Kaisa},
+  journal={Science of Computer Programming},
+  volume={13},
+  number={2},
+  pages={133--180},
+  year={1990},
+  publisher={Elsevier}
+}
+
+
+@article{shaker_MORSwitchedGG_2012,
+  title={Model reduction of switched systems based on switching generalized gramians},
+  author={Shaker, Hamid Reza and Wisniewski, Rafael},
+  journal={International Journal of Innovative Computing, Information and Control},
+  volume={8},
+  number={7},
+  pages={5025--5044},
+  year={2012}
+}
+
+@PHDTHESIS{Fainekos_RobustnessThesis08,
+  author = {Goergios Fainekos},
+  title = {Robustness of Temporal Logic Specifications},
+	school = {University of Pennsylvania},
+  url = {http://www.public.asu.edu/~gfaineko/pub/fainekos_thesis.pdf},
+  year = {2008},
+	keywords = {robustness},	
+}
+
+@ARTICLE{AnandFHJL_GeneratingReliableCode10, 
+author={Anand, M. and Fischmeister, S. and Hur, Y. and Jesung Kim and Insup Lee}, 
+journal={Computers, IEEE Transactions on}, 
+title={Generating Reliable Code from Hybrid-Systems Models}, 
+year={2010}, 
+month={Sept}, 
+volume={59}, 
+number={9}, 
+pages={1281-1294}, 
+abstract={Hybrid systems have emerged as an appropriate formalism to model embedded systems as they capture the theme of continuous dynamics with discrete control. Under this paradigm, distributed embedded systems can be modeled as a network of communicating hybrid automata. Several techniques for code generation from these models have also been proposed and commercially implemented. Providing formal guarantees of the generated code with respect to the model, however, has turned out to be a hard problem. While the model is set in continuous time with concurrent execution and instantaneous switching, the code running on an inherently discrete platform, can be affected by the sampling interval, round-off errors, and communication delays between the sensor, controller, and actuators. Consequently, semantic differences between the model and its code can arise with potentially different system behavior. This paper proposes a criterion for faithful implementation of the hybrid-systems model with a focus on its switching semantics. We discuss different techniques to ensure a faithful implementation of the model, and test the feasibility of our concepts by implementing a model heater system. In this heater case study, we successfully eliminate all fault transitions and, thereby, generate code with correct behavior complying with the specification.}, 
+keywords={distributed processing;embedded systems;formal specification;program compilers;code generation;communication delays;continuous dynamics;discrete control;distributed embedded systems;embedded systems;hybrid systems;model heater system;Computational modeling;Differential equations;Equations;Instruments;Mathematical model;Numerical models;Vehicles;Formal languages;software engineering.}, 
+doi={10.1109/TC.2010.84}, 
+ISSN={0018-9340},
+}

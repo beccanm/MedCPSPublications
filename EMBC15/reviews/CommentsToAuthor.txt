@@ -1,0 +1,4 @@
+As the reviewer #1 described, it should be noted that the
+authors show benefits of their test fixture and methodology
+by presenting test results from the newer and more
+sophisticated pacemakers on the market.

@@ -1,0 +1,114 @@
+% This is "sig-alternate.tex" V2.0 May 2012
+% This file should be compiled with V2.5 of "sig-alternate.cls" May 2012
+% For tracking purposes - this is V2.0 - May 2012
+
+\documentclass[final]{sig-alternate}
+
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos,obeyFinal]{todonotes}
+\usepackage[ruled]{algorithm}
+\usepackage[table]{colortbl}
+\usepackage{algpseudocode}
+\usepackage{acronym}
+\usepackage{url}
+\usepackage{textcomp}
+
+\acrodef{POD}{Programmable Output Device}
+\acrodef{PC}{Personal Computer}
+\acrodef{DAQ}{Data Acquisition}
+\acrodef{DAQ}{Data Acquisition}
+\acrodef{MBCT}[MBCT]{Model-Based Clinical Trial}
+\acrodef{RCT}{Randomized Controlled Trial}
+\acrodef{CT}{Clinical Trial}
+\acrodef{VT}{Ventricular Tachycardia}
+\acrodef{VF}{Ventricular Fibrillation}
+\acrodef{SVT}{SupraVentricular Tachycardia}
+\acrodef{PRLW}[PRL+W]{PR Logic + Wavelet}
+\acrodef{EGM}{electrogram}
+\acrodef{ECG}[ECG]{electrocardiogram}
+\acrodef{ICD}[ICD]{Implantable Cardioverter Defibrillator}
+\acrodef{AGC}[AGC]{automatic gain control}
+\acrodef{AAS}[AAS]{auto-adjusting sensitivity}
+\acrodef{NSR}[NSR]{normal sinus rhythm}
+
+\newboolean{DRAFT}
+\setboolean{DRAFT}{FALSE}
+\newboolean{TENPAGES}
+\setboolean{TENPAGES}{FALSE}
+
+\usepackage{tikz}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand{\smallcaption}[1]{\caption{\small #1}}
+\newcommand{\headline}[1]{\ifthenelse{\boolean{DRAFT}}{\textcolor{blue}{#1}}{#1}}
+\newcommand\Mark[1]{\textsuperscript#1}
+\newcommand{\mynote}[2]{\todo[inline]{#1: #2}}
+
+\graphicspath{{figures/}}
+\linespread{0.97}
+\begin{document}
+%
+% --- Author Metadata here ---
+\conferenceinfo{ICCPS}{2016 Vienna, Austria}
+%\CopyrightYear{2007} % Allows default copyright year (20XX) to be over-ridden - IF NEED BE.
+%\crdata{0-12345-67-8/90/01}  % Allows default copyright data (0-89791-88-6/97/05) to be over-ridden - IF NEED BE.
+% --- End of Author Metadata ---
+
+\title{Model-Based Clinical Trials for Medical Devices}
+
+\numberofauthors{5} 
+%
+
+\author{
+	Houssam Abbas\Mark{1}, Zhihao Jiang\Mark{1}, Kuk Jin Jang\Mark{1}, Marco Beccani\Mark{1}\\
+	\and
+	Jackson Liang\Mark{2}, Sanjay Dixit\Mark{3}, and Rahul Mangharam\Mark{1}\\
+	\begin{tabular}[t]{@{}c@{}}
+		\\
+		\affaddr{\normalsize \Mark{1}Dept. of Electrical and Systems Eng.}\\
+		\affaddr{\normalsize University of Pennsylvania}\\
+		\email{\normalsize\{habbas, zhihaoj, jangkj, beccani, rahulm\}@seas.upenn.edu}\\
+	\end{tabular}\nobreak\qquad
+	\begin{tabular}[t]{@{}c@{}}
+		\\
+		\affaddr{\normalsize \Mark{2}Cardiovascular Division,~\Mark{3}Cardiac Electrophysiology}\\
+		\affaddr{\normalsize Hospital of the University of Pennsylvania}\\
+		\email{\normalsize \{jackson.liang, sanjay.dixit\}@uphs.upenn.edu}
+	\end{tabular}
+}
+
+
+\maketitle
+
+%%% A category with the (minimum) three required fields
+%%\category{H.5.1}{Computing methodologies}{Modeling and simulation}[Model development and analysis]
+%%%A category including the fourth, optional field follows...
+%%\category{L.2}{Applied computing}{Life and medical sciences}
+%%
+%%\terms{Medical devices, life-critical CPS, model-based clinical trials, heart modeling, arrhythmias, ICDs}
+\input{abstract}
+\input{introduction}
+\input{rcts}
+\input{mbct}
+\input{heartmodel}
+\input{devicemodel}
+\input{results}
+\input{discussion}
+\input{conclusion}
+%\keywords{ACM proceedings, \LaTeX, text tagging}
+% The following two commands are all you need in the
+% initial runs of your .tex file to
+% produce the bibliography for the citations in your paper.
+\bibliographystyle{unsrt}
+\bibliography{biblio2}
+% You must have a proper ".bib" file
+%  and remember to run:
+% latex bibtex latex latex
+% to resolve all references
+%
+% ACM needs 'a single self-contained file'!
+
+\end{document}
+

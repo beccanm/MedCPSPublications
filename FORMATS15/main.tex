@@ -1,0 +1,75 @@
+\documentclass[final]{llncs}
+\usepackage{llncsdoc}
+\usepackage{fainekos-macros}
+\usepackage{color}
+
+
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos,obeyFinal]{todonotes}
+\usepackage{wrapfig}
+\usepackage{makeidx}  % allows for indexgeneration
+\usepackage{bibspacing}
+\usepackage{fancyvrb}
+\usepackage{amsfonts}
+\usepackage{color}
+\usepackage[ruled]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{authblk}
+
+\setlength{\bibspacing}{\baselineskip}
+\usepackage[tight,footnotesize]{subfigure}
+
+\newcommand{\mySection}[1]{\vspace{-5pt}\section{\hskip -1em.~~#1}\vspace{-10pt}}
+\newcommand{\mySubSection}[1]{\vspace{-5pt}\subsection{\hskip -1em.~~#1}\vspace{-10pt}}
+\newcommand{\mySubSubSection}[1]{\vspace{-5pt}\subsubsection{\hskip -1em.~~#1}\vspace{-5pt}}
+\newcommand{\tableref}[1]{Table~\ref{tab:#1}}
+\newcommand{\figref}[1]{Fig.~\ref{fig:#1}}
+\newcommand{\Hao}[1]{$\clubsuit$\footnote{HAO: #1}}
+\newcommand{\hatodo}[1]{\todo{HA: #1}}
+\newcommand{\hatodoin}[1]{\todo[inline]{HA: #1}}
+\newboolean{TECH_REPORT}
+\newcommand{\beh}{\mathbb{B}}
+\newcommand{\straj}{\mathbf{x}}
+\newcommand{\absfun}{h}
+\DeclareSymbolFont{extraup}{U}{zavm}{m}{n}
+\DeclareMathSymbol{\varheart}{\mathalpha}{extraup}{86}
+\DeclareMathSymbol{\vardiamond}{\mathalpha}{extraup}{87}
+\setlength{\textwidth}{12.5cm}
+\setlength{\textheight}{20.4cm}
+%\setlength{\oddsidemargin}{-.204in}
+
+\setboolean{TECH_REPORT}{TRUE}
+
+\title{Abstraction Trees for Closed-Loop Model Checking of Medical Devices\thanks{This work was supported by NSF CAREER 1253842, NSF MRI 1450342 and STARnet, a Semiconductor Research Corporation program, sponsored by MARCO and DARPA.}}
+
+\author{Zhihao Jiang\inst{1} \and Houssam Abbas\inst{1},
+Pieter J. Mosterman\inst{2,}\inst{3} \and Rahul Mangharam\inst{1}}
+\institute{Department of Electrical and Systems Engineering, University of Pennsylvania
+\and
+School of Computer Science, McGill University, Canada \and MathWorks, USA}
+
+\begin{document}
+\maketitle
+\vspace{-15pt}
+\input{abstract}
+
+\input{introduction}
+\input{preliminaries}
+\input{formalModelsofEnv}
+\input{abstractionRules}
+%\input{modelCheckingwAbstTree}
+\input{contextAmbiguities}
+\input{caseStudy}
+
+\input{conclusions}
+\bibliographystyle{abbrv}
+\vspace{-15pt}
+\bibliography{bibliography}
+
+
+
+
+
+\end{document}

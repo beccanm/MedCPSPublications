@@ -1,0 +1,44 @@
+\begin{proof}
+	\newcommand{\hs}{\hat{s}}
+	To prove that $Var(\varphi) \subset Var(M)$ is a sufficient condition for appropriateness, we introduce some standard terminology.
+	For an integer $n \geq 1$, $[n] = \{1,\ldots,n\}$.
+	Given a tuple $(a_1,a_2,\ldots,a_n)$ and a subset $H \subset [n]$, the projection function $\proj{}{H}$ retains the components indexed by $H$. E.g., $\proj{(a_1,a_2,a_3)}{1,3} = (a_1,a_3)$.
+	
+	Let $\Vc = \{V_1,\ldots, V_n\}$ be variables with valuation domains $D_1,\ldots,D_n$, respectively. 
+	Let $D = D_1 \times \ldots D_n$ be the state space.
+	Let $AP$ be the set of atomic propositions on $\Vc$, i.e. expressions involving the variables in $\Vc$.
+	We write $Var(p)$ for the variables that appear in a given proposition $p$, and $Var(\varphi) = \cup_{p \textrm{ in } \varphi} Var(p)$.
+	We define the map $\Oc: AP \rightarrow 2^D$ which assigns to each atomic proposition $p$ a subset $\Oc(p)$ of states where the proposition holds.
+	Conversely, $\Oc^{-1}(\{s\})$ is the set of atomic propositions that hold for a state $s \in D$.
+
+	Given a proposition $p$, if a variable $v_1$ is not in $Var(p)$, then $\proj{\Oc(p)}{1} = D_1$.
+	I.e., $p$ places no constraints on the value of variable $v_1$.
+	Given a trace $x = s_0 s_1 s_3 \ldots \in D^\omega$, we define a \emph{run} for $x$ to be the sequence $p_o p_1 p_2 \ldots$ of atomic propositions such that $p_i \in \Oc^{-1}(s_i)$.
+	Let $\varphi$ be a formula on $AP$.
+	If two traces $x$ and $y$ have the same run and $x \models \varphi$, then $y \models \varphi$.
+	
+	All our abstraction rules are projections: i.e., associated to each abstraction function $\absfun$ is a set $H \subset [n]$ of indices such that to for every $s = (a_1,a_2,\ldots,a_n) \in D$, $h(s) = \proj{s}{H}$.
+	For rule $\absfun_4$, $H = [n]$.
+	
+	Now let $M$ be a model, 
+	$\absfun = \proj{\cdot}{2,\ldots,n}$, and $M' = h(M)$.
+	Suppose that $Var(\varphi) \subset Var(M')$.
+	Let $x \in \beh(M')$ such that
+	\[x = \hs_0 \hs_1 \hs_2 \ldots \models \varphi\] 
+	We want to prove that for any $y \in \absfun^{-1}(x)$, $y \models \varphi$.
+	First note that $\hs_i \in D_2 \times \ldots \times D_n$.
+	Let $p_0 p_1 p_2 \ldots$ be the run corresponding to $x$.
+	By definition of run,
+	 $\hs_i \in \Oc(p_i) \cap \proj{D}{2,\ldots,n} = \proj{\Oc(p_i)}{2,\ldots,n}$.
+	Since $v_1 \notin Var(M')$, then $v_1 \notin Var(p_i)$ for all $p_i$ in $\varphi$.
+	Therefore 
+	\[\Oc(p_i) = D_1 \times \proj{\Oc(p_i)}{2,\ldots,n}\; \forall i\]
+	For any $y \in \absfun^{-1}(x)$, $y = s_0 s_1 s_2 \ldots$ where $s_i = (a_i, \hs_i) \in D$.
+	Thus $s_i \in \Oc(p_i)$, which means that $p_0 p_1 \ldots$ is a run of $y$ as well.
+	Therefore, $y \models \varphi$.
+	
+	
+	
+	
+	\end{proof}
+	

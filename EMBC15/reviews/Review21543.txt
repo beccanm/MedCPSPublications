@@ -1,0 +1,22 @@
+Reviewer 4 of EMBC'15 submission 2332
+
+Comments to the author
+======================
+
+Authors reported a closed-loop testing setup for cardiac
+implant.
+The aim is interesting,and worth for presentation&#12290;
+For that purpose, sufficient refer and describe should be
+required.
+However, the reference of this paper is unsatisfied, and
+the readers cannot understand the usefulness of this
+device.
+The authors would be better to describe the prefer page
+number to search the past data for the readers.
+There was a lot of reports describing the Virtual Heart
+from the various points of view. But no reference was noted
+in this paper.
+It will be better to rewrite this paper from precise past
+findings concerning the virtual heart and note the new
+findings in your model. This discussion will be useful for
+the reader to understand.

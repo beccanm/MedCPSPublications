@@ -1,0 +1,154 @@
+\section{Bullet Points}
+\label{bulletPoints}
+\subsection{Specification vs. Requirement}
+\begin{itemize}
+	\item Requirements are specified in terms of conditions of the \textbf{environment} before and after the system is deployed
+    \item Specifications are specified in terms of how the system responds to an input sequence from the environment
+    \item Traditional verification focus on specification of the system
+    \item Verifying specification only need to consider the input-output sequence of the system, which does not require knowledge of the environment
+    \item The result only provide guarantees for the correctness of the system. But what about the correctness of the specifications themselves?
+   
+    \item In CPS especially, the focus should be more on whether specifications satisfy requirements, which is also an important aspect in requirement engineering.
+    
+    \begin{itemize}
+        
+        \item Requirements are specified by domain experts and requires deep domain knowledge 
+        \item Traceability between requirements and specifications are currently maintained by mostly documentation
+        \item Verifying requirements requires closed-loop verification
+    \end{itemize}
+\end{itemize}
+\subsection{Closed-loop Verification}
+\begin{itemize}
+    \item For medical devices, closed-loop verification is currently done in terms of clinical trials, which has following problems:
+    \begin{itemize}
+      \item The cost of clinical trials are high
+      \item Due to the cost, the scale of the clinical trials cannot be large, thus affecting patient generality and the effectiveness of the trials.
+      \item It is the last step of the design process thus discovering a bug at this stage is very costly to fix.
+	\end{itemize}
+	\item Model-based design can potentially enable closed-loop verification at early design stage
+    %\item The biggest challenge for model-based design is to develop validated models, for both the system and the environment
+\end{itemize}
+    
+\subsection{Closed-loop Verification using Model Checking}
+\begin{itemize}
+	\item Model checking explore the state space of the closed-loop model and identify potential safety violations
+    \item Model checking is usually performed on abstract models.  
+    \item Obtaining exact abstractions are computationally hard
+    \item Over-approximation is often used during the abstraction step
+        \begin{itemize}
+        	\item \textbf{Pros: }Simple abstraction procedure 
+            \item \textbf{Cons: }Introducing spurious counter-examples
+        \end{itemize}
+    \item Over-approximation usually introduces non-determinism, which can achieve:
+    \begin{itemize}
+        	\item \textbf{Simplisity: }Non-determinism can replace complex dynamics which are not useful during the analysis
+            \item \textbf{Generality: }Sometimes the model should be able to capture the behaviors of different variations of the entity under modeling, which can be achieved using non-determinism.
+        \end{itemize}
+    \item Over-appproximation is complete for $ACTL^*$, meaning if a property in $ACTL^*$ holds in the abstract model, it will also hold in the refined model
+\end{itemize}
+
+
+
+\subsection{Model Abstraction Level Management}
+\begin{itemize}
+	\item The model should not only be abstract enough to achieve generality and simplisity, but also need to contain enough information to express the \emph{interesting} behaviors of the entity being modeled.
+    \item Abstraction may introduce ambiguity due to the information loss
+    \item Ambiguities should be eliminated in the following levels:
+\end{itemize}
+\textcolor{red}{
+\begin{enumerate}
+	\item \textbf{A1: Input-output Relation: }Executions that generates different outputs should be distinguishible in the abstract model
+    \item \textbf{A2: Requirement Compatibility: }If two executions in the refined model are made indistinguishible in the abstract model, either both satisfy the requirement or both violate the requirement
+    \item \textbf{A3: Execution Validity: }One execution which violates a requirement needs to be valid in the refined model to be considered as a counter-example.
+\end{enumerate}}
+These 3 ambiguities are increasing difficult to eliminate.
+\subsubsection{Counter-Example-Guided Abstraction and Refinement (CEGAR)}
+CEGAR is a framework to manage the model complexity during model checking of system specifications. It starts with a concrete representation of the system (code usually).
+\begin{enumerate}
+	\item Obtain the initial abstraction of the system
+    \item Ensure the initial abstraction is compatible with the specification in checking (Satisfying A2)
+    \item Model checking the model against the specification
+    \begin{enumerate}
+        \item If no counter-example returned, the specification is satisfied
+        \item If a counter-example returns, validate the counter-example on the concrete system
+        \begin{enumerate}
+            \item If the counter-example is valid, a bug has been found
+            \item If the counter-example is invalid, identify the \emph{deadend state} and \emph{error state}
+        \end{enumerate}
+    \end{enumerate}
+    \item Refine the model to seperate deadend state and error state (Satisfying A3)
+    \item Go back to step 3.
+\end{enumerate}
+CEGAR works very well for managing abstraction level of system model during specification verification.
+
+\subsection{System Model vs. Environment Model}
+The system and the environment have very different characteristics, thus requires different approaches during modeling.
+\begin{itemize}
+	\item Non-determinism
+    \begin{itemize}
+    	\item It is normally desired that a system is deterministic, thus there is only one desired output sequence given an input sequence. As the result, the non-determinism of a system model is usually minimal.
+        \item In medical device industry especially, a device is designed to treat large variations of patients. The behaviors of the same patient cannot be modeled with a deterministic model. As the result, the environment model needs to generalize the variations using non-determinism. 
+    \end{itemize}
+    \item Observability
+        \begin{itemize}
+        	\item It is considerably easy to observe the state of the system. For the software part of the system, we can even achieve full observability
+            \item On the other hand, it is very hard to (non-invasively, in-vivo) put sensors in the environment to achieve the same granularity of observability.
+        \end{itemize}
+    \item Internal mechanism 
+    \begin{itemize}
+    	\item Since the system is built by human, we have near full knowledge of the internal mechanism, allowing us to build a detailed and accurate model or representation (i.e. code) of the system.
+        \item Largely due to the limited observability, we have very partial knowledge about the environment. Even these knowledge are not easily accessible to the system developers.
+    \end{itemize}
+\end{itemize} 
+
+\subsection{Incapability of CEGAR for Environment Model Refinement}
+\begin{itemize}
+	\item CEGAR is not directly applicable for requirement verification and abstraction level management of the environment model
+	\item Step 3 and 4 in the CEGAR framework cannot be done for environment model  
+    \begin{itemize}
+    	\item A counter-example is spurious only if it does not exist in any of the environment conditions, which is impossible to check due to the non-determinism and the large variety of the environment model.
+        
+        \item Without identifying the deadend state and error state in the model, there is no heuristic to guide model refinement
+    \end{itemize}
+    \item\textcolor{red}{Cannot solve the ambiguity of the environment condition specified in the requirement. (need formulation)}
+\end{itemize}
+
+
+\subsection{Bridging the knowledge gap}
+In model-based design of Cyber-Physical Systems, there are two parties involved who have distinct expertise in their fields:
+\begin{itemize}
+	\item \textbf{Domain experts} processes \textbf{domain knowledge}, which is how the environment works, through years of training and experiences. In the medical devices domain, the domain experts are physicians. The role of the domain experts are:
+        \begin{itemize}
+        	\item Specify requirements in terms of environment conditions before and after the system is deployed into the environment
+            \item Validate an execution trace if the execution trace is fully or partially from a model simulation.
+            \item Evaluate (not validate) environment conditions in terms of closed-loop executions
+        \end{itemize}
+    
+    \item \textbf{System developers} are the ones who develop the system to control the environment. System developers generally have deep knowledge of the system under development, but with limited knowledge of the environment. The role of the system developers are:
+        \begin{itemize}
+        	\item Propose system specifications to satisfy environmental requirements
+            \item Verify the system against system specifications
+        \end{itemize}
+\end{itemize}
+The two parties need to work interactively together, however it is clear that there are knowledge gaps between the two parties. There are certain tasks that require knowledge in both domains that neither parties can perform on their own.
+\begin{itemize}
+	\item Environmental model construction
+    \item Environmental model abstraction
+    \item Environmental model refinement
+\end{itemize}
+
+A third party, tool developer, can help in this regard.
+\begin{itemize}
+	\item \textbf{Behaviors} are used to describe environment executions, even conditions
+    \item Encode the domain knowledge into different behaviors of the environment
+    
+    \begin{itemize}
+        \item \textbf{Requirements} by linking environmental conditions with series of high-level behaviors
+        \item \textbf{Environment models} by assigning behaviors to the models
+        \item \textbf{Abstraction rules} by documenting how behaviors are merged or ignored during each abstraction step.
+    \end{itemize}
+    \item For domain experts, their requirements are automatically converted into model-checking-friendly form.
+    \item For system developers, given the requirement, the tool should be able to provide the (almost) most abstract environment model without any ambiguities mentioned in Section 1.4.
+    \item As the result, both parties can focus on their expert domain.
+    \item Without the help of counter-examples, this approach cannot fully eliminate spurious counter-examples
+\end{itemize}

@@ -1,0 +1,9 @@
+Reviewer 1 of EMBC'15 submission 2332
+
+Comments to the author
+======================
+
+No new results. Suggest that the authors show benefits of
+their test fixture and methodology by presenting test
+results from the newer and more sophisticated pacemakers on
+the market.

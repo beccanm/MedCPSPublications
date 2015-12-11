@@ -1,0 +1,127 @@
+\section{Hit these points}
+
+The spread of heart disease and its ocnsequences in terms of mortality
+
+How common are ICDs (nb implants per month in us and world)
+
+market size
+
+current practice for design and verification
+
+heart+device as a hybrid system, based on cellular automata augmented with differential equations in the cells
+
+in this paper, we show that $H_{CA}$ falls in a decidable class: stormed systems, and that approximate methods can be used to build a finite simulation.
+
+our contributions:\\
+theoretical\\
+- show that the parallel composition of stormed is still stormed
+\\
+- show that approximate algorithms can produce a finite simulation (previous results use exact algo to produce a finite bisumulation)
+\\
+- the approximate reachability algo is more broadly applicable than manual polynomial approximations required in Vladimerou. especially since we have MANY models that might yield different polynomial approximations.
+\\
+application:\\
+- show that the common components of most ICDs can be modeled as stormed
+- show that a popular and practically validated heart model is stormed
+- and there have been no examples of "real" stormed systems. This is the first such example.
+
+there are no model checkers for stormed systems:
+QE is too costly. 
+the reachability-based algo is conceptual.
+next research is to develop MCs for SHS.
+
+SpaceEx approximations are o-minimal
+
+why not just reachability? because want to verify LTL properties.
+
+Examples of LTL properties of interest
+
+the fact that we have timers in the state means we can indirectly verify some MTL properties: give examples
+
+by Pfaffian extensions, can do any resolution of VTC.
+
+Continuous extension of VTC: o-minimal by Pfaffian
+
+the components we present are common to BSC, SJM, Biotronic and some MEdtronic so these results are broadly applicable.
+
+
+---------------------------------------------------
+0. Intro
+
+The spread of heart disease and its ocnsequences in terms of mortality
+
+How common are ICDs (nb implants per month in us and world)
+
+market size
+
+current practice for design and verification
+
+related work: brihaye thesis, 
+event b for cellular automata, hao's timed automata, PDE models of flavio and natalia, kwiatowska parameter synthesis, verification of tolerant systems (prabhakar), discrete abstraction of HS paper by pappas et al,
+Kwiatowska's Invariant Verification of Nonlinear Hybrid Automata Networks of Cardiac Cells,
+Grosu et al approimate bisim for sodium channel dynamics,
+Mery's Formal VHM cellular automata model,
+Pappas and girard's TAC09 paper
+
+I. Theory
+
+define transition system
+
+define simulation nad bisimu for TS
+
+give generic reachability algo for computing a bisimulation
+
+define HS
+
+define transition system of HS
+
+define simulation and bisimulation for HS as TS
+
+define o-minimal structures
+
+define SS
+
+show that using apx reachability on continuous systems yields a simulation
+
+show that this simulation is finite
+
+show that spaceex approximatino sets are o-minimal 
+
+If initial partition is given by $x,y \in P$ iff $x \models p \leftrightarrow y \models p$, this respects formulas
+
+show that parallel composition of SS is a SS
+
+
+II. Modeling
+
+basic cardiac EP 
+
+cellular automata model of the heart with diff equations: 
+	
+	- give model
+	
+	- validated by EPs working with it to learn and by in vivo validation
+	
+	- show STORMED
+
+APD restitution can also be part, see tech report
+
+VT and SVT discrimination
+
+Overview of detection algorithm
+
+Three Consecutive Fast Intervals: show STORMED
+
+VTC discrete: show STORMED
+
+VTC continuous: show STORMED
+
+Stability: show STORMED
+
+We're skipping others
+
+III Examples of properties
+
+
+
+

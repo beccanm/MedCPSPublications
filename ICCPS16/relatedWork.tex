@@ -1,0 +1,14 @@
+\paragraph{Modeling as regulatory grade evidence}
+\label{sec:related work}
+Most medical models today are aimed at either better understanding the phenomenon under study \cite{vfiborganization_Tusscher07} or at device debugging and verification \cite{VHM_proc}. 
+There is only one case in which a computer model has been used to intervene in the regulatory process of medical devices, namely the T1 Diabetes Model (T1DM) of UVA/PADOVA \cite{T1DM}.
+T1DM models glucose kinetics in hypoglycemia, and has been accepted by the FDA as a substitute for animal trials.
+The T1DM has a fixed virtual cohort with 300 patients.
+Its objective is to test the efficacy of new glucose control algorithms by simulating them on the virtual cohort.
+While our models can be used in this way, our objective here is to target specific clinical trials steps and improve how they are conducted.
+This dictates the experimental setup and the cohort generation considerations.
+
+The Avicenna consortium \cite{Avicenna} lays out a vision for `In-Silico Clinical Trials' similar to our approach.
+However, the emphasis in Avicenna is on individualized patient models, as they propose to customize the model to each patient enrolled in a trial.
+In the present work, we propose a usage of MBCT \emph{prior} to recruitment.
+Thus our models need not be fitted to a given patient's data, which might be impossible, invasive, or burdensome for the conduct of the trial.

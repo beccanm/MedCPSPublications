@@ -1,0 +1,25 @@
+commands;
+
+option show_stats 1;
+solve;
+display abstractness;
+display {j in TIME} abst[j];
+display a;
+display deltaRP;
+
+display 'Parameters for SL2';
+display {x in SUBGRAPHtoX['SL2'], j in TIME} Px[x,j];
+
+display "Structure disabling";
+display {(i,s) in KRULES, j in 1..N-1} 
+		( a[i,s,j],
+	     a[i,s,j]*(sum {jp in {j+1..N}, (ip,sp) in KRULES: sp in DESTROYED[i,s] }
+	               a[ip,sp,jp])
+	     );
+display 'Regular application';
+display {j in 1..N-1}
+	(sum {(i,s) in KRULES} a[i,s,j],
+	 sum{(ip,sp) in KRULES, jp in j+1..N} a[ip,sp,jp]
+	 );	    
+#expand Regular_application;
+#expand Disabling_by_structure;

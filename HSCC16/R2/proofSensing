@@ -1,0 +1,59 @@
+{\large \textbf{Proof of Lemma \ref{thm:sensing} .}}
+\begin{prf}
+	\textbf{(S)} By definition, we only need to consider transitions between different modes to establish separability. 
+	For all such transitions, there is a minimum dwell time in the mode before taking the transition, namely $MinTP$ in PeakTracking, $BlankingPeriod$ in Blanking, and  $MinDecP$ in mode ExponentialDecay.
+	So the system is separable since there is a uniform minimum flow before jumping.
+	\\
+	\textbf{(T)} Flows are either constant, (piece-wise) linear, or piece-wise linear and exponential (in the case of $y$ and its derivatives) and therefore are TISG.
+	\\
+	\textbf{(O)} All the flows, resets and guard sets are definable in $\Lc_{\exp}$.
+	(The absolute value and $\max$ functions can be broken down into boolean disjunctions of definable functions, and $t \mapsto \ln(t)$ is o-minimal by o-minimality of $\exp$).
+	\\
+	\textbf{(RM)} The state is $x = (t, t_p, y, y_M, f, Th, Th_0,eF) \in \Re^8$, and let 
+	 $\phi = (\phi_t, \phi_{p}, \phi_y, \phi_m, \phi_f, \phi_{Th},\phi_0,\phi_{eF})$ be the corresponding $\phi$ vector.
+	Recall that the \ac{EGM} voltage $\egm$, and so $y=|s|$, is upper-bounded by $V_M$.	
+	\\ 
+	\textbf{ExponentialDecay $\rightarrow$ PeakTracking}.
+	Only $t_p,y_M$ and $f$ are modified, so monotonicity produces the constraint
+	 $\phi_p(t-t_p) +\phi_m(0-y_M) + \phi_f(0-1) \stackrel{Want}{\geq} \varepsilon (|t-t_p|+|y_M|+1)$.
+	We require the stronger constraint to hold:
+	\[\phi_t MinDecP - \phi_m V_M -\phi_f \stackrel{Want}{\geq} \varepsilon(MaxDecP + V_M+1)\]
+	\\
+	\textbf{PeakTracking $\rightarrow$ PeakTracking}. Only $y_M$ and $f$ are reset. 
+	Algebraic manipulation yields $-2V_M\phi_m + \phi_f \stackrel{Want}{\geq} \zeta$
+	\\
+	\textbf{PeakTracking $\rightarrow$ Blanking}.
+	$t_p,eF,Th$ and $Th_0$ are reset, so we get
+	\begin{eqnarray*}
+	&&\;\phi_p(t-t_p) + \phi_{eF}(-(1/3)\ln(minTh/Th)-eF) 
+	\\
+	&&+\phi_{Th}(3y_M/4-Th) +\phi_0(3y_M/4-Th_0)
+	\\
+	&&\geq \varepsilon(|t-t_p|+ |-\frac{1}{3}\ln(\frac{minTh}{Th})-eF|
+	\\
+	&&+|\frac{3y_M}{4}-Th|+|\frac{3y_M}{4}-Th_0|)
+	\end{eqnarray*}
+	
+	$Th$ is lower-bounded by $minTh$ at all times, and it is naturally upper-bounded by $V_M$ as the threshold should never exceed the largest possible attainable voltage. 
+	By the same token, $0\leq eF \leq (1/3)\ln(V_M/minTh)$.
+	Then we want the stronger inequality
+	\begin{eqnarray*}
+	\phi_p MinTP &+& \phi_{eF}(0-(1/3)\ln(V_M/minTh)
+	\\
+	&+&\phi_{Th}(-V_M) +\phi_0(-V_M)
+	\\
+	&\geq& \varepsilon(MaxTP+ |\frac{1}{3}\ln(\frac{V_M}{Th})|+|V_M|+|V_M|)
+	\end{eqnarray*}
+	\\
+	\textbf{Blanking $\rightarrow$ ExponentialDecay}. Only $t_p$ is reset and therefore we want, $\phi_p(t-t_p) \geq \varepsilon(|t-t_p|)$, thus the transition yields $\phi_p \geq \varepsilon$.
+	
+	The above equations can be simultaneously satisfied.
+	The simplest thing would be to set all $\phi$ terms that appear above to 0 except for $\phi_t,\phi_p$ which are calculated accordingly.
+	
+	The flows can be shown to be monotonic along the same $\phi$ and with the same $\varepsilon$.
+	For example, in mode ExponentialDecay, only $t,y$ and $Th$ flow.
+	Making use of the $V_M$ bound on $y$, we get the constraint
+	$\phi_t \tau - 2V_M\phi_y +\phi_{Th}(Th(t+\tau)-Th(t))\geq \varepsilon(\tau+2V_M + |Th(t+\tau)-Th(t)| )$, 
+	which yields $\phi_t \geq \varepsilon$, $\phi_y \leq -\varepsilon$ and $\phi_{Th} \geq \varepsilon$. 
+	Similarly for the rest.	
+\end{prf}

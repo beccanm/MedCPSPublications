@@ -1,0 +1,10 @@
+{\large \textbf{Proof of Theorem \ref{thm:finite simulation}.}}
+\begin{prf}
+	First observe that $\Ft^\epsilon(\cdot)$ is idempotent: $\Ft^\epsilon(\Ft^\epsilon(\partition)) = \Ft^\epsilon(\partition)$.
+	
+By Lemma 10 of \cite{VladimerouPVD08_STORMED} there exists a uniform bound $U$ on the number of discrete transitions of any execution of the STORMED system $\Sys$, so $\Fd(W_k) = W_k$ for all $k\geq U$.
+Moreover 
+$W_{U+1} = \Ft^\epsilon(\Fc_d(W_U)) = \Ft^\epsilon(W_U)$
+and $W_{U+2}= \Ft^\epsilon(\Fc_d(W_{U+1}))= \Ft^\epsilon(W_{U+1})= \Ft^\epsilon(\Ft^\epsilon(W_U)) = \Ft^\epsilon(W_U) = W_{U+1}$, so the iterations reach a fixed point.
+The fact that $\Ft^\epsilon(W_U)$ is a simulation then yields the desired result.
+\end{prf}

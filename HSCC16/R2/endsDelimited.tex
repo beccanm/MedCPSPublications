@@ -1,0 +1,9 @@
+{\large \textbf{Ends Delimited}}
+We need the following result in what follows.
+\begin{prop}
+	\label{prop:ED}
+	If the state space $\stSet$ of a hybrid automaton $\Sys$ is bounded, then its guards have delimited ends.
+\end{prop}
+\begin{prf}
+	For all guard sets $G$ and all $x \in G$, $||\phi \cdot x || \leq ||\phi|| \cdot ||x|| \leq ||\phi||.\max\{||x||, x\in \stSet \} < \infty$.
+\end{prf}

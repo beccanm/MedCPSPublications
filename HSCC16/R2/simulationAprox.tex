@@ -1,0 +1,97 @@
+\section{Finite simulation for STORMED systems}
+\label{sec:simulationAprox}
+%In general it is not possible to compute the bisimulation exactly unless the underlying o-minimal theory is decidable
+Whether the bisimulations of STORMED systems can be computed depends on whether the underlying o-minimal theory is decidable. 
+The human heart+ICD closed loop is definable in $\Lc_{exp}$, and the latter is not known to be decidable.
+The authors in \cite{PrabhakarVVD09_toklerant} proposed approximating the flows and resets by polynomial flows and resets.
+However, the process of approximation is typically iterative and requires manual intervention, or is restricted to subclasses of STORMED systems \cite{PrabhakarVVD09_toklerant}.
+%More generally, building the abstraction might require explicit knowledge of the flows (solutions of the ODEs), which is often not possible.
+%Collocation methods are more automatic and work with the ODEs directly, but they are restricted to sub-classes of STORMED systems and might still require manual intervention \cite{PrabhakarVVD09_toklerant}.
+Even if the o-minimal theory is decidable, the decision procedure first applies Quantifier Elimination, whose worst-case time complexity is doubly exponential in the number of quantifier blocks \cite{DavenportH88_QE}.
+%
+Here we show that if an approximate reachability tool is available, it can be used in Algo~\ref{algo:bisimulation} (instead of exact reachability) to yield a \emph{finite simulation} (rather than a bisimulation).
+%This is in the spirit of tolerant systems \cite{PrabhakarVVD09_toklerant}, but does not need explicit approximation of the flows.
+%We take as our starting point the operators $\Fd$ and $\Fc$, and simply replace the exact $\Ft$ operator by an approximate operator $\Ft^\epsilon$ based on approximate reachability $\Rc^\epsilon_I$, as shown in the following Algorithm \ref{algo:apx Ft}.
+%\begin{algorithm}
+%	\caption{Simulation refinement for continuous transitions}
+%	\label{algo:apx Ft}
+%	\begin{algorithmic}
+%		\Require Hybrid system $\Sys$, interval $I \subset [0,+\infty)$, a partition $\partition$ of $\hsSet$, $\epsilon>0$.
+%		\State Set $\simu = \partition$			
+%		\While{$\exists P,P' \in \simu$ s.t. $\emptyset \neq P' \cap \Rc^\epsilon_I(P) \cap P' \neq P'$}
+%			\State Set $\simu = \simu \setminus \{P'\} \cup \{P' \cap \Rc_I^\epsilon(P) , P' \setminus \Rc_I^\epsilon(P) \}$
+%		\EndWhile	
+%		\State Return $\simu^\epsilon$
+%	\end{algorithmic}
+%\end{algorithm}
+%It is clear that $\simu^\epsilon$ is a partition that refines $\partition$. 
+%\begin{lemma}
+%$\simu^\epsilon$ is finite.
+%\end{lemma}
+\begin{lemma}
+	\label{lemma:finite simu}
+	Let $\SHS = (\Sys,\ldots)$ be a SHS and $\partition$ a partition of $\stSet$.
+	For any mode $\mode$ of $\Sys$ with flow $\theta_\mode $, consider the dynamical system $\Dc$ with state space $X = \Sys.\stSet$ and whose flow $\Theta: \Re \times \Re^n \rightarrow 2^{\Re^n}$ is a set-valued $\varepsilon$ over-approximation of $\theta_\mode$:
+	$\Theta(t;x) = \{y \in \Re^n \;|\; ||y-\theta(t;x)||^2 \leq \epsilon^2\}$.	
+	Then $\Dc$ admits a finite simulation $\simu_\mode$ that refines $\partition$, returned by Alg.~\ref{algo:bisimulation}.
+\end{lemma}
+The proof is in the Appendix.
+%====================================================================================
+%This finite simulation is that returned by running Algorithm 1 with the approximate reachability. 
+%The lemma can be repeated for all modes of $\Sys$ producing a simulation $\simu_\mode$ for each mode $\mode \in \modeSet$.
+Let $\Ft^\epsilon(\partition) \defeq \cap_{\mode}\simu_{\mode \in \modeSet}$: then it refines all the $\simu_\mode$'s, and it is a finite simulation of $\Sys$ by itselt w.r.t. the continuous transition $\trans{\tau}$.
+%Let $\simue$ be the finite simulation of $\Sys$ thus obtained, and let $\partition_{\simue}$ be the associated partition of $\hsSet$.
+%$\Ft^\epsilon(\partition) \defeq \{(\stPt,P)  \in \hsSet \times \simu^\epsilon \;|\; \stPt \in P\}$.
+It is clear that $\Ft^\epsilon(\cdot)$ is idempotent: $\Ft^\epsilon(\Ft^\epsilon(\partition)) = \Ft^\epsilon(\partition)$
+%We also have:
+%\begin{lemma}
+%For any partition $\partition$, $\Ft^\epsilon(\partition)$ is a simulation of $\Sys$ by $T_\Sys/\simu^\epsilon$.
+%\end{lemma}
+%\begin{proof}
+%Two states $x,x' \in \stSet$ are related by $\simu^\varepsilon$ iff $q(x) = q(x')$, that is, their flows visit the same sequence of blocks of $\partition$.
+%Do they also visit the same sequence of blocks in $\partition_{\simue}$?
+%Assume not, and let $B,B' \in \partition_{\simue}$ be the first blocks in which they differ, that it, $\theta(x,t) \in B$ and $\theta(x',t) \in B'$.
+%Because $B,B'$ are different blocks, this implies that there exist $y\in B,y' \in B'$ such that $q(y) \neq q(y')$.
+%But $x \in B \implies q(x) = q(y)$, and similarly $x' \in B' \implies q(x')=q(y')$, which contradicts $q(x) = q(x')$.
+%Therefore the flows of $x$ and $x'$ visit the same sequence of blocks in $\partition_{\simue}$.
+%Thus if we re-apply $\Ft^\varepsilon$ to $\simu^\varepsilon$, it will again yield $x$ and $x'$ will again have the same strings and so remain related by $\Ft^\varepsilon()$
+%%Idempotency is immediate: Algorithm \ref{algo:apx Ft} terminates only when no further partitioning of any block $P$ is possible. Thus if we re-run it on $\simu^\epsilon$, it will return $\simu^\epsilon$ and the resulting relation $\Ft^\epsilon$ is unchanged.
+%
+%Let $\simu^\epsilon = \{P_1,\ldots,P_V\}$ be the final refinement of $\partition$ returned by Algorithm \ref{algo:apx Ft}.
+%Write $F \defeq \Ft^\epsilon(\partition)$.
+%Let $(x,P) \in F$, that is, $x \in P$. 
+%Consider a continuous transition $x \trans{\tau} y$ such that $y = \theta(x,t)$.
+%Then by definition $y \in \Theta(x,t) \subset P'$ for some $P' \in \simu^\epsilon$. 
+%Moreover $P \trans{} P'$ by definition of the transition relation of $T_\Sys/\simu^\epsilon$, so $(y', P') \in F$.
+%
+%The converse is not necessarily true: if $P \trans{}P'$ then it might be that $P' = \Rc^\epsilon_I(P) \setminus \Rc^0_I(P)$, i.e. $P'$ is purely the result of the over-approximation.
+%In this case, it can not be guaranteed that $x \in P$ will evolve into $P'$.
+%This is why $\Ft^\epsilon$ is only a simulation.
+%\end{proof}
+
+%====================================================================================
+
+\begin{thm}
+	\label{thm:finite simulation}
+	Let $\Sys$ be a STORMED hybrid system, 
+	and $\partition$ be a finite definable partition of its state space.
+	Define 
+	\begin{compactitem}
+		\item $W_0 = \Ft^\epsilon(\partition)$.
+		\item For all $i\geq 0$, $W_{i+1} = \Ft^\epsilon(\Fd(W_i))$.
+	\end{compactitem}
+Then there exists $U \in \Ne$ s.t. $W_{U+1} = W_U$ and $\Ft^\epsilon(W_U)$ is a simulation of $\Sys$ by itself.
+\end{thm}
+
+\begin{prf}
+By Lemma 10 of \cite{VladimerouPVD08_STORMED} there exists a uniform bound $U$ on the number of discrete transitions of any execution of the STORMED system $\Sys$, so $\Fd(W_k) = W_k$ for all $k\geq U$.
+Moreover 
+$W_{U+1} = \Ft^\epsilon(\Fc_d(W_U)) = \Ft^\epsilon(W_U)$
+and $W_{U+2}= \Ft^\epsilon(\Fc_d(W_{U+1}))= \Ft^\epsilon(\Fc_t(W_U)) = \Ft^\epsilon(W_U) = W_{U+1}$, so the iterations reach a fixed point.
+The fact that $\Ft^\epsilon(W_U)$ is a simulation then yields the desired result.
+\end{prf}
+%
+%Let $AP$ be a set of atomic propositions, and let $\formula$ be an LTL formula over $AP$.
+%If the initial partition $\partition$ we start with is given by $x \equiv_\partition y$ iff $(x \models p \leftrightarrow y \models p \; \forall p \in AP)$, then the fact that simulation $\Sys^\epsilon$ satisfies $\formula$ implies that the original hybrid system $\Sys$ satisfies it too. 
+\input{spaceex}
+

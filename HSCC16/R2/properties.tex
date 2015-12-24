@@ -1,0 +1,59 @@
+\section{Properties of interest}
+\label{sec:properties}
+The finite simulation we obtain by running (the approximate version of) Alg.~\ref{algo:bisimulation} abstracts away the duration of continuous transitions $\trans{\tau}$, so that only time-unbounded properties (like LTL) can be verified on the abstraction.
+%A priori, this is a shortcoming of the approach because many properties of interest for ICDs involve bounds on when events happen. 
+However, every component of $\Sys_{ICD}$ has a local clock in its state vector.
+Thus these clocks can be used to express interesting time-bounded properties of $\Sys_{ICD}||\Sys_{CA}$.
+
+For example, to expresses that a Sustained \ac{VT} event should be followed by a \ac{VT} determination within 30sec, we write:
+\begin{equation}
+\label{eq:fTh}
+\formula_{Th} \defeq \formula_{VT} \implies \formula_{VT} \until_{[0,30]} \Sys_{ICD}.Mode = VT
+\end{equation}
+The VT decision ($\Sys_{ICD}.Mode = VT$) can be reached by one of three paths of execution (see Fig. \ref{fig:bsc detection}):
+For example, path $P_1$ goes from the root to ``8/10 faster'' on the right and ends in VT.
+Along each path, the component automata have local clocks that keep track of how long they are running in this execution.
+Therefore, the total execution time of all automata on a given path must be less than 30sec.
+So the time constraint may now be expressed as the disjunction $\lor_{P \in \{P_1,P_2,P_3\}}\sum_{c\in P} c \leq 30$.
+The formula can be re-written
+\begin{equation*}
+\formula_{VT} \implies \formula_{VT}\until \lor_{k=1,2,3}(\Sys_{ICD}.Mode = VT_k \land \sum_{c \in P_k} c \leq 30)
+\end{equation*}
+where $VT_k$ is the VT decision reached along the $k^{th}$ path.
+%
+
+%Letting VD denote a spontaneous (non-conducted) Ventricular Depolarization, the following formula describes a sequence of ventricular depolarizations that are 200ms or less apart.
+%\begin{equation}
+%\formula_{VF} \defeq VD \land \eventually_{[0,200]} (VD \land \eventually_{[0,200]} (VD \ldots))
+%\end{equation}
+
+%In terms of our model, a ventricular depolarization can be described as follows.
+%Let $\Cc$ be a set of ventricular cells in the heart model that are meant to be the source of the depolarization, and let $\Nc(\Cc)$ be a neighborhood of these cells.
+%The following expresses that the neighborhood is quiescent until the cells in $\Cc$ become active, implying spontaneous activity.
+%Incidentally, this is a formula that does \emph{not} require time bounds, and so can be directly expressed in LTL.
+%\begin{equation}
+%VD \defeq \land_{c \in \Nc} (c.Mode = Quiescent) \until \land_{c\in \Cc} (c.Mode = Upstroke)
+%\end{equation}
+%Other ways of describing this event may be possible or preferable based on other factors.
+%
+%\todo[inline]{cite GF, Donze?}
+%Signals used in TFL properties are also o-minimal (if the underlying time-domain signal is o-minimal), thus TFL properties can also be verified.
+%Indeed, TFL properties use the Short-Time Fourier Transform (STFT) coefficients of the signal $x(t)$ to define predicates ($i=\sqrt{-1}$):
+%\begin{eqnarray*}
+%c_\omega(\tau) &=& \int_{\tau-L/2}^{\tau+L/2}x(t)g_L(t-\tau)e^{-i2\pi\omega t}dt
+%\\
+%&=& \int_{\tau-L/2}^{\tau+L/2}x(t)g_L(t-\tau)cos{2\pi\omega t}dt 
+%\\
+%&\quad& - i\int_{\tau-L/2}^{\tau+L/2}x(t)g_L(t-\tau)sin{2\pi\omega t}dt 
+% \\
+% &=& C_r(\tau+L/2) - C_r(\tau-L/2) 
+% \\
+% &\;& - i[C_i(\tau+L/2) - C_i(\tau - L/2)]
+%\end{eqnarray*}
+%Each of the summands is an integral. 
+%The integrand in each is the product of a definable $x(t)$ and an analytic bounded $cos$ or $sin$ (bounded because multiplied by the window function $g_L$ of width $L$), and therefore it is definable. 
+%So the antiderivatives $C_r,C_i$ are definable by a corollary of Spessegger \cite{Speissegger99_Pfaffian}.
+%%($I \supset [\tau-L/2,\tau+L/2], a=\tau-L/2$), 
+%So the real and imaginary parts of $c_\omega(\tau)$ are definable.
+%If we identify the complex field $\Ce$ with $\Re^2$ and map the field operations of $\Ce$ to those of $\Re^2$ in the usual way, then $\Ce$ and its field operations are definable in $\Re$ and every algebraic subset of $\Ce^n$ is definable in $\Re$ \cite{PeterzilS04_ComplexOminmal}.
+%Thus the function $\tau \mapsto c_\omega(\tau)$ is o-minimal being the result of applying multiplication (by $i$) and addition to definable terms.

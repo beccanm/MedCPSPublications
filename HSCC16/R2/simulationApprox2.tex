@@ -1,0 +1,26 @@
+\section{Finite simulation for STORMED systems}
+\label{sec:simulationAprox}
+In general it is not possible to compute the reach sets required by the iteration \eqref{eq:Ft,Fd} exactly unless the underlying theory is decidable.
+The $\Sys_{ICD}||\Sys_{CA}$ closed loop is definable in $\Lc_{\exp}$, and the latter is not known to be decidable.
+%The authors in \cite{PrabhakarVVD09_toklerant} proposed approximating the flows and resets by polynomial flows and resets in the decidable theory $\Lc_\Re$.
+%However, the approximation process is typically iterative and requires manual intervention, or is restricted to subclasses of STORMED systems \cite{PrabhakarVVD09_toklerant}.
+Here we show that if an approximate reachability tool with definable over-approximations is available for the continuous dynamics, it can be used in \eqref{eq:Ft,Fd} to yield a finite \emph{simulation}.
+Since we only have a simulation, counter-examples on the abstraction should be validated in a CEGAR-like fashion.
+\begin{lemma}
+	\label{lemma:finite simu}
+	Let $\SHS = (\Sys,\ldots)$ be a SHS and $\sim$ an equivalence relation on $\stSet$.
+	For any mode $\mode$ of $\Sys$, the dynamical system $\Dc$ with state space $X = \Sys.\stSet$ and set-valued flow $\Theta(t;x) = \{y \in \Re^n \;|\; ||y-\theta(t;x)||^2 \leq \epsilon^2\}$ admits a finite simulation $\simu_\mode$ that respects $\sim$.
+\end{lemma}
+Let $\Ft^\epsilon(\partition) \defeq \cap_{\mode}\simu_{\mode \in \modeSet}$ where $\partition = \stSet/\sim$. $\Ft^\varepsilon$ refines all the $\simu_\mode$'s, and it is a finite simulation of $\Sys$ by itself w.r.t. the continuous transition $\trans{\tau}$.
+
+\begin{thm}
+	\label{thm:finite simulation}
+	Let $\Sys$ be a STORMED hybrid system, 
+	and $\partition$ be a finite definable partition of its state space.
+	Define 
+	\begin{equation}
+	\label{eq:Fte,Fde}
+W_0 = \Ft^\epsilon(\partition), \quad \forall i\geq 0, W_{i+1} = \Ft^\epsilon(\Fd(W_i))
+	\end{equation}
+Then there exists $U \in \Ne$ s.t. $W_{U+1} = W_U$ and $\Ft^\epsilon(W_U)$ is a simulation of $\Sys$ by itself.
+\end{thm}

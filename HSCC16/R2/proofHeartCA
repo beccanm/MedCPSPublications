@@ -1,0 +1,48 @@
+{\large \textbf{Proof of Lemma \ref{thm:heartCA}}.}
+\begin{prf}
+	We verify each property of STORMED.
+	In this and all the proofs that follow, the approach is the same: $(ED)$ holds by Prop.~\ref{prop:ED} because our state spaces are bounded.
+	After establishing properties $(S), (T)$ and $(O)$, we draw up the constraints on $\phi$ and $\varepsilon$ imposed by reset and flow monotonicity (property (RM)). 
+	Then we argue that these constraints can be solved for $\phi$ and $\varepsilon$.
+	Often there is more than one solution and we just point to one.
+	
+	\textbf{(S)} Separability holds because $V_{min} < V_{th}< V_{th,2} < V_{max,2} < V_{max}$ and $PD>0,D_{Ph_1}>0$. 
+	For example, on transition \textbf{Phase 4} $\rightarrow$ \textbf{Phase 0}, $V(i,j)=V_{th}$, which is separated from the next guard $\{V(i,j) > V_{max}\}$ by $|V_{max}-V_{th}|$.
+	%The only mode with two transitions is Phase 3 - RRP and its guards are $\{V(i,j) \leq V_{min}\}$ and $\{V(i,j) \geq V_{th,2}\}$ with separation $\sqrt{|V_{th,2}-V_{min}|}>0$.
+	\\
+	\textbf{(T)} All flows are linear or exponential and thus are TISG.
+	\\
+	\textbf{(O)} The flows, resets and guard sets are all definable in $\Lc_{\exp}$.
+	In particular the flow of $\dot{V} = AV$ is exponential with real exponent, and $\egm$ is a sum of exponentials and linear terms.
+	\\
+	\textbf{(RM)}
+	We seek a vector $\phi = (\phi_V,\phi_t,\phi_p,\phi_\egm)^T \in \Re^{N^2+3}$ such that resets and flows are monotonic along $\phi$.
+	Only transitions $p \rightarrow q \neq p$ are to be found in $\Sys_{CA}$, during which only $t_p$ is reset. 
+	Always, $t_p^+ = t \geq t_p^-$, thus the reset is indeed monotonic as can be seen by choosing any $\varepsilon >0$ and $\phi_p > \varepsilon$.
+	
+	Monotonic flows: $\phi$ must also be such that in all modes:
+	\begin{equation*}
+	\phi \cdot (\theta_\ell(t+\tau;x) - \theta_\ell(t;x)) \geq \varepsilon ||\theta_\ell(t+\tau;x) - \theta_\ell(t;x)||
+	\end{equation*}
+	Decomposing, we want 
+	\begin{eqnarray}
+	\label{eq:monotonic flow ca}
+	&&\phi_V \cdot(V(t+\tau) - V(t)) + \phi_t \tau + \phi_p \cdot 0 
+	\\
+	&&\quad+ \phi_\egm \cdot (\egm(x,t+\tau) - \egm(x,t)) \geq \varepsilon ||\theta_\ell(x,t+\tau) - \theta_\ell(x,t)||
+	\nonumber 
+	\end{eqnarray}
+	Now note that all flows have bounded derivatives in every bounded duration of flow and are thus Lipschitz. 
+	Let $L_V$ be the Lipshitz constant of $V(t)$ and $L_{\egm}$ that of $\egm(t)$.
+	Then on the LHS of the above inequality we have 
+	$\phi_V \cdot(V(t+\tau) - V(t)) + \phi_\egm \cdot(\egm(t+\tau) - \egm(t)) \geq -\phi_V L_V \tau  -\phi_\egm L_{\egm} \tau$.
+	On the RHS we have  
+	$\varepsilon (L_V\tau + L_{\egm}\tau + \tau) \geq \varepsilon ( ||V(t+\tau) - V(t)|| + ||\egm(t+\tau) - \egm(t) ||  + \tau) \geq \varepsilon ( ||\theta_\ell(x,t+\tau) - \theta_\ell(x,t)||)$
+	Thus \eqref{eq:monotonic flow ca} is satisfied if the stronger inequality 
+	\[-\phi_V L_V \tau  -\phi_\egm L_{\egm} \tau + \phi_t \tau \geq \varepsilon (L_V\tau + L_{\egm}\tau + \tau) \]
+	is satisfied.
+	But this can be achieved by, for example, choosing $\phi_V = \phi_\egm = 0$ and $\phi_t \geq \varepsilon(L_V+L_{\egm}+1)$.
+	\\
+	\textbf{(ED)} Our system has bounded state spaces: $V$ and $\egm$ are voltages typically in the range $[-80,60]$ mV and $t_p \leq t \leq D$.
+	So (ED) holds by Lemma \ref{prop:ED}. 
+\end{prf}

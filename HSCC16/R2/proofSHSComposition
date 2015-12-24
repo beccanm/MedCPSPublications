@@ -1,0 +1,76 @@
+{\large \textbf{Proof of Theorem \ref{thm:SHS composition}.}}
+\begin{prf}
+\textbf{(S)} In $\Sys$, let $y=(y^1,\ldots,y^m)=\reset_e((x^1,\ldots,x^m))$ and assume that it was $\Sys_1$ that caused the jump.
+Thus $y^j=x^j,j >1$.
+Write $e=(\mode,\mode ')$.
+By Collection Separability,  $d(y^j,G^j_{e^j})>d_{min}^{1j}$ for all $j>1,e^j\in E^j$, 
+and by separability of $\Sys_1$ $d(y^1,G^1_{e^1}) > d_{min}^1$ for all $e^1 \in E^1$.
+So by $d(y,G_{\mode', \mode ''}) > \min (d_{min}^1, \min_{j>1}d_{min}^{1j}) > d_{min}$ for any guard leading out of $\mode'$, and we have separability.
+The argument can be repeated for any subset $I \subset [m]$ of systems jumping simultaneously.
+\\
+\textbf{(T)}:
+The $\Sys$ flow $\theta_\mode(t;x)$ is TISG because the component flows $\theta^i_{\mode^i}(t;x^i)$ are TISG.
+\\
+\textbf{(O)} The cartesian product of definable sets is definable, so the system $\Sys$ is o-minimal.
+\\
+\textbf{(RM)} First we show that resets of $\Sys$ are monotonic, then that the flows of $\Sys$ are monotonic.
+Let $p,q \in \modeSet$ be two modes of $\Sys$, $p\neq q$.
+
+\underline{Case 1: $\Sys$ jumps $p \rightarrow p$}.
+So any subsystem $\Sys_i$ either jumped $p^i \rightarrow p^i$ or didn't jump at all.
+If $x^+ = x^-$, then (RM) is satisfied.
+Else, define $\phi \defeq (\phi^1,\ldots,\phi^m) \in \Re^{n\cdot m}$, where $\phi^i$ is the $\phi$ vector of system $\Sys_i$.
+Then $\phi \cdot (x^+ - x^-) = \sum_{i\in K}\phi^i\cdot(x^{i,+} - x^{i,-})$, 
+where $K \subset [m]$ is the set of indices of sub-systems that jumped with $x^{i,-} \neq x^{i,+}$.
+Note that $K$ depends on $x^-,x^+$.
+%
+For all $x^-,x^+$ pairs (and so for all $K$) 
+$\sum_{i\in K} \zeta^i \geq \min_{i \in [m]}\zeta^i \defeq \zeta > 0$.
+So by (RM) for each $\Sys_i$,
+\begin{equation*}
+\label{eq:parallel rm1}
+\phi \cdot (x^+ - x^-) =  \sum_{i\in K}\phi^i\cdot(x^{i,+} - x^{i,-}) \geq \sum_{i\in K}\zeta^i \geq \zeta > 0
+\end{equation*}
+Thus (RM) is satisfied.
+
+\underline{Case 2: $\Sys$ jumps $p \rightarrow q$}.
+At least one syb-system $\Sys_i$ jumped $p^i \rightarrow q^i \neq p^i$.
+Then 
+$\phi \cdot (x^+ - x^-) = \sum_{i\in [m]}\phi^i\cdot(x^{i,+} - x^{i,-}) = \sum_{i\in K}\phi^i\cdot(x^{i,+} - x^{i,-})$,
+where $K = K_= \cup K_{\neq} \subset [m]$ and 
+$K_=$ is the index set of subsystems that jumped $p^i \rightarrow p^i$ with $x^{i,+} \neq x^{i,-}$, 
+and $K_{\neq}$ is the index set of subsystems that jumped $p^i \rightarrow q^i \neq p^i$ with $x^{i,+} \neq x^{i,-}$.
+Subsystems that didn't jump or jumped without changing their continuous state don't contribute to the sum.
+Note that $K_=,K_{\neq}$ depend on $x^-,x^+$.
+So we have
+$\phi \cdot (x^+ - x^-) \geq \sum_{i\in K_{\neq}}\varepsilon^i ||x^{i,+} - x^{i,-}|| + \sum_{i\in K_=} \zeta^i$.
+
+For all $X^i$, $||x^{i,+} - x^{i,-}|| \leq B_{X^i}$ for all $x^{i,-},x^{i,+} \in X^i$.
+Therefore $\zeta^i \frac{||x^{i,+} - x^{i,-}||}{B_{X^i}} \leq \zeta^i$ for all $i\in K$.
+So 
+\begin{eqnarray*}
+&&	\phi \cdot (x^+ - x^-) \geq
+\\ 
+&\;&\sum_{i\in K_{\neq}} (\min_{i\in [m]}\varepsilon^i) ||x^{i,+} - x^{i,+}|| + \sum_{i\in K_=} \frac{\zeta^i}{B_{X^i}}||x^{i,+} - x^{i,-}|| \geq 
+\\
+&& \sum_{i\in K_{\neq}} (\min_{i\in [m]}\varepsilon^i) ||x^{i,+} - x^{i,-}|| + \sum_{i\in K_=} (\min_{i\in [m]}\frac{\zeta^i}{B_{X^i}})||x^{i,+} - x^{i,-}||
+\end{eqnarray*}
+Let $\varepsilon \defeq \min(\min_i \varepsilon^i, \min_i \frac{\zeta^i}{B_{X^i}})$.
+Then 
+\begin{equation*}
+\phi \cdot (x^+ - x^-) \geq \sum_{i\in K} \varepsilon ||x^{i,+} - x^{i,-}|| \geq \varepsilon ||x^+-x^-||
+\end{equation*}
+So $\Sys$ has monotonic resets.
+
+%What about $\Sys$?
+%Consider again the case where $\Sys$ jumps $p\rightarrow q\neq p$, the other case being trivial.
+%Fix an arbitrary $\phi_d \leq - \varepsilon$.
+%Let $\hx = (\stPt,\mode)$ be the state of $\widehat{\Sys}$, and let $\hat{\phi} = (\phi,\phi_d)$ with $\phi= (\phi_1,\ldots,\phi_m)$ as defined above.
+%Then $\hat{\phi} \cdot (\hx^+ - \hx^-) = \phi \cdot (x^+ - x^-) + \phi_d \cdot (q-p) \geq \varepsilon ||x_i^+-x_i^-|| + \phi_d (1-|\modeSet|) \geq  \varepsilon ||x_i^+-x_i^-|| + \varepsilon (|\modeSet|-1) \geq  \varepsilon ||x_i^+-x_i^-|| + \varepsilon |q-p|$ and the resets of $\widehat{\Sys}$ are monotonic.
+%
+The flows of $\Sys$ are also monotonic along $\phi$.
+Indeed for any $q \in \modeSet$,
+$\phi\cdot (\theta_q(t+\tau;x) - \theta_q(t;x) ) = \sum_{i=1}^{m}\phi^i \cdot (\theta^i_{q^i}(t+\tau;x^i) - \theta^i_{q^i}(t;x^i)) \geq \sum_i \varepsilon^i ||(\theta^i_{q^i}(t+\tau;x^i) - \theta^i_{q^i}(t;x^i))|| \geq \varepsilon ||(\theta_{q}(t+\tau;x) - \theta_{q}(t;x))||$
+
+\textbf{(ED)} By Prop. \ref{prop:ED}.
+	\end{prf}

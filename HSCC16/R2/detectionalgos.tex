@@ -1,0 +1,25 @@
+\section{Arrhythmia detection}
+\label{sec:discriminators}
+Because a sustained \ac{VT} (or \ac{VF}) can be fatal whereas an \ac{SVT} is usually not fatal, 
+\emph{the ICD's main task is to discriminate \ac{VT} from \ac{SVT} and deliver therapy to the former only} \cite{compass}.
+%\emph{\ac{VT}} is an example of a tachycardia originating in the ventricles, in which the ventricles spontaneously beat at a very high rate.
+%If the \ac{VT} is sustained, or degenerates into \ac{VF}, it can be fatal.
+%A tachycardia that originates above the ventricles is referred to as a \emph{\ac{SVT}} and is a diseased but non-fatal condition.
+%In what follows, we will refer to sustained \ac{VT} and \ac{VF} together as \ac{VT}.
+%\emph{The ICD's main task is to discriminate \ac{VT} from \ac{SVT} and deliver therapy to the former only}.
+Most \ac{VT}/\ac{SVT} detection algorithms found in ICDs today are composed of individual \emph{discriminators}. 
+A discriminator is a software function whose task is to decide whether the current arrhythmia is \ac{SVT} or \ac{VT}.
+No one discriminator can fully distinguish between SVT and VT.
+Thus a detection algorithm is often a decision tree built using a number of discriminators \emph{running in parallel}.
+We have modeled each discriminator in this detection algorithm as a STORMED hybrid system.
+The algorithm itself is then a hybrid system.
+\textbf{The ICD system is thus 
+$\mathbf{\Sys_{ICD} = \Sys_{Sense}||\Sys_{Detection-Algo}}$ where $\mathbf{\Sys_{Detection-Algo}}$ is the parallel composition of the discriminator systems}.
+In what follows, we present two of these discriminators we modeled, which are found in most ICDs and model them as hybrid systems, and prove they are STORMED.
+
+%\input{threeCFI}
+
+\input{VTC}
+
+\input{stability}
+

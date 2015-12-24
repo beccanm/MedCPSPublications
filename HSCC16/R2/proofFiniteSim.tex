@@ -1,0 +1,35 @@
+{\large \textbf{Proof of Lemma \ref{lemma:finite simu}}.}
+\begin{prf}
+	This follows the lines of the elegant proof of \cite{BrihayeM05_ominimal} as formulated in \cite{tabuada} and generalizes it to set-valued maps.
+	(The fact that using an approximate $Post$ operator yields a simulation is a special case of a more general result on transition systems but we prove it here for completeness. 
+	\yhl{Also note that this result holds for o-minimal systems \cite{LaFerrierePS00_Ominimal} generally, not just STORMED systems}).
+	
+	First observe that using approximate reachability on a system $\Sys$ is tantamount to replacing $\Sys$ with a system $\Sys^\varepsilon$ whose flows and reset maps are set-valued $\varepsilon$ over-approximations of the flows and resets of $\Sys$ (but is otherwise unchanged).
+	Therefore define the dynamical system $\Dc^\varepsilon$ with state space $\stSet$ and whose flow $\Theta: \Re \times \Re^n \rightarrow 2^{\Re^n}$ is a set-valued $\varepsilon$ over-approximation of $\theta_\mode$:
+	$\Theta(t;x) = \{y \in \Re^n \;|\; ||y-\theta(t;x)||^2 \leq \epsilon^2\}$.	
+	Let $\partition \defeq \stSet/\sim$ be the partition induced by $\sim$.
+	%
+	It follows from the definability of $\theta$ and $||\cdot||^2$ that $\Theta$ is definable. 
+	Given $P \in \partition$, let $Z(P) = \Theta^{-1}(P) \defeq \{(x,t) \;|\; \Theta(x,t) \cap P \neq \emptyset\}$.
+	Then $Z(P)$ is definable because $P$ and $\Theta$ are definable.
+	Let $Z_x(P) = \{t \;|\; (x,t) \in Z(P)\} \subset \Re$ be the \emph{fiber} of $Z$ over $x$.
+	The number of connected components of $Z_x(P)$ equals the number of times that $\Theta(x,t)$ intersects $P$.
+	Now it follows from \cite{tabuada} Thm.7.11 that there exists a uniform upper bound on the number of connected components of $Z_x(P)$, independent of $x$.
+	Let that bound be $V_P$.
+	Thus $\Theta(x,t)$ visits $P$ at the most $V_P$ times, regardless of $x$.
+	Since there is a finite number of blocks $P \in \partition$, then $\Theta(x,t)$ visits any block $P$ a maximum of $V \defeq \max_P(V_P)$ times.%, independent of $x$ and $P$.
+	
+	Thus we can associate to each $x\in \stSet$ a finite number of finite strings $q(x) = (\ell_1,\ell_2,\ldots,\ell_{i-1},\widehat{\ell_i},\ell_{i+1},\ldots,\ell_s)$, where $\ell_i,\widehat{\ell}_i \in \partition$.
+	Each $q(x)$ gives the sequence of blocks that $\Theta(x,t)$ visits (with repetition), and in which $\widehat{\ell_i}$ is the block containing $x$.
+	There may be more than one such string because the set $\Theta(x,t)$ might intersect more than one block of $\partition$ at a time.		
+	The length of $q(x)$ is thus uniformly upper-bounded by $V\cdot |\partition|$, so there's a finite number of different strings $q(x)$. 
+	%
+	Let $\Qc(x)$ be the set of such strings associated to $x$, and let $\Qc = \cup_x \Qc(x)$.
+	Then $\Qc$ is the state space of the finite transition system $K = (\Qc,\{*\},\trans{},\Qc_0)$ whose transition relation is 
+	\begin{compactitem}
+		\item $\ell_1\ldots\widehat{\ell}_i\ldots\ell_s \trans{*} \ell_1\ldots\widehat{\ell}_{i+1}\ldots\ell_s$
+		\item $\ell_1\ldots\ell_{s-1} \widehat{\ell_s} \trans{*} \ell_1\ldots\ell_{s-1} \widehat{\ell}_s$
+	\end{compactitem}
+
+	It is clear that $K$ is non-deterministic and simulates $\Dc$ but is not a bisimulation because of the over-approximation produced by $\Theta$.	 
+\end{prf} 

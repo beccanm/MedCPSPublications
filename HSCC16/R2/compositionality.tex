@@ -1,0 +1,46 @@
+\section{Composing STORMED systems}
+\label{sec:compositionality}
+The results in this section and the next apply to STORMED systems in general, including those with time-unbounded operation.
+We write $[m] = \{1,\ldots,m\}$.
+Given hybrid systems $\Sys_1,\ldots,\Sys_m$ in this section, $x^i, \guard^i, \theta^i,\ldots$ etc refer to a state, guard, flow $\ldots$ of system $\Sys_i$, $i\leq m$.
+%
+We show that the parallel composition of SHS is still a SHS.
+Recall that $\theta_{\ell}(t;x)$ is the flow starting at $(\ell,x)$.
+Given hybrid systems $\Sys_1,\ldots,\Sys_m$, their parallel composition $\Sys = \Sys_1 || \ldots ||\Sys_m$ is defined in the usual way:
+$\Sys.\stSet = \Pi_i \stSet^i$,
+$\Sys.\modeSet = \Pi_i \modeSet^i$,
+$\Sys.\hsSet_0 =\Pi_i \hsSet_0^i$,
+$Inv(\ell) = \Pi_{i}Inv^i(\ell^i)$,
+$\theta_{\ell}(x,t)= [\theta_{\ell^1}^1(x^1,t)(t),\ldots,\theta_{\ell^m}^m(x^m,t)(t) ]^T$.
+The system jumps if any of its subsystems jumps.
+%, so its guard sets are of the form 
+%$A^1\times\ldots \times A^m$ where for at least one $i$, $A^i$ is a guard of $\Sys_i$, and for the rest $A^j =\stSet^j$.
+When a guard of a subsystem is satisfied, the state of that subsystem is reset according to its reset map.
+The guards are made disjoint to avoid non-determinism.
+%\yhl{A system $\Sys$ is \emph{deterministic} if to every initial state $(\mode,\stPt)$, $\Sys$ produces a unique trajectory starting there.}
+
+In general $\Sys$ is not separable: indeed for any candidate value of $d_{min}$, one could find a transition $(i,j)$ of $\Sys$ due to, say, a jump of $\Sys_1$, s.t. at that moment $x^2$ is closer than $d_{min}$ to one of its own guards, say $\guard^2_{(j^2,k^2)}$. 
+This causes $\Sys$ to further jump $j \rightarrow k$ without having traveled the requisite minimum distance, thus violating the separability of $\reset_{ij}(\guard_{ij})$ and $\guard_{jk}$.
+Therefore we need to impose an extra condition on minimum separability \emph{across} sub-systems.
+\begin{thm}
+	\label{thm:SHS composition}		
+	Let $\SHS_i = (\Sys_i, \Ac, \phi^i,b^{i,-},b ^{i,+}, d_{min}^i, \varepsilon^i, \zeta^i)$, $i=1,\ldots,m$ be deterministic SHS 
+	defined using the same underlying o-minimal structure, 
+	and where each state space $\stSet^i$ is bounded by $B_{X^i}$.
+	\\
+	Define parallel composition $\SHS = (\Sys, \Ac, \phi,b^-,b^+, d_{min}, \varepsilon, \zeta)$ where
+	$\Sys = \Sys_1 || \ldots ||\Sys_m$,	
+	$\phi = (\phi^1,\ldots,\phi^m)^T \in \Re^{mn}$,
+	$b^{i,-} = \inf_{x \in \stSet} \phi\cdot x$,
+	$b^{i,+} = \sup_{x \in \stSet} \phi\cdot x$,
+	$\varepsilon = \min(\min_i \varepsilon^i, \min_i \frac{\zeta^i}{B_{X^i}})$,
+	$\zeta = \min_i \zeta^i$ and
+	\[d_{min} = \min_{I\subset [m]} (\min_{i\in I}d_{min}^i, \min_{i\in I ,j \in [m]\setminus I }d_{min}^{ij})\]	
+	Assume that the following \textbf{Collection Separability} condition holds: 	
+	\yhl{for all $i,j \leq m, \neq j $ there exists $d_{min}^{ij}>0$ s.t. 
+		\yhl{if $\stPt \in \stSet$ is in the reachable set of $\Sys$} and 
+		$x^i \in G^i_e \land x^j \notin G^j_{e'} \; \forall e' \in E^j$ 
+		then $d(x^j,G^j_{e'}))>d_{min}^{ij}$ for all $e'\in E^j$ 
+		where $E^j$ is the edge set of $\SHS_j$ and $G^j_{e'}$ is a guard of $\SHS_j$ on edge $e' \in E^j$.}
+	Then $\SHS$ is STORMED.
+\end{thm}

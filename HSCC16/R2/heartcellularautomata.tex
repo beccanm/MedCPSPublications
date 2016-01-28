@@ -40,7 +40,7 @@ Once below $V_{th}$ it is said to be in the Relative Refractory Period (Phase 3 
 Otherwise, when the voltage reaches $V_{min}$ again, the cell enters the quiescent stage again. 
 This model is suitable for both pacemaker and non-pacemaker cells, the main differences being in the duration of the plateau (virtually non-existent for pacemaker cells), and the duration of phases 0 and 4 (both are shorter for pacemaker cells).
 
-In Fig. \ref{fig:cellaut}, $V(i,j) \in \Re$ denotes the voltage in cell $(i,j)$ of the grid, and \yhl{$V =(V(1,1),\ldots, V(N^2,N^2))^T$} in $\Re^{N^2}$ groups the cross-membrane voltages of all cells in the heart.
+In Fig. \ref{fig:cellaut}, $V(i,j) \in \Re$ denotes the voltage in cell $(i,j)$ of the grid, and \yhl{$V =(V(1,1),\ldots, V(N,N))^T$} in $\Re^{N^2}$ groups the cross-membrane voltages of all cells in the heart.
 The whole heart model $\Sys_{CA}$ is the parallel composition of these $N^2$ single-cell models. 
 \begin{figure}[t]
 	\centering

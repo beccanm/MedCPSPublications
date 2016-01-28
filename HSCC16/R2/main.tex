@@ -1,12 +1,52 @@
-% THIS IS SIGPROC-SP.TEX - VERSION 3.1
-% WORKS WITH V3.2SP OF ACM_PROC_ARTICLE-SP.CLS
-% APRIL 2009
+% This is "sig-alternate.tex" V2.1 April 2013
+% This file should be compiled with V2.5 of "sig-alternate.cls" May 2012
 %
-% It is an example file showing how to use the 'acm_proc_article-sp.cls' V3.2SP
-% LaTeX2e document class file for Conference Proceedings submissions.
-% 
+% This example file demonstrates the use of the 'sig-alternate.cls'
+% V2.5 LaTeX2e document class file. It is for those submitting
+% articles to ACM Conference Proceedings WHO DO NOT WISH TO
+% STRICTLY ADHERE TO THE SIGS (PUBS-BOARD-ENDORSED) STYLE.
+% The 'sig-alternate.cls' file will produce a similar-looking,
+% albeit, 'tighter' paper resulting in, invariably, fewer pages.
+%
+% ----------------------------------------------------------------------------------------------------------------
+% This .tex file (and associated .cls V2.5) produces:
+%       1) The Permission Statement
+%       2) The Conference (location) Info information
+%       3) The Copyright Line with ACM data
+%       4) NO page numbers
+%
+% as against the acm_proc_article-sp.cls file which
+% DOES NOT produce 1) thru' 3) above.
+%
+% Using 'sig-alternate.cls' you have control, however, from within
+% the source .tex file, over both the CopyrightYear
+% (defaulted to 200X) and the ACM Copyright Data
+% (defaulted to X-XXXXX-XX-X/XX/XX).
+% e.g.
+% \CopyrightYear{2007} will cause 2007 to appear in the copyright line.
+% \crdata{0-12345-67-8/90/12} will cause 0-12345-67-8/90/12 to appear in the copyright line.
+%
+% ---------------------------------------------------------------------------------------------------------------
+% This .tex source is an example which *does* use
+% the .bib file (from which the .bbl file % is produced).
+% REMEMBER HOWEVER: After having produced the .bbl file,
+% and prior to final submission, you *NEED* to 'insert'
+% your .bbl file into your source .tex file so as to provide
+% ONE 'self-contained' source file.
+%
+% ================= IF YOU HAVE QUESTIONS =======================
+% Questions regarding the SIGS styles, SIGS policies and
+% procedures, Conferences etc. should be sent to
+% Adrienne Griscti (griscti@acm.org)
+%
+% Technical questions _only_ to
+% Gerald Murray (murray@hq.acm.org)
+% ===============================================================
+%
+% For tracking purposes - this is V2.0 - May 2012
 
-\documentclass{acm_proc_article-sp} 
+\documentclass{sig-alternate-05-2015}
+
 
 \usepackage{fainekos-macros}
 \usepackage{color}
@@ -57,19 +97,31 @@
 
 \newboolean{REPORT}
 \setboolean{REPORT}{FALSE}
-\linespread{0.97}
+%\linespread{0.97}
+
 
 \begin{document}
+
+
+\CopyrightYear{2016} \setcopyright{acmcopyright}
+\conferenceinfo{HSCC '16,}{April 12--14, 2016, Vienna, Austria.}
+\isbn{978-1-4503-3955-1/16/04}\acmPrice{\$15.00}
+\doi{http://dx.doi.org/10.1145/2883817.2883841}
+%Authors, replace the red X's with your assigned DOI string.
+
+\clubpenalty=10000 
+\widowpenalty = 10000
+
 
 \title{Model Checking Implantable Cardioverter Defibrillators}
 
 \author{
-% 1st. author
-\alignauthor
-Houssam Abbas, Kuk Jin Jang, Zhihao Jiang, Rahul Mangharam\\
-       \affaddr{Department of Electrical and Systems Engineering}\\
-       \affaddr{University of Pennsylvania, Philadelphia, PA, USA}\\
-       \email{\{habbas,  jangkj, zhihaoj, rahulm\}@seas.upenn.edu}
+	% 1st. author
+	\alignauthor
+	Houssam Abbas, Kuk Jin Jang, Zhihao Jiang, Rahul Mangharam\\
+	\affaddr{Department of Electrical and Systems Engineering}\\
+	\affaddr{University of Pennsylvania, Philadelphia, PA, USA}\\
+	\email{\{habbas,  jangkj, zhihaoj, rahulm\}@seas.upenn.edu}
 }
 % Just remember to make sure that the TOTAL number of authors
 % is the number that will appear on the first page PLUS the
@@ -93,8 +145,5 @@ Houssam Abbas, Kuk Jin Jang, Zhihao Jiang, Rahul Mangharam\\
 \bibliographystyle{abbrv}
 \bibliography{HSCC2015_CompositionalConf,houssam,fainekos_bibrefs,hscc2016,biblio2}  %zhihao
 
-%
-%\clearpage
-%\input{appendix}
 
 \end{document}

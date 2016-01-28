@@ -1,13 +1,52 @@
 \documentclass{article}
 
 \title{Technical Report: Model-Based Clinical Trials}
-\author{You!}
+\author{Houssam Abbas, Zhihao Jiang, Kuk Jin Jang, Marco Beccani\\
+	\and
+	Jackson Liang, Sanjay Dixit, and Rahul Mangharam\\}
 
-\usepackage[obeyFinal]{todonotes}
 \usepackage{xcolor}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos,obeyFinal]{todonotes}
+\usepackage[ruled]{algorithm}
+\usepackage[table]{colortbl}
+\usepackage{algpseudocode}
+\usepackage{acronym}
+\usepackage{url}
+\usepackage{textcomp}
 
+\acrodef{POD}{Programmable Output Device}
+\acrodef{PC}{Personal Computer}
+\acrodef{DAQ}{Data Acquisition}
+\acrodef{DAQ}{Data Acquisition}
+\acrodef{MBCT}[MBCT]{Model-Based Clinical Trial}
+\acrodef{RCT}{Randomized Controlled Trial}
+\acrodef{CT}{Clinical Trial}
+\acrodef{VT}{Ventricular Tachycardia}
+\acrodef{VF}{Ventricular Fibrillation}
+\acrodef{SVT}{SupraVentricular Tachycardia}
+\acrodef{PRLW}[PRL+W]{PR Logic + Wavelet}
+\acrodef{EGM}{electrogram}
+\acrodef{ECG}[ECG]{electrocardiogram}
+\acrodef{ICD}[ICD]{Implantable Cardioverter Defibrillator}
+\acrodef{AGC}[AGC]{automatic gain control}
+\acrodef{AAS}[AAS]{auto-adjusting sensitivity}
+\acrodef{NSR}[NSR]{normal sinus rhythm}
+
+\usepackage{tikz}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+		\node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand{\smallcaption}[1]{\caption{\small #1}}
+\newcommand{\headline}[1]{\ifthenelse{\boolean{DRAFT}}{\textcolor{blue}{#1}}{#1}}
+\newcommand\Mark[1]{\textsuperscript#1}
+\newcommand{\mynote}[2]{\todo[inline]{#1: #2}}
 \newcommand{\gap}[1]{{\color{red}{*** #1}}}
 \newcommand{\superemph}[1]{{\color{red} \underline{\emph{#1}}}}
+
+\graphicspath{{figures/}}
+
 	
 \begin{document}
 	\maketitle
